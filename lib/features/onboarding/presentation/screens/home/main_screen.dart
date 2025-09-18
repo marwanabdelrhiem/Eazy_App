@@ -1,0 +1,40 @@
+import 'package:flutter/material.dart';
+import 'package:eazy/core/widgets/custom_bottom_nav_bar.dart';
+import 'package:eazy/features/onboarding/presentation/screens/home/account/presentation/screens/profile_screen.dart';
+
+import 'lessons/ presentation/lessons_screen.dart';
+
+
+class MainScreen extends StatefulWidget {
+  const MainScreen({super.key});
+
+  @override
+  State<MainScreen> createState() => _MainScreenState();
+}
+
+class _MainScreenState extends State<MainScreen> {
+  int _selectedIndex = 1;
+
+  final List<Widget> _screens = [
+    const ProfileScreen(),
+    const Center(child: Text("الرئيسية")),
+    const LessonScreen(),
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: _screens[_selectedIndex],
+      bottomNavigationBar: CustomBottomNavBar(
+        selectedIndex: _selectedIndex,
+        onItemTapped: _onItemTapped,
+      ),
+    );
+  }
+}
