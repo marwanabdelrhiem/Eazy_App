@@ -1,188 +1,262 @@
-// File: lib/features/home/presentation/screens/home_screen.dart
 
+import 'package:eazy/features/onboarding/presentation/screens/home/notifications/presentation/screens/notifications_screen.dart';
+import 'package:eazy/features/onboarding/presentation/screens/home/search_screen.dart';
+import 'package:eazy/features/onboarding/presentation/screens/home/widgets/category.dart';
+import 'package:eazy/features/onboarding/presentation/screens/home/widgets/home_banner.dart';
 import 'package:flutter/material.dart';
-import 'package:eazy/core/constants/colors.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class HomeBody extends StatefulWidget {
+  const HomeBody({super.key});
 
   @override
+  State<HomeBody> createState() => _HomeBodyState();
+}
+
+class _HomeBodyState extends State<HomeBody> {
+  @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+    return Padding(
+      padding: const EdgeInsets.all(19),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const SizedBox(height: 50),
-          // App Bar
+
+          // ======== الجزء الثابت (الهيدر + البحث) ========
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              IconButton(
-                icon: const Icon(Icons.notifications_none, size: 30, color: kBlackColor),
-                onPressed: () {
-                  // TODO: Navigate to notifications screen
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>  NotificationsScreen(notifications: [
+                        {
+                          'title': 'اسم الإشعار',
+                          'body': 'تفاصيل الاشعار هنا تفاصيل الاشعار هنا تفاصيل الاشعار هنا'
+                        },
+                        {
+                          'title': 'اسم الإشعار',
+                          'body': 'تفاصيل الاشعار هنا تفاصيل الاشعار هنا تفاصيل الاشعار هنا'
+                        },
+                        {
+                          'title': 'اسم الإشعار',
+                          'body': 'تفاصيل الاشعار هنا تفاصيل الاشعار هنا تفاصيل الاشعار هنا'
+                        },
+                        {
+                          'title': 'اسم الإشعار',
+                          'body': 'تفاصيل الاشعار هنا تفاصيل الاشعار هنا تفاصيل الاشعار هنا'
+                        },
+                      ]),
+                    ),
+                  );
                 },
+                child: Image.asset(
+                  'assets/images/notification-bell 1@2x.png',
+                  width: 34,
+                  height: 34,
+                ),
               ),
+
+              const SizedBox(width: 147),
+
               Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   const Text(
-                    'مرحبا بك في ',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: kBlackColor,
-                    ),
+                    ' !',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                   Image.asset(
-                    'assets/images/logo_mini.png',
-                    height: 30,
+                    'assets/images/Eazy.png',
+                    height: 24,
+                  ),
+                  const Text(
+                    'مرحبا بك في ',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                 ],
               ),
             ],
           ),
-          const SizedBox(height: 20),
-          // Search Bar
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            decoration: BoxDecoration(
-              color: kLightGrayColor,
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: const Row(
-              children: [
-                Icon(Icons.search, color: kMediumGrayColor),
-                SizedBox(width: 10),
-                Text(
-                  'ابحث عن درس',
-                  style: TextStyle(
-                    color: kMediumGrayColor,
-                    fontSize: 16,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(height: 20),
-          // Offers Section
-          const Text(
-            'أحدث العروض',
-            textAlign: TextAlign.right,
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          const SizedBox(height: 10),
-          // Placeholder for Offer Carousel
-          Container(
-            height: 150,
-            decoration: BoxDecoration(
-              color: kLightOrangeColor,
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: Center(
-              child: Text(
-                'اشتراك بخصم 20% وتعلم جميع الدروس على إيزي',
-                style: TextStyle(color: kAccentColor),
-                textAlign: TextAlign.center,
-              ),
-            ),
-          ),
-          const SizedBox(height: 20),
-          // Categories Section
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                'المزيد',
-                style: TextStyle(
-                  fontSize: 16,
-                  color: kMediumGrayColor,
-                ),
-              ),
-              Text(
-                'الأقسام',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 10),
-          // Placeholder for Categories Grid
-          GridView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3,
-              crossAxisSpacing: 10,
-              mainAxisSpacing: 10,
-              childAspectRatio: 0.8,
-            ),
-            itemCount: 6,
-            itemBuilder: (context, index) {
-              return Container(
-                decoration: BoxDecoration(
-                  color: kLightGrayColor,
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(Icons.person, size: 50, color: kPrimaryColor),
-                    SizedBox(height: 10),
-                    Text(
-                      'اسم القسم',
-                      style: TextStyle(fontSize: 14),
+
+          const SizedBox(height: 27),
+
+          Directionality(
+            textDirection: TextDirection.rtl,
+            child: GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const SearchScreen()),
+                );
+              },
+              child: AbsorbPointer(
+                child: TextField(
+                  decoration: InputDecoration(
+                    hintText: 'ابحث عن درس',
+                    prefixIcon: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 12),
+                      child: Image.asset(
+                        'assets/images/search-normal 1.png',
+                        height: 22,
+                        width: 20,
+                      ),
                     ),
-                  ],
-                ),
-              );
-            },
-          ),
-          const SizedBox(height: 20),
-          // Continue Lessons Section
-          const Text(
-            'أستكمل دروسك',
-            textAlign: TextAlign.right,
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          const SizedBox(height: 10),
-          // Placeholder for Continue Lessons Card
-          Container(
-            padding: const EdgeInsets.all(16.0),
-            decoration: BoxDecoration(
-              color: kPrimaryColor,
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: const Column(
-              children: [
-                Text(
-                  'الفرق بين (a-an)',
-                  style: TextStyle(
-                    color: kWhiteColor,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide.none,
+                    ),
+                    filled: true,
+                    fillColor: Colors.grey[200],
                   ),
                 ),
-                SizedBox(height: 10),
-                Text(
-                  '4 أسئلة تقييم وتمارين في 5 دقائق',
-                  style: TextStyle(
-                    color: kWhiteColor,
-                    fontSize: 14,
-                  ),
-                ),
-              ],
+              ),
             ),
           ),
-          const SizedBox(height: 50),
+
+          const SizedBox(height: 27),
+
+          // ======== الجزء المتحرك (بيعمل Scroll) ========
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+
+                  Directionality(
+                    textDirection: TextDirection.rtl,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: const [
+                        SizedBox(height: 14),
+                        Text(
+                          'أحدث العروض',
+                          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(height: 12),
+                        HomeBanner(),
+                      ],
+                    ),
+                  ),
+
+                  const Category(),
+
+                  Directionality(
+                    textDirection: TextDirection.rtl,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const SizedBox(height: 5),
+                        const Text(
+                          'استكمل دروسك',
+                          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                        ),
+
+                        const SizedBox(height: 12),
+
+
+                        // ==== الكارت الخاص بالدروس ====
+                        Container(
+                          height: 170,
+                          width: 450,
+                          decoration: BoxDecoration(
+                            color: Colors.grey[200],
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          padding: const EdgeInsets.all(16),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: const [
+                                        Text(
+                                          'الفرق بين {a-an}',
+                                          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                                        ),
+                                        SizedBox(height: 4),
+                                        Text('4 اسئلة تقييم وتمارين '),
+                                        Text('5 دقائق '),
+                                      ],
+                                    ),
+                                  ),
+
+                                  SizedBox(width:  159),
+
+                                  InkWell(
+                                    onTap: () {
+                                    },
+                                    child: Image.asset(
+                                      'assets/images/Vector.png',
+                                      height: 20,
+                                      width: 17.37,
+                                    ),
+                                  ),
+
+
+                                ],
+                              ),
+                              const SizedBox(height: 25),
+
+                              Row(
+                                children: [
+
+                                  // شريط التقدم
+                                  SizedBox(
+                                    width: 185,
+                                    height: 10,
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(15),
+                                      child: LinearProgressIndicator(
+                                        value: 0.08,
+                                        backgroundColor: Colors.grey[300],
+                                        valueColor: const AlwaysStoppedAnimation(Color(0xFFFE9F45)),
+                                      ),
+                                    ),
+                                  ),
+
+                                  SizedBox(width: 120,),
+
+                                  // زر استكمل
+                                  InkWell(
+                                    onTap: () {
+                                      // أكشن الزر
+                                    },
+                                    borderRadius: BorderRadius.circular(12),
+                                    child: Container(
+                                      width: 111,
+                                      height: 42,
+                                      decoration: BoxDecoration(
+                                        color: const Color(0xFF2A72AD),
+                                        borderRadius: BorderRadius.circular(12),
+                                      ),
+                                      alignment: Alignment.center,
+                                      child: const Text(
+                                        'استكمل',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
         ],
       ),
     );

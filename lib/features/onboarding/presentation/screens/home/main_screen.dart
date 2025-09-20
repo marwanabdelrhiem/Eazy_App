@@ -1,3 +1,4 @@
+import 'package:eazy/features/onboarding/presentation/screens/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:eazy/core/widgets/custom_bottom_nav_bar.dart';
 import 'package:eazy/features/onboarding/presentation/screens/home/account/presentation/screens/profile_screen.dart';
@@ -16,9 +17,9 @@ class _MainScreenState extends State<MainScreen> {
   int _selectedIndex = 1;
 
   final List<Widget> _screens = [
-    const ProfileScreen(),
-    const Center(child: Text("الرئيسية")),
-    const LessonScreen(),
+    ProfileScreen(),    // صفحة الحساب (index 0)
+    HomeBody(),       // الصفحة الرئيسية (index 1)
+    MyLessonsScreen(),    // صفحة الدروس (index 2)
   ];
 
   void _onItemTapped(int index) {
