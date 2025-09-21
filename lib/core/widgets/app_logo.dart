@@ -25,7 +25,7 @@ class AppLogo extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Image.asset(
-          'assets/images/Eazy.png', // مسار الشعار الملون
+          'assets/images/Eazytest.png', // مسار الشعار الملون
           width: 291,
           height: 172,
           fit: BoxFit.contain,

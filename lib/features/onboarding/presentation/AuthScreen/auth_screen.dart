@@ -28,7 +28,7 @@ class _AuthScreenState extends State<AuthScreen> {
 
           Positioned.fill(
             child: Image.asset(
-              'assets/images/Group.png',
+              'assets/images/backgruynd.png',
               fit: BoxFit.cover,
             ),
           ),

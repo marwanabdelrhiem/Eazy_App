@@ -28,7 +28,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
     Future.delayed(const Duration(seconds: 3), () {
       if (mounted) {
-        // التنقل إلى شاشة Onboarding
+
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(builder: (context) => const OnboardingScreen()),
         );
@@ -43,7 +43,7 @@ class _SplashScreenState extends State<SplashScreen> {
         fit: StackFit.expand,
         children: [
           Image.asset(
-            'assets/images/Group.png',
+            'assets/images/backgruynd.png',
             fit: BoxFit.cover,
           ),
           Container(

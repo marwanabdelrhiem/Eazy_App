@@ -12,9 +12,13 @@ import '../../features/onboarding/presentation/AuthScreen/update_password_screen
 // ==== Account & Home Screens ====
 import '../../features/onboarding/presentation/screens/home/account/presentation/screens/account_created_screen.dart';
 import '../../features/onboarding/presentation/screens/home/account/presentation/screens/profile_screen.dart';
+import '../../features/onboarding/presentation/screens/home/lessons/ presentation/my_lessons_screen.dart';
 import '../../features/onboarding/presentation/screens/home/main_screen.dart';
 import '../../features/onboarding/presentation/screens/onboarding_screen.dart';
 import '../../features/onboarding/presentation/screens/splash_screen.dart';
+
+// ==== Lessons Screen ====
+
 
 class AppRoutes {
   static const String splashRoute = '/';
@@ -27,6 +31,9 @@ class AppRoutes {
   static const String updatePasswordRoute = '/updatePassword';
   static const String homeRoute = '/home';
   static const String accountCreatedRoute = '/accountCreated';
+
+  // 👇 route جديدة
+  static const String myLessonsRoute = '/myLessons';
 
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -59,16 +66,15 @@ class AppRoutes {
           builder: (_) => const OtpToUpdatePasswordScreen(),
         );
 
-      // case updatePasswordRoute:
-      //   return MaterialPageRoute(
-      //     builder: (_) => const UpdatePasswordScreen(),
-      //   );
-
       case homeRoute:
         return MaterialPageRoute(builder: (_) => const MainScreen());
 
       case accountCreatedRoute:
         return MaterialPageRoute(builder: (_) => const AccountCreatedScreen());
+
+    // 👇 شاشة دروسي
+      case myLessonsRoute:
+        return MaterialPageRoute(builder: (_) => const MyLessonsScreen());
 
       default:
         return MaterialPageRoute(

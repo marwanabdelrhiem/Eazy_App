@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'lessons_screen.dart';
+
+
 class MyLessonsScreen extends StatelessWidget {
   const MyLessonsScreen({Key? key}) : super(key: key);
 
@@ -11,10 +14,9 @@ class MyLessonsScreen extends StatelessWidget {
         textDirection: TextDirection.rtl,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
-          // 👈 إضافة Scroll علشان ما يحصلش Overflow
           child: SingleChildScrollView(
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 const SizedBox(height: 10),
                 Row(
@@ -37,8 +39,8 @@ class MyLessonsScreen extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 25),
-
                 _buildLessonCard(
+                  context: context,
                   title: 'الفرق بين (a-an)',
                   subtitle: '4 أسئلة تقييم وتمارين',
                   duration: '5 دقائق',
@@ -46,24 +48,28 @@ class MyLessonsScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 16),
                 _buildLessonCard(
+                  context: context,
                   title: 'الدرس الثاني - الوظائف',
                   subtitle: 'قسم الكلمات',
                   isCompleted: true,
                 ),
                 const SizedBox(height: 16),
                 _buildLessonCard(
+                  context: context,
                   title: 'الدرس الثاني - الوظائف',
                   subtitle: 'قسم الكلمات',
                   isCompleted: true,
                 ),
                 const SizedBox(height: 16),
                 _buildLessonCard(
+                  context: context,
                   title: 'الدرس الثاني - الوظائف',
                   subtitle: 'قسم الكلمات',
                   isCompleted: true,
                 ),
                 const SizedBox(height: 16),
                 _buildLessonCard(
+                  context: context,
                   title: 'الدرس الثاني - الوظائف',
                   subtitle: 'قسم الكلمات',
                   isCompleted: true,
@@ -77,6 +83,7 @@ class MyLessonsScreen extends StatelessWidget {
   }
 
   Widget _buildLessonCard({
+    required BuildContext context,
     required String title,
     required String subtitle,
     String? duration,
@@ -102,7 +109,7 @@ class MyLessonsScreen extends StatelessWidget {
         children: [
           Expanded(
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Text(
                   title,
@@ -127,7 +134,7 @@ class MyLessonsScreen extends StatelessWidget {
                     children: [
                       Expanded(
                         child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             Text(
                               duration!,
@@ -143,10 +150,10 @@ class MyLessonsScreen extends StatelessWidget {
                               height: 6,
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(3),
-                                child: LinearProgressIndicator(
+                                child: const LinearProgressIndicator(
                                   value: 0.5,
-                                  backgroundColor: const Color(0xFFE0E0E0),
-                                  color: const Color(0xFFF9A825),
+                                  backgroundColor: Color(0xFFE0E0E0),
+                                  valueColor: AlwaysStoppedAnimation(Color(0xFFF9A825)),
                                 ),
                               ),
                             ),
@@ -154,20 +161,29 @@ class MyLessonsScreen extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(width: 15),
-                      Container(
-                        width: 90,
-                        height: 38,
-                        decoration: BoxDecoration(
-                          color: const Color(0xFF2C64B0),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: const Center(
-                          child: Text(
-                            'استكمل',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500,
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => const LessonScreen()),
+                          );
+                        },
+                        borderRadius: BorderRadius.circular(10),
+                        child: Container(
+                          width: 90,
+                          height: 38,
+                          decoration: BoxDecoration(
+                            color: const Color(0xFF2C64B0),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: const Center(
+                            child: Text(
+                              'استكمل',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w500,
+                              ),
                             ),
                           ),
                         ),
@@ -178,12 +194,12 @@ class MyLessonsScreen extends StatelessWidget {
               ],
             ),
           ),
-          Icon(
+          const SizedBox(width: 16),
+          const Icon(
             Icons.bookmark,
-            color: const Color(0xFFF9A825),
+            color: Color(0xFFF9A825),
             size: 24,
           ),
-          const SizedBox(width: 16),
         ],
       ),
     );

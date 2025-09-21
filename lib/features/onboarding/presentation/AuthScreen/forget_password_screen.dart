@@ -18,7 +18,7 @@ class ForgetPasswordScreen extends StatelessWidget {
           // الخلفية
           Positioned.fill(
             child: Image.asset(
-              'assets/images/Group.png',
+              'assets/images/backgruynd.png',
               fit: BoxFit.cover,
             ),
           ),

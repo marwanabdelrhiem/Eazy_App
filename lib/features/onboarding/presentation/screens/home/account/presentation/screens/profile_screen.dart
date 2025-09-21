@@ -4,13 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:eazy/core/constants/colors.dart';
 
 // TODO: Create these screens
-class MyLessonsScreen extends StatelessWidget {
-  const MyLessonsScreen({super.key});
-  @override
-  Widget build(BuildContext context) {
-    return const Center(child: Text('شاشة دروسي'));
-  }
-}
+
 
 class MoreScreen extends StatelessWidget {
   const MoreScreen({super.key});
@@ -144,7 +138,6 @@ class _ProfileContent extends StatelessWidget {
             _buildMenuItem("تواصل معنا", Icons.call, () {}),
             _buildMenuItem("مشاركة التطبيق", Icons.share, () {}),
             const SizedBox(height: 32),
-            // تسجيل الخروج
             TextButton(
               onPressed: () {},
               child: const Text(

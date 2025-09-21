@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:eazy/core/widgets/custom_bottom_nav_bar.dart';
 import 'package:eazy/features/onboarding/presentation/screens/home/account/presentation/screens/profile_screen.dart';
 
-import 'lessons/ presentation/lessons_screen.dart';
+import 'lessons/ presentation/my_lessons_screen.dart';
 
 
 class MainScreen extends StatefulWidget {
@@ -14,12 +14,12 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  int _selectedIndex = 1;
+  int _selectedIndex = 1; // 👈 نبدأ بالـ Home
 
   final List<Widget> _screens = [
-    ProfileScreen(),    // صفحة الحساب (index 0)
-    HomeBody(),       // الصفحة الرئيسية (index 1)
-    MyLessonsScreen(),    // صفحة الدروس (index 2)
+    const ProfileScreen(),    // حسابي (index 0)
+    const HomeBody(),         // الصفحة الرئيسية (index 1)
+    const MyLessonsScreen(),  // دروسي (index 2)
   ];
 
   void _onItemTapped(int index) {
