@@ -513,7 +513,10 @@ class _LessonScreenState extends State<LessonScreen> {
                   color: Colors.black,
                   size: 20,
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pop(context);
+
+                },
               ),
             ),
           ),
