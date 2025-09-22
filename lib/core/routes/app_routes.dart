@@ -56,7 +56,7 @@ class AppRoutes {
         );
 
       case profileRoute:
-        return MaterialPageRoute(builder: (_) => const ProfileScreen());
+        return MaterialPageRoute(builder: (_) => const MyAccount());
 
       case forgetPasswordRoute:
         return MaterialPageRoute(builder: (_) => const ForgetPasswordScreen());
@@ -70,8 +70,7 @@ class AppRoutes {
         return MaterialPageRoute(builder: (_) => const MainScreen());
 
       case accountCreatedRoute:
-        return MaterialPageRoute(builder: (_) => const AccountCreatedScreen());
-
+        return MaterialPageRoute(builder: (_) => const PersonalData());
     // 👇 شاشة دروسي
       case myLessonsRoute:
         return MaterialPageRoute(builder: (_) => const MyLessonsScreen());

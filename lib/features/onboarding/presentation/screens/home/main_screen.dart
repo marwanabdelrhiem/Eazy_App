@@ -16,7 +16,7 @@ class _MainScreenState extends State<MainScreen> {
   int _selectedIndex = 1; // 👈 نبدأ بالـ Home
 
   final List<Widget> _screens = [
-    const ProfileScreen(),    // حسابي (index 0)
+    const MyAccount(),    // حسابي (index 0)
     const HomeBody(),         // الصفحة الرئيسية (index 1)
     const MyLessonsScreen(),  // دروسي (index 2)
   ];

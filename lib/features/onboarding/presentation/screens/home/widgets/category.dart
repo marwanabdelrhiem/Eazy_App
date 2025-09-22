@@ -58,10 +58,10 @@ class Category extends StatelessWidget {
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3,      // 3 أعمدة
+              crossAxisCount: 3,
               crossAxisSpacing: 12,
               mainAxisSpacing: 12,
-              childAspectRatio: 1,    // مربعات متساوية
+              childAspectRatio: 1,
             ),
             itemCount: 6,             // مؤقت لغاية ما تملأ البيانات
             itemBuilder: (context, index) {

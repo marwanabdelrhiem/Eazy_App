@@ -1,155 +1,210 @@
-// File: lib/features/account/presentation/screens/profile_screen.dart
-
 import 'package:flutter/material.dart';
-import 'package:eazy/core/constants/colors.dart';
 
-// TODO: Create these screens
+import 'account_created_screen.dart';
 
-
-class MoreScreen extends StatelessWidget {
-  const MoreScreen({super.key});
-  @override
-  Widget build(BuildContext context) {
-    return const Center(child: Text('شاشة المزيد'));
-  }
-}
-
-class ProfileScreen extends StatefulWidget {
-  const ProfileScreen({super.key});
+class MyAccount extends StatefulWidget {
+  const MyAccount({super.key});
 
   @override
-  State<ProfileScreen> createState() => _ProfileScreenState();
+  State<MyAccount> createState() => _MyAccountState();
 }
 
-class _ProfileScreenState extends State<ProfileScreen> {
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      backgroundColor: kWhiteColor,
-      body: _ProfileContent(),
-    );
-  }
-}
-
-class _ProfileContent extends StatelessWidget {
-  const _ProfileContent();
-
-  Widget _buildMenuItem(String title, IconData icon, VoidCallback onTap) {
+class _MyAccountState extends State<MyAccount> {
+  Widget _buildListTile(String title, Widget leadingWidget) {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: ListTile(
-        leading: Icon(icon, color: kPrimaryColor),
+        leading: leadingWidget,
         title: Text(
           title,
-          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+          style: const TextStyle(
+            color: Color(0xFF1A201D),
+            fontSize: 16,
+            fontWeight: FontWeight.w500,
+          ),
         ),
-        trailing: const Icon(Icons.arrow_forward_ios, color: kMediumGrayColor),
-        onTap: onTap,
+        trailing: const Icon(
+          Icons.keyboard_arrow_left_rounded,
+          color: Color(0xFF1A201D),
+          size: 30,
+        ),
+        onTap: () {},
+        contentPadding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 0),
       ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        child: Column(
-          children: [
-            const SizedBox(height: 20),
-            // البروفايل
-            Container(
-              decoration: BoxDecoration(
-                color: kLightGrayColor,
-                borderRadius: BorderRadius.circular(19),
-              ),
-              padding: const EdgeInsets.all(16.0),
-              child: const Row(
-                textDirection: TextDirection.rtl,
-                children: [
-                  CircleAvatar(
-                    radius: 35,
-                    backgroundImage: AssetImage('assets/images/mohamed omran.jpg'),
-                  ),
-                  SizedBox(width: 15),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        title: const Text(
+          'حسابي',
+          style: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+            fontSize: 22,
+          ),
+        ),
+        centerTitle: true,
+        leading: Padding(
+          padding: const EdgeInsets.only(top: 16.0, left: 10),
+          child: IconButton(
+            icon: Image.asset("assets/images/notification-bell 1.png", height: 34, width: 34),
+            onPressed: () {},
+          ),
+        ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(left: 10, top: 16.0, right: 31.0),
+            child: Image.asset(
+              'assets/images/Eazy.png',
+              height: 36,
+              width: 56,
+            ),
+          ),
+        ],
+      ),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          child: Column(
+            children: [
+              const SizedBox(height: 20),
+              Container(
+                decoration: BoxDecoration(
+                  color: const Color(0xFFF9FAFA),
+                  borderRadius: BorderRadius.circular(19),
+                ),
+                padding: const EdgeInsets.all(16.0),
+                child: Directionality(
+                  textDirection: TextDirection.rtl,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        'محمد عمران',
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      SizedBox(height: 4),
                       Row(
                         children: [
-                          Text(
-                            'تعديل حسابي',
-                            style: TextStyle(
-                              fontSize: 14,
-                              color: kPrimaryColor,
-                            ),
+                          const CircleAvatar(
+                            radius: 35,
+                            backgroundImage: AssetImage('assets/images/mohamed omran.jpg'),
                           ),
-                          SizedBox(width: 4),
-                          Icon(Icons.edit, color: kPrimaryColor, size: 18),
+                          const SizedBox(width: 15),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text(
+                                'محمد عمران',
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              const SizedBox(height: 4),
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) => const PersonalData()),
+                                  );
+                                },
+                                child: Row(
+                                  children: [
+                                    Image.asset(
+                                      "assets/images/write.png",
+                                      width: 16,
+                                      height: 16,
+                                      color: const Color(0xFF2A72AD),
+                                    ),
+                                    const SizedBox(width: 4),
+                                    const Text(
+                                      'تعديل حسابي',
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        color: Color(0xFF2A72AD),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
                         ],
                       ),
                     ],
                   ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 20),
-            // زر الترقية
-            GestureDetector(
-              onTap: () {},
-              child: Container(
-                width: double.infinity,
-                padding: const EdgeInsets.symmetric(vertical: 12.0),
-                decoration: BoxDecoration(
-                  color: kLightOrangeColor,
-                  borderRadius: BorderRadius.circular(12),
                 ),
-                child: Row(
-                  textDirection: TextDirection.rtl,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset('assets/images/crown (1) 1.png', height: 26, width: 26),
-                    const SizedBox(width: 8),
-                    const Text(
-                      "الترقية إلي النسخة المميزة",
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                        color: kAccentColor,
+              ),
+              const SizedBox(height: 20),
+              GestureDetector(
+                onTap: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('سيتم تحويلك الأن !'),
+                      duration: Duration(seconds: 1),
+                    ),
+                  );
+                },
+                child: Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.symmetric(vertical: 12.0),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFFFFF3E0),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Directionality(
+                    textDirection: TextDirection.rtl,
+                    child: Center(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                            'assets/images/crown 1.png',
+                            width: 25,
+                            height: 25,
+                            color: const Color(0xFFFE9F45),
+                          ),
+                          const SizedBox(width: 8),
+                          const Text(
+                            "الترقية إلي النسخة المميزة",
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xFFFE9F45),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                  ],
+                  ),
                 ),
               ),
-            ),
-            const SizedBox(height: 20),
-            // القائمة
-            _buildMenuItem("الاشتراكات", Icons.subscriptions, () {}),
-            _buildMenuItem("الأسئلة الشائقة", Icons.help_outline, () {}),
-            _buildMenuItem("الشروط والأحكام", Icons.article_outlined, () {}),
-            _buildMenuItem("تواصل معنا", Icons.call, () {}),
-            _buildMenuItem("مشاركة التطبيق", Icons.share, () {}),
-            const SizedBox(height: 32),
-            TextButton(
-              onPressed: () {},
-              child: const Text(
-                'تسجيل الخروج',
-                style: TextStyle(
-                  color: kMediumGrayColor,
-                  fontSize: 16,
+              const SizedBox(height: 20),
+              Column(
+                children: [
+                  _buildListTile('الاشتراكات', Image.asset("assets/images/subscription 1.png", width: 24, height: 24)),
+                  _buildListTile('الأسئلة الشائعة', Image.asset("assets/images/question 1.png", width: 24, height: 24)),
+                  _buildListTile('الشروط والأحكام', Image.asset("assets/images/condition 1.png", width: 24, height: 24)),
+                  _buildListTile('تواصل معنا', Image.asset("assets/images/call 1.png", width: 24, height: 24)),
+                  _buildListTile('مشاركة التطبيق', Image.asset("assets/images/share (1) 2.png", width: 24, height: 24)),
+                ],
+              ),
+              const SizedBox(height: 32),
+              TextButton(
+                onPressed: () {},
+                child: const Text(
+                  'تسجيل الخروج',
+                  style: TextStyle(
+                    color: Color(0xFF8C8C8C),
+                    fontSize: 16,
+                  ),
                 ),
               ),
-            ),
-            const SizedBox(height: 20),
-          ],
+              const SizedBox(height: 20),
+            ],
+          ),
         ),
       ),
     );

@@ -17,25 +17,12 @@ class MyLessonsScreen extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: SingleChildScrollView(
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(height: 10),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                     IconButton(
-                      icon: const Icon(
-                        Icons.arrow_forward_ios,
-                        color: Colors.black,
-                        size: 20,
-                      ),
-                      onPressed: () {
-                        Navigator.pop(context);
-
-                      },
-                    ),
-
-                    const SizedBox(width: 44),
                     const Text(
                       'دروسي',
                       style: TextStyle(
@@ -44,6 +31,20 @@ class MyLessonsScreen extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
+
+                    const SizedBox(width: 44),
+                    IconButton(
+                      icon: const Icon(
+                        Icons.arrow_forward_ios,
+                        color: Color(0xFF5A5A5A),
+                        size: 20,
+                      ),
+                      onPressed: () {
+                        Navigator.pop(context);
+
+                      },
+                    ),
+
                   ],
                 ),
                 const SizedBox(height: 25),
@@ -120,7 +121,7 @@ class MyLessonsScreen extends StatelessWidget {
           children: [
             Expanded(
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     title,
@@ -145,7 +146,7 @@ class MyLessonsScreen extends StatelessWidget {
                       children: [
                         Expanded(
                           child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.end,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
                                 duration!,
@@ -157,12 +158,12 @@ class MyLessonsScreen extends StatelessWidget {
                               ),
                               const SizedBox(height: 4),
                               SizedBox(
-                                width: double.infinity,
-                                height: 6,
+                                width: 185,
+                                height: 10,
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(3),
                                   child: const LinearProgressIndicator(
-                                    value: 0.5,
+                                    value: 0.15,
                                     backgroundColor: Color(0xFFE0E0E0),
                                     valueColor: AlwaysStoppedAnimation(Color(0xFFF9A825)),
                                   ),
@@ -181,8 +182,8 @@ class MyLessonsScreen extends StatelessWidget {
                           },
                           borderRadius: BorderRadius.circular(10),
                           child: Container(
-                            width: 90,
-                            height: 38,
+                            width: 111,
+                            height: 42,
                             decoration: BoxDecoration(
                               color: const Color(0xFF2C64B0),
                               borderRadius: BorderRadius.circular(10),

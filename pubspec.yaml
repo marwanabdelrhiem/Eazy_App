@@ -39,6 +39,9 @@ dependencies:
   flutter_bloc: ^8.0.1
   get_it: ^8.2.0
   equatable: ^2.0.5
+  image_picker: ^1.1.2
+  shared_preferences: ^2.2.3
+
 
 
 fonts:
