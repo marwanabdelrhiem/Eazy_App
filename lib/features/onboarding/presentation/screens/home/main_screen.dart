@@ -2,7 +2,6 @@ import 'package:eazy/features/onboarding/presentation/screens/home/home_screen.d
 import 'package:flutter/material.dart';
 import 'package:eazy/core/widgets/custom_bottom_nav_bar.dart';
 import 'package:eazy/features/onboarding/presentation/screens/home/account/presentation/screens/profile_screen.dart';
-
 import 'lessons/ presentation/my_lessons_screen.dart';
 
 

@@ -2,10 +2,11 @@ import 'package:eazy/features/onboarding/presentation/screens/home/notifications
 import 'package:eazy/features/onboarding/presentation/screens/home/search_screen.dart';
 import 'package:eazy/features/onboarding/presentation/screens/home/widgets/category.dart';
 import 'package:eazy/features/onboarding/presentation/screens/home/widgets/home_banner.dart';
-
 import 'package:flutter/material.dart';
-
+import '../../../../../core/widgets/custom_bottom_nav_bar.dart';
+import 'account/presentation/screens/profile_screen.dart';
 import 'lessons/ presentation/lesson_quiz_screen.dart';
+import 'lessons/ presentation/my_lessons_screen.dart';
 
 class HomeBody extends StatefulWidget {
   const HomeBody({super.key});
@@ -13,115 +14,27 @@ class HomeBody extends StatefulWidget {
   @override
   State<HomeBody> createState() => _HomeBodyState();
 }
+
 class _HomeBodyState extends State<HomeBody> {
+  int _selectedIndex = 1;
+
+
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(19),
-      child: Column(
+    return Scaffold(
+
+      extendBodyBehindAppBar: true,
+      body: Stack(
         children: [
-          // ======== Header Section ========
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              InkWell(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => NotificationsScreen(notifications: [
-                        {
-                          'title': 'اسم الإشعار',
-                          'body': 'تفاصيل الاشعار هنا تفاصيل الاشعار هنا تفاصيل الاشعار هنا'
-                        },
-                        {
-                          'title': 'اسم الإشعار',
-                          'body': 'تفاصيل الاشعار هنا تفاصيل الاشعار هنا تفاصيل الاشعار هنا'
-                        },
-                        {
-                          'title': 'اسم الإشعار',
-                          'body': 'تفاصيل الاشعار هنا تفاصيل الاشعار هنا تفاصيل الاشعار هنا'
-                        },
-                        {
-                          'title': 'اسم الإشعار',
-                          'body': 'تفاصيل الاشعار هنا تفاصيل الاشعار هنا تفاصيل الاشعار هنا'
-                        },
-                      ]),
-                    ),
-                  );
-                },
-                child: Image.asset(
-                  'assets/images/notification-bell 1@2x.png',
-                  width: 34,
-                  height: 34,
-                ),
-              ),
-              const Spacer(), // Use Spacer for flexible spacing
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  const Text(
-                    '!',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                  ),
-                  Image.asset(
-                    'assets/images/Eazyblack.png',
-                    height: 24,
-                  ),
-                  const Text(
-                    'مرحبا بك في ',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                  ),
-                ],
-              ),
-            ],
-          ),
 
-          const SizedBox(height: 27),
-
-          // ======== Search Bar ========
-          GestureDetector(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (_) => const SearchScreen()),
-              );
-            },
-            child: AbsorbPointer(
-              child: Directionality(
-                textDirection: TextDirection.rtl,
-                child: TextField(
-                  decoration: InputDecoration(
-                    hintText: 'ابحث عن درس',
-                    prefixIcon: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 12),
-                      child: Image.asset(
-                        'assets/images/search-normal 1.png',
-                        height: 22,
-                        width: 20,
-                      ),
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      borderSide: BorderSide.none,
-                    ),
-                    filled: true,
-                    fillColor: Colors.grey[200],
-                  ),
-                ),
-              ),
-            ),
-          ),
-
-          const SizedBox(height: 27),
-
-          // ======== Scrollable Content ========
-          Expanded(
+          // ======== المحتوى القابل للسكروول ========
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 19),
             child: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
+                  const SizedBox(height: 200), // مسافة للهيدر + السيرش
                   const Text(
                     'أحدث العروض',
                     textAlign: TextAlign.right,
@@ -169,7 +82,7 @@ class _HomeBodyState extends State<HomeBody> {
                                   ],
                                 ),
                               ),
-                              SizedBox(width: 150),
+                              const SizedBox(width: 140),
                               InkWell(
                                 onTap: () {},
                                 child: Image.asset(
@@ -195,7 +108,7 @@ class _HomeBodyState extends State<HomeBody> {
                                   ),
                                 ),
                               ),
-                              const SizedBox(width: 55),
+                              const SizedBox(width: 65),
                               InkWell(
                                 onTap: () {
                                   Navigator.push(
@@ -207,8 +120,8 @@ class _HomeBodyState extends State<HomeBody> {
                                 },
                                 borderRadius: BorderRadius.circular(12),
                                 child: Container(
-                                  width: 100,
-                                  height: 40,
+                                  width: 111,
+                                  height: 42,
                                   decoration: BoxDecoration(
                                     color: const Color(0xFF2A72AD),
                                     borderRadius: BorderRadius.circular(12),
@@ -228,8 +141,118 @@ class _HomeBodyState extends State<HomeBody> {
                         ],
                       ),
                     ),
-                  )
+                  ),
+
                 ],
+              ),
+            ),
+          ),
+
+          // ======== الهيدر + السيرش معًا (شفاف) ========
+          Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            child: SafeArea(
+              child: Container(
+                padding: const EdgeInsets.all(19),
+                color: Colors.transparent,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    // --- الهيدر ---
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => NotificationsScreen(notifications: [
+                                  {
+                                    'title': 'اسم الإشعار',
+                                    'body': 'تفاصيل الاشعار هنا تفاصيل الاشعار هنا تفاصيل الاشعار هنا'
+                                  },
+                                  {
+                                    'title': 'اسم الإشعار',
+                                    'body': 'تفاصيل الاشعار هنا تفاصيل الاشعار هنا تفاصيل الاشعار هنا'
+                                  },
+                                  {
+                                    'title': 'اسم الإشعار',
+                                    'body': 'تفاصيل الاشعار هنا تفاصيل الاشعار هنا تفاصيل الاشعار هنا'
+                                  },
+                                  {
+                                    'title': 'اسم الإشعار',
+                                    'body': 'تفاصيل الاشعار هنا تفاصيل الاشعار هنا تفاصيل الاشعار هنا'
+                                  },
+                                ]),
+                              ),
+                            );
+                          },
+                          child: Image.asset(
+                            'assets/images/notification-bell 1@2x.png',
+                            width: 34,
+                            height: 34,
+                          ),
+                        ),
+                        const Spacer(),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            const Text(
+                              '!',
+                              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                            ),
+                            Image.asset(
+                              'assets/images/Eazyblack.png',
+                              height: 24,
+                            ),
+                            const Text(
+                              'مرحبا بك في ',
+                              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 27),
+
+                    // --- سيرش بار ---
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (_) => const SearchScreen()),
+                        );
+                      },
+                      child: AbsorbPointer(
+                        child: Directionality(
+                          textDirection: TextDirection.rtl,
+                          child: TextField(
+                            decoration: InputDecoration(
+                              hintText: 'ابحث عن درس',
+                              prefixIcon: Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 12),
+                                child: Image.asset(
+                                  'assets/images/search-normal 1.png',
+                                  height: 22,
+                                  width: 20,
+                                ),
+                              ),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(12),
+                                borderSide: BorderSide.none,
+                              ),
+                              filled: true,
+                              fillColor: Colors.grey[200],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

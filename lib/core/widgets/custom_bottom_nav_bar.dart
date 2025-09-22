@@ -17,7 +17,7 @@ class CustomBottomNavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 90,
-      color: Colors.transparent,
+      // color: Colors.transparent,
       child: Stack(
         children: [
           CustomPaint(
@@ -30,7 +30,7 @@ class CustomBottomNavBar extends StatelessWidget {
               width: 54,
               height: 54,
               child: FloatingActionButton(
-                backgroundColor: kBlackColor,
+                // backgroundColor: kBlackColor,
                 onPressed: () => onItemTapped(1), // Index 1 for the middle FAB
                 elevation: 0.1,
                 shape: const CircleBorder(),
