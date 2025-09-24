@@ -1,5 +1,6 @@
 // File: lib/features/onboarding/presentation/AuthScreen/otp_to_update_password_screen.dart
 
+import 'package:eazy/features/onboarding/presentation/screens/home/account/presentation/screens/update_password.dart';
 import 'package:flutter/material.dart';
 import 'package:eazy/core/routes/app_routes.dart';
 import 'package:eazy/core/constants/colors.dart';
@@ -172,8 +173,11 @@ class _OtpToUpdatePasswordScreenState extends State<OtpToUpdatePasswordScreen> {
             const SizedBox(height: 40),
             ElevatedButton(
               onPressed: () {
-                _verifyOtp(_otpController.text); // هيدخل علطول
-              },
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const UpdatePassword()),
+                );
+                },
               style: ElevatedButton.styleFrom(
                 backgroundColor: kPrimaryColor,
                 minimumSize: const Size(double.infinity, 55),
