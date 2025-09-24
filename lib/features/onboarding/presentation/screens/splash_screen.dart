@@ -12,28 +12,48 @@ class SplashScreen extends StatefulWidget {
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
-  double _logoAndTextOpacity = 0.0;
+class _SplashScreenState extends State<SplashScreen>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _fadeAnimation;
+  late Animation<double> _scaleAnimation;
 
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(milliseconds: 500), () {
-      if (mounted) {
-        setState(() {
-          _logoAndTextOpacity = 1.0;
-        });
-      }
-    });
+
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 2), // وقت الانيميشن
+    );
+
+    _fadeAnimation = CurvedAnimation(
+      parent: _controller,
+      curve: Curves.easeIn,
+    );
+
+    _scaleAnimation = Tween<double>(begin: 0.8, end: 1.0).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: Curves.easeOutBack,
+      ),
+    );
+
+    _controller.forward();
 
     Future.delayed(const Duration(seconds: 3), () {
       if (mounted) {
-
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(builder: (context) => const OnboardingScreen()),
         );
       }
     });
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   @override
@@ -50,10 +70,12 @@ class _SplashScreenState extends State<SplashScreen> {
             color: kBlackColor.withOpacity(0.6),
           ),
           Center(
-            child: AnimatedOpacity(
-              opacity: _logoAndTextOpacity,
-              duration: const Duration(seconds: 1),
-              child: const AppLogo(),
+            child: FadeTransition(
+              opacity: _fadeAnimation,
+              child: ScaleTransition(
+                scale: _scaleAnimation,
+                child: const AppLogo(),
+              ),
             ),
           ),
           const Align(

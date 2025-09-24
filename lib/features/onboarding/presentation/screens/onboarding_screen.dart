@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:eazy/core/theme/styles.dart';
 import 'package:eazy/core/widgets/custom_button.dart';
 import 'package:eazy/core/widgets/onboarding/onboarding_content.dart';
-import 'package:eazy/core/widgets/onboarding/onboarding_indicators.dart';
 import 'package:eazy/core/routes/app_routes.dart';
 
 import '../../../../core/constants/colors.dart';
@@ -29,6 +28,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   @override
   Widget build(BuildContext context) {
+
+    final double buttonWidth = MediaQuery.of(context).size.width * 0.6;
+
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.only(top: 100),
@@ -42,29 +44,29 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     _currentPage = page;
                   });
                 },
-                children: const [
-                  OnboardingContent(),
-                  OnboardingContent(),
-                  OnboardingContent(),
-                ],
+                children: List.generate(
+                  _pageCount,
+                      (index) => OnboardingContent(
+                    currentIndex: _currentPage,
+                    count: _pageCount,
+                  ),
+                ),
               ),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding, vertical: 40),
               child: Column(
                 children: [
-                  OnboardingIndicators(
-                    count: _pageCount,
-                    currentIndex: _currentPage,
-                  ),
-                  const SizedBox(height: 30),
                   if (_currentPage == _pageCount - 1)
-                    CustomButton(
-                      text: 'ابدأ',
-                      onPressed: () {
-                        Navigator.of(context).pushReplacementNamed(AppRoutes.authRoute);
-                      },
-                      color: kSecondaryColor,
+                    SizedBox(
+                      width: buttonWidth,
+                      child: CustomButton(
+                        text: 'ابدأ',
+                        onPressed: () {
+                          Navigator.of(context).pushReplacementNamed(AppRoutes.authRoute);
+                        },
+                        color: kSecondaryColor,
+                      ),
                     )
                   else
                     Row(
@@ -80,7 +82,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           ),
                         ),
                         SizedBox(
-                          width: 150,
+                          width: 231,
+                          height: 57,
                           child: CustomButton(
                             text: 'التالي',
                             onPressed: () {
@@ -96,6 +99,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             ),
                           ),
                         ),
+
                       ],
                     ),
                 ],

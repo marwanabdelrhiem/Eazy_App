@@ -24,24 +24,24 @@ class CustomBottomNavBar extends StatelessWidget {
             size: const Size(double.infinity, 90),
             painter: _NavPainter(),
           ),
-          Center(
-            heightFactor: 0.6,
-            child: SizedBox(
-              width: 54,
-              height: 54,
-              child: FloatingActionButton(
-                // backgroundColor: kBlackColor,
-                onPressed: () => onItemTapped(1), // Index 1 for the middle FAB
-                elevation: 0.1,
-                shape: const CircleBorder(),
-                child: const Icon(
-                  Icons.home_outlined,
-                  color: kWhiteColor,
-                  size: 30,
-                ),
-              ),
-            ),
-          ),
+    Center(
+    heightFactor: 0.6,
+    child: SizedBox(
+    width: 54,
+    height: 54,
+    child: FloatingActionButton(
+    onPressed: () => onItemTapped(1), // Index 1 for the middle FAB
+    elevation: 0.1,
+    shape: const CircleBorder(),
+    child: Icon(
+    Icons.home_outlined,
+    color: selectedIndex == 1 ? Colors.blue : Colors.black, // 👈 التغيير هنا
+    size: 30,
+    ),
+    ),
+    ),
+    ),
+
           SizedBox(
             height: 90,
             child: Row(

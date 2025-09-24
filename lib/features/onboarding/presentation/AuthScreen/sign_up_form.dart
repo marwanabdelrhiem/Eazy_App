@@ -1,13 +1,18 @@
 // File: lib/features/auth/presentation/widgets/signup_form.dart
 import 'package:flutter/material.dart';
 import 'package:eazy/core/widgets/custom_button.dart';
-
 import 'package:eazy/core/widgets/custom_text_form_field.dart';
+import '../../../../core/constants/colors.dart';
 
-import '../../../../core/constants/colors.dart'; // استيراد الـ widget الجديدة
-
-class SignUpForm extends StatelessWidget {
+class SignUpForm extends StatefulWidget {
   const SignUpForm({super.key});
+
+  @override
+  State<SignUpForm> createState() => _SignUpFormState();
+}
+
+class _SignUpFormState extends State<SignUpForm> {
+  bool _isChecked = false; // متغير للتحكم في حالة الشيك بوكس
 
   @override
   Widget build(BuildContext context) {
@@ -55,8 +60,12 @@ class SignUpForm extends StatelessWidget {
               style: TextStyle(color: kWhiteColor),
             ),
             Checkbox(
-              value: false,
-              onChanged: (bool? value) {},
+              value: _isChecked,
+              onChanged: (bool? value) {
+                setState(() {
+                  _isChecked = value ?? false;
+                });
+              },
               activeColor: kWhiteColor,
               checkColor: kPrimaryColor,
             ),
@@ -66,7 +75,21 @@ class SignUpForm extends StatelessWidget {
 
         CustomButton(
           text: 'إنشاء الحساب',
-          onPressed: () {},
+          onPressed: () {
+            if (_isChecked) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text("تم إنشاء الحساب بنجاح ✅"),
+                ),
+              );
+            } else {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text("يجب الموافقة على الشروط أولاً ❌"),
+                ),
+              );
+            }
+          },
         ),
       ],
     );

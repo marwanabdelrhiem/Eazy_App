@@ -1,10 +1,16 @@
 // File: lib/core/widgets/onboarding/onboarding_content.dart
 import 'package:flutter/material.dart';
 import 'package:eazy/core/theme/styles.dart';
+import 'package:eazy/core/widgets/onboarding/onboarding_indicators.dart';
 
 class OnboardingContent extends StatelessWidget {
+  final int currentIndex;
+  final int count;
+
   const OnboardingContent({
     super.key,
+    required this.currentIndex,
+    required this.count,
   });
 
   @override
@@ -14,9 +20,18 @@ class OnboardingContent extends StatelessWidget {
       children: [
         Image.asset(
           'assets/images/Group 227.png',
-          height: 250,
+          width: 329.29,
+          height:330,
         ),
         const SizedBox(height: 20),
+
+        OnboardingIndicators(
+          count: count,
+          currentIndex: currentIndex,
+        ),
+
+        const SizedBox(
+            height: 20),
         const Text(
           'قم بتمكين تجربة التعلم الخاصة بك',
           style: kHeadlineStyle,

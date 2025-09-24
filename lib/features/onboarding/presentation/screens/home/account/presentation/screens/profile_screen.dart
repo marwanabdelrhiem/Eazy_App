@@ -191,9 +191,10 @@ class _MyAccountState extends State<MyAccount> {
                   _buildListTile('مشاركة التطبيق', Image.asset("assets/images/share (1) 2.png", width: 24, height: 24)),
                 ],
               ),
-              const SizedBox(height: 32),
               TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushReplacementNamed(context, "/auth"); // 👈 بيرجعه لشاشة تسجيل الدخول
+                },
                 child: const Text(
                   'تسجيل الخروج',
                   style: TextStyle(
@@ -202,6 +203,8 @@ class _MyAccountState extends State<MyAccount> {
                   ),
                 ),
               ),
+
+
               const SizedBox(height: 20),
             ],
           ),

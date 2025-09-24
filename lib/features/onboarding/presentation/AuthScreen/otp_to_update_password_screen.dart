@@ -62,18 +62,10 @@ class _OtpToUpdatePasswordScreenState extends State<OtpToUpdatePasswordScreen> {
   }
 
   void _verifyOtp(String otp) {
-    if (otp == "1234") {
-      setState(() {
-        _errorMessage = null;
-      });
-      // Navigate to the success screen
-      Navigator.of(context).pushReplacementNamed(AppRoutes.resetPassword);
-    } else {
-      setState(() {
-        _errorMessage = "هذا الحقل مطلوب!";
-      });
-    }
+    // موقتا نعدي على طول من غير تحقق
+    Navigator.of(context).pushReplacementNamed(AppRoutes.resetPassword);
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -180,7 +172,7 @@ class _OtpToUpdatePasswordScreenState extends State<OtpToUpdatePasswordScreen> {
             const SizedBox(height: 40),
             ElevatedButton(
               onPressed: () {
-                _verifyOtp(_otpController.text);
+                _verifyOtp(_otpController.text); // هيدخل علطول
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: kPrimaryColor,
@@ -195,25 +187,20 @@ class _OtpToUpdatePasswordScreenState extends State<OtpToUpdatePasswordScreen> {
               ),
             ),
             const SizedBox(height: 20),
-            if (!_isResendActive)
-              Align(
-                alignment: Alignment.centerRight,
+            Center(
+              child: TextButton(
+                onPressed: _isResendActive ? _resendCode : null,
                 child: Text(
-                  'حاول مرة أخرى بعد: 00:${_resendTimerSeconds.toString().padLeft(2, '0')}',
-                  style: const TextStyle(color: kMediumGrayColor, fontSize: 14),
-                ),
-              )
-            else
-              Center(
-                child: TextButton(
-                  onPressed: _resendCode,
-                  child: const Text(
-                    'إعادة إرسال الرمز',
-                    style: TextStyle(color: kPrimaryColor, fontSize: 16),
+                  _isResendActive
+                      ? "إعادة إرسال الرمز"
+                      : "يمكنك إعادة الإرسال بعد $_resendTimerSeconds ثانية",
+                  style: TextStyle(
+                    color: _isResendActive ? kPrimaryColor : kMediumGrayColor,
+                    fontSize: 16,
                   ),
                 ),
               ),
-            const SizedBox(height: 20),
+            ),
           ],
         ),
       ),
