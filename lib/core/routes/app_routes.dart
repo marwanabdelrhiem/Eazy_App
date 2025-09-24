@@ -11,6 +11,7 @@ import '../../features/onboarding/presentation/AuthScreen/otp_to_update_password
 
 // ==== Account & Home Screens ====
 import '../../features/onboarding/presentation/screens/home/account/presentation/screens/account_created_screen.dart';
+import '../../features/onboarding/presentation/screens/home/account/presentation/screens/forget_password.dart';
 import '../../features/onboarding/presentation/screens/home/account/presentation/screens/profile_screen.dart';
 import '../../features/onboarding/presentation/screens/home/account/presentation/screens/reset_password.dart';
 import '../../features/onboarding/presentation/screens/home/lessons/ presentation/my_lessons_screen.dart';
@@ -19,7 +20,8 @@ import '../../features/onboarding/presentation/screens/onboarding_screen.dart';
 import '../../features/onboarding/presentation/screens/splash_screen.dart';
 
 // ==== Lessons Screen ====
-
+// هنا هتضيف شاشة update password لما تبنيها
+import '../../features/onboarding/presentation/screens/home/account/presentation/screens/update_password.dart';
 
 class AppRoutes {
   static const String splashRoute = '/';
@@ -34,7 +36,6 @@ class AppRoutes {
   static const String accountCreatedRoute = '/accountCreated';
   static const String resetPassword = '/resetPassword';
   static const String myLessonsRoute = '/myLessons';
-
 
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -60,7 +61,7 @@ class AppRoutes {
         return MaterialPageRoute(builder: (_) => const MyAccount());
 
       case forgetPasswordRoute:
-        return MaterialPageRoute(builder: (_) => const ForgetPasswordScreen());
+        return MaterialPageRoute(builder: (_) => const ForgetPassword());
 
       case otpToUpdatePasswordRoute:
         return MaterialPageRoute(
@@ -72,13 +73,17 @@ class AppRoutes {
 
       case accountCreatedRoute:
         return MaterialPageRoute(builder: (_) => const PersonalData());
-    // 👇 شاشة دروسي
+
+
       case myLessonsRoute:
         return MaterialPageRoute(builder: (_) => const MyLessonsScreen());
 
       case resetPassword:
         return MaterialPageRoute(builder: (_) => const ResetPassword());
 
+
+      case updatePasswordRoute:
+        return MaterialPageRoute(builder: (_) => const UpdatePassword());
 
       default:
         return MaterialPageRoute(
