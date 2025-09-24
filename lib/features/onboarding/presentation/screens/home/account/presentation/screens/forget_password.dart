@@ -1,3 +1,4 @@
+import 'package:eazy/features/onboarding/presentation/AuthScreen/otp_to_update_password_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -100,7 +101,12 @@ class _ForgetPasswordState extends State<ForgetPassword> {
             ),
             const Spacer(),
             ElevatedButton(
-              onPressed: _confirm,
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const OtpToUpdatePasswordScreen()),
+                );
+              },
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xFF2A72AD),
                 padding: const EdgeInsets.symmetric(vertical: 15),

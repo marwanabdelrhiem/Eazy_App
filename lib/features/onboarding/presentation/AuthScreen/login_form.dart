@@ -55,7 +55,7 @@ class LoginForm extends StatelessWidget {
           text: 'تسجيل دخول',
           onPressed: () {
             // هنا انت ضايف انه يفتح شاشة OTP (ممكن تخليها للـ login)
-            Navigator.of(context).pushNamed(AppRoutes.otpRoute);
+            Navigator.of(context).pushNamed(AppRoutes.homeRoute);
           },
         ),
       ],

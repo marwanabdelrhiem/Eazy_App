@@ -19,7 +19,7 @@ class _CategoryItemState extends State<CategoryItem> {
         color: Colors.grey[100],
         borderRadius: BorderRadius.circular(12),
       ),
-      padding: const EdgeInsets.all(12),
+      padding: const EdgeInsets.all(10),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

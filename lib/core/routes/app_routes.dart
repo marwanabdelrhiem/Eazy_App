@@ -1,5 +1,6 @@
 // File: lib/core/routes/app_routes.dart
 
+import 'package:eazy/features/onboarding/presentation/screens/home/account/presentation/screens/reset_password.dart';
 import 'package:flutter/material.dart';
 
 // ==== Auth Screens ====
@@ -7,11 +8,11 @@ import '../../features/onboarding/presentation/AuthScreen/auth_screen.dart';
 import '../../features/onboarding/presentation/AuthScreen/otp_screen.dart';
 import '../../features/onboarding/presentation/AuthScreen/forget_password_screen.dart';
 import '../../features/onboarding/presentation/AuthScreen/otp_to_update_password_screen.dart';
-import '../../features/onboarding/presentation/AuthScreen/update_password_screen.dart';
 
 // ==== Account & Home Screens ====
 import '../../features/onboarding/presentation/screens/home/account/presentation/screens/account_created_screen.dart';
 import '../../features/onboarding/presentation/screens/home/account/presentation/screens/profile_screen.dart';
+import '../../features/onboarding/presentation/screens/home/account/presentation/screens/reset_password.dart';
 import '../../features/onboarding/presentation/screens/home/lessons/ presentation/my_lessons_screen.dart';
 import '../../features/onboarding/presentation/screens/home/main_screen.dart';
 import '../../features/onboarding/presentation/screens/onboarding_screen.dart';
@@ -31,9 +32,9 @@ class AppRoutes {
   static const String updatePasswordRoute = '/updatePassword';
   static const String homeRoute = '/home';
   static const String accountCreatedRoute = '/accountCreated';
-
-  // 👇 route جديدة
+  static const String resetPassword = '/resetPassword';
   static const String myLessonsRoute = '/myLessons';
+
 
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -74,6 +75,10 @@ class AppRoutes {
     // 👇 شاشة دروسي
       case myLessonsRoute:
         return MaterialPageRoute(builder: (_) => const MyLessonsScreen());
+
+      case resetPassword:
+        return MaterialPageRoute(builder: (_) => const ResetPassword());
+
 
       default:
         return MaterialPageRoute(

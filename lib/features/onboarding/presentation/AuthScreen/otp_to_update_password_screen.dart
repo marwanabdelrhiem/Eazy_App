@@ -67,7 +67,7 @@ class _OtpToUpdatePasswordScreenState extends State<OtpToUpdatePasswordScreen> {
         _errorMessage = null;
       });
       // Navigate to the success screen
-      Navigator.of(context).pushReplacementNamed(AppRoutes.accountCreatedRoute);
+      Navigator.of(context).pushReplacementNamed(AppRoutes.resetPassword);
     } else {
       setState(() {
         _errorMessage = "هذا الحقل مطلوب!";
@@ -118,7 +118,7 @@ class _OtpToUpdatePasswordScreenState extends State<OtpToUpdatePasswordScreen> {
           children: [
             const SizedBox(height: 20),
             const Text(
-              'كود التحديث',
+              'كود التحقق',
               textAlign: TextAlign.right,
               style: TextStyle(
                 fontSize: 26,
