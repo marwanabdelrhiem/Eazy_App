@@ -1,3 +1,8 @@
+import 'package:eazy/features/onboarding/presentation/screens/home/account/others/ContPage.dart';
+import 'package:eazy/features/onboarding/presentation/screens/home/account/others/QuestPage.dart';
+import 'package:eazy/features/onboarding/presentation/screens/home/account/others/SubPage.dart';
+import 'package:eazy/features/onboarding/presentation/screens/home/account/others/TermsPage.dart';
+import 'package:eazy/features/onboarding/presentation/screens/home/account/subscriptions/presentation/screens/subscribe_screen.dart';
 import 'package:flutter/material.dart';
 import 'account_created_screen.dart';
 
@@ -9,7 +14,7 @@ class MyAccount extends StatefulWidget {
 }
 
 class _MyAccountState extends State<MyAccount> {
-  Widget _buildListTile(String title, Widget leadingWidget) {
+  Widget _buildListTile(String title, Widget leadingWidget,{VoidCallback? onTap}) {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: ListTile(
@@ -27,7 +32,7 @@ class _MyAccountState extends State<MyAccount> {
           color: Color(0xFF1A201D),
           size: 30,
         ),
-        onTap: () {},
+        onTap: onTap,
         contentPadding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 0),
       ),
     );
@@ -180,16 +185,86 @@ class _MyAccountState extends State<MyAccount> {
                   ),
                 ),
               ),
+
               const SizedBox(height: 20),
-              Column(
-                children: [
-                  _buildListTile('الاشتراكات', Image.asset("assets/images/subscription 1.png", width: 24, height: 24)),
-                  _buildListTile('الأسئلة الشائعة', Image.asset("assets/images/question 1.png", width: 24, height: 24)),
-                  _buildListTile('الشروط والأحكام', Image.asset("assets/images/condition 1.png", width: 24, height: 24)),
-                  _buildListTile('تواصل معنا', Image.asset("assets/images/call 1.png", width: 24, height: 24)),
-                  _buildListTile('مشاركة التطبيق', Image.asset("assets/images/share (1) 2.png", width: 24, height: 24)),
-                ],
-              ),
+
+            Column(
+              children: [
+                _buildListTile(
+                  'الاشتراكات',
+                  Image.asset(
+                    "assets/images/subscription 1.png",
+                    width: 24,
+                    height: 24,
+                  ),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const SubscribeScreen()),
+                    );
+                  },
+                ),
+
+                _buildListTile(
+                  'الأسئلة الشائعة',
+                  Image.asset(
+                    "assets/images/question 1.png",
+                    width: 24,
+                    height: 24,
+                  ),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) =>  QuestPage()),
+                    );
+                  },
+                ),
+
+                _buildListTile(
+                  'الشروط والأحكام',
+                  Image.asset(
+                    "assets/images/condition 1.png",
+                    width: 24,
+                    height: 24,
+                  ),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const TermsPage()),
+                    );
+                  },
+                ),
+
+                _buildListTile(
+                  'تواصل معنا',
+                  Image.asset(
+                    "assets/images/call 1.png",
+                    width: 24,
+                    height: 24,
+                  ),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) =>  ContPage()),
+                    );
+                  },
+                ),
+
+                _buildListTile(
+                  'مشاركة التطبيق',
+                  Image.asset(
+                    "assets/images/share (1) 2.png",
+                    width: 24,
+                    height: 24,
+                  ),
+                  onTap: () {
+                  },
+                ),
+              ],
+            ),
+
+
+
               TextButton(
                 onPressed: () {
                   showModalBottomSheet(
