@@ -4,7 +4,6 @@ import 'dart:io';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:image_picker/image_picker.dart';
 
-
 class PersonalData extends StatefulWidget {
   const PersonalData({super.key});
 
@@ -156,7 +155,7 @@ class _PersonalDataState extends State<PersonalData> {
                         ],
                       ),
                     ),
-                    const SizedBox(height: 20,),
+                    const SizedBox(height: 20),
                     _buildTextField(hintText: 'اسم المستخدم', controller: _usernameController, focusNode: _usernameFocusNode),
                     const SizedBox(height: 15),
                     _buildTextField(hintText: 'رقم الهاتف', controller: _phoneController, focusNode: _phoneFocusNode),
@@ -242,7 +241,67 @@ class _PersonalDataState extends State<PersonalData> {
 
   Widget _buildDeleteButton() {
     return TextButton(
-      onPressed: () {},
+      onPressed: () {
+        showModalBottomSheet(
+          context: context,
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+          ),
+          builder: (context) {
+            return Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Text(
+                    "حذف الحساب",
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  const Text(
+                    "هل انت متاكد من انك تريد حذف الحساب؟ سيتم حذف البيانات بشكل كامل ",
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: Colors.black54,
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: OutlinedButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: const Text("تراجع"),
+                        ),
+                      ),
+                      const SizedBox(width: 10),
+                      Expanded(
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: const Color(0xFF2A72AD), // نفس لون زر تسجيل الخروج
+                            foregroundColor: Colors.white,
+                          ),
+                          onPressed: () {
+                            Navigator.pop(context);
+                            _deleteAccount();
+                          },
+                          child: const Text("نعم"),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            );
+          },
+        );
+      },
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -259,5 +318,15 @@ class _PersonalDataState extends State<PersonalData> {
         ],
       ),
     );
+  }
+
+
+  Future<void> _deleteAccount() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.clear();
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('تم حذف الحساب بنجاح!')),
+    );
+    Navigator.pushReplacementNamed(context, "/auth");
   }
 }

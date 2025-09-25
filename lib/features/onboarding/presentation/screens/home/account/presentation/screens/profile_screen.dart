@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'account_created_screen.dart';
 
 class MyAccount extends StatefulWidget {
@@ -193,7 +192,65 @@ class _MyAccountState extends State<MyAccount> {
               ),
               TextButton(
                 onPressed: () {
-                  Navigator.pushReplacementNamed(context, "/auth"); // 👈 بيرجعه لشاشة تسجيل الدخول
+                  showModalBottomSheet(
+                    context: context,
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+                    ),
+                    builder: (context) {
+                      return Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            const Text(
+                              "تسجيل الخروج",
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                              ),
+                            ),
+                            const SizedBox(height: 10),
+                            const Text(
+                              "هل ترغب في تسجيل الخروج؟",
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: Colors.black54,
+                              ),
+                            ),
+                            const SizedBox(height: 20),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: OutlinedButton(
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                    child: const Text("تراجع"),
+                                  ),
+                                ),
+                                const SizedBox(width: 10),
+                                Expanded(
+                                  child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: const Color(0xFF2A72AD), // لون الزر
+                                      foregroundColor: Colors.white, // لون النص
+                                    ),
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                      Navigator.pushReplacementNamed(context, "/auth");
+                                    },
+                                    child: const Text("نعم"),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  );
                 },
                 child: const Text(
                   'تسجيل الخروج',
@@ -203,9 +260,6 @@ class _MyAccountState extends State<MyAccount> {
                   ),
                 ),
               ),
-
-
-              const SizedBox(height: 20),
             ],
           ),
         ),

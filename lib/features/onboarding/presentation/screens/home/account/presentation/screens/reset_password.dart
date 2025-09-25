@@ -1,7 +1,19 @@
-import 'package:eazy/features/onboarding/presentation/screens/home/account/presentation/screens/forget_password.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+// يجب إزالة هذا الاستيراد إذا لم يعد موجودًا في مسار 'eazy/features/...'
+// import 'package:eazy/features/onboarding/presentation/screens/home/account/presentation/screens/forget_password.dart';
+
+// يجب عليك إضافة الاستيرادات التالية لضمان عمل الكود:
+import 'package:eazy/core/routes/app_routes.dart';
+import 'package:eazy/core/constants/colors.dart';
+// قد تحتاج أيضًا إلى استيراد شاشة ForgetPassword إذا لم تكن ضمن المسارات المسماة
+// import 'package:eazy/features/auth/presentation/screens/forget_password.dart';
+
+
+// تعريف مؤقت لشاشة ForgetPassword لتشغيل الكود إذا لم تكن موجودة في المسارات
+// يمكنك حذف هذا الكلاس إذا كان لديك استيراد حقيقي له.
+
+
 
 class ResetPassword extends StatefulWidget {
   const ResetPassword({super.key});
@@ -26,11 +38,84 @@ class _ResetPasswordState extends State<ResetPassword> {
     });
   }
 
+  // دالة عرض شاشة النجاح المنبثقة (تم نسخها وتعديلها)
+  void _showSuccessDialog() {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          contentPadding: const EdgeInsets.all(20),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              // الأيقونة الثابتة (علامة الصح داخل دائرة - مطابقة للتصميم)
+              CircleAvatar(
+                radius: 40,
+                backgroundColor: kPrimaryColor,
+                child: const Icon(
+                  Icons.done_rounded, // أيقونة سميكة وناعمة
+                  color: kWhiteColor,
+                  size: 55,
+                ),
+              ),
+              const SizedBox(height: 20),
+
+              const Text(
+                'تم حفظ التعديلات بنجاح', // تغيير النص ليتناسب مع وظيفة 'حفظ التعديلات'
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: kBlackColor,
+                ),
+              ),
+              const SizedBox(height: 30),
+
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  // الانتقال إلى الشاشة الرئيسية (يفترض أن هذا هو المسار المطلوب بعد النجاح)
+                  Navigator.of(context).pushNamedAndRemoveUntil(
+                    AppRoutes.homeRoute,
+                        (route) => false,
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: kPrimaryColor,
+                  minimumSize: const Size(double.infinity, 55),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+                child: const Text(
+                  'تم',
+                  style: TextStyle(fontSize: 18, color: kWhiteColor, fontWeight: FontWeight.bold),
+                ),
+              ),
+              const SizedBox(height: 10),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
   Future<void> _savePassword() async {
     final prefs = await SharedPreferences.getInstance();
     final oldPassword = _oldPasswordController.text;
     final newPassword = _newPasswordController.text;
     final confirmPassword = _confirmPasswordController.text;
+
+
+
+    if (newPassword.isEmpty || confirmPassword.isEmpty || oldPassword.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('من فضلك أدخل جميع الحقول.')),
+      );
+      return;
+    }
 
     if (newPassword != confirmPassword) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -39,11 +124,18 @@ class _ResetPasswordState extends State<ResetPassword> {
       return;
     }
 
+    if (newPassword == oldPassword) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('كلمة المرور الجديدة يجب أن تختلف عن القديمة.')),
+      );
+      return;
+    }
+
+
     await prefs.setString('password', newPassword);
 
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('تم حفظ كلمة المرور بنجاح!')),
-    );
+    // عرض شاشة النجاح بدلاً من SnackBar
+    _showSuccessDialog();
 
     _oldPasswordController.clear();
     _newPasswordController.clear();
@@ -72,101 +164,103 @@ class _ResetPasswordState extends State<ResetPassword> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: kWhiteColor,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: kWhiteColor,
         elevation: 0,
-        title: const Text(
-          'تغيير كلمة المرور',
-          style: TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-            fontSize: 18,
-          ),
-        ),
-        centerTitle: true,
+        title: null, // إزالة العنوان
+        centerTitle: false,
         automaticallyImplyLeading: false,
+        // تغيير أيقونة الرجوع لتصبح سهمًا لليمين ليتناسب مع الـ RTL
         actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 10.0, top: 8.0, bottom: 8.0),
-            child: IconButton(
-              icon: Image.asset(
-                'assets/images/Back.png',
-                width: 40,
-                height: 40,
-              ),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            ),
+          IconButton(
+            icon: const Icon(Icons.arrow_forward_ios, color: kBlackColor, size: 20),
+            onPressed: () {
+              Navigator.pop(context);
+            },
           ),
+          const SizedBox(width: kDefaultPadding / 2),
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            const SizedBox(height: 20),
-            _buildTextField(
-              hintText: 'كلمة المرور القديمة',
-              index: 0,
-              controller: _oldPasswordController,
-              focusNode: _oldPasswordFocusNode,
-            ),
-            const SizedBox(height: 15),
-            _buildTextField(
-              hintText: 'كلمة المرور الجديدة',
-              index: 1,
-              controller: _newPasswordController,
-              focusNode: _newPasswordFocusNode,
-            ),
-            const SizedBox(height: 15),
-            _buildTextField(
-              hintText: 'أعد إدخال كلمة المرور الجديدة',
-              index: 2,
-              controller: _confirmPasswordController,
-              focusNode: _confirmPasswordFocusNode,
-            ),
-            const SizedBox(height: 20),
-            GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const ForgetPassword()),
-                );
-              },
-              child: const Align(
-                alignment: Alignment.centerRight,
-                child: Text(
-                  'نسيت كلمة المرور؟',
+      // تم إضافة SingleChildScrollView للحماية من خطأ الـ Overflow
+      body: SingleChildScrollView(
+        child: Directionality(
+          textDirection: TextDirection.rtl,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                const SizedBox(height: 20),
+                // العنوان الرئيسي: تغيير كلمة المرور
+                const Text(
+                  'تغيير كلمة المرور',
+                  textAlign: TextAlign.right,
                   style: TextStyle(
-                    color: Colors.black54,
-                    fontSize: 16,
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    color: kBlackColor,
                   ),
                 ),
-              ),
-            ),
-            const Spacer(),
-            ElevatedButton(
-              onPressed: _savePassword,
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFF2A72AD),
-                padding: const EdgeInsets.symmetric(vertical: 15),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
+                const SizedBox(height: 40), // زيادة المسافة
+
+                // حقل كلمة المرور القديمة
+                _buildTextField(
+                  hintText: 'كلمة المرور القديمة',
+                  index: 0,
+                  controller: _oldPasswordController,
+                  focusNode: _oldPasswordFocusNode,
                 ),
-              ),
-              child: const Text(
-                'حفظ التعديلات',
-                style: TextStyle(
-                  fontSize: 18,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
+                const SizedBox(height: 15),
+
+                // حقل كلمة المرور الجديدة
+                _buildTextField(
+                  hintText: 'كلمة المرور الجديدة',
+                  index: 1,
+                  controller: _newPasswordController,
+                  focusNode: _newPasswordFocusNode,
                 ),
-              ),
+                const SizedBox(height: 15),
+
+                // حقل تأكيد كلمة المرور الجديدة
+                _buildTextField(
+                  hintText: 'أعد إدخال كلمة المرور الجديدة',
+                  index: 2,
+                  controller: _confirmPasswordController,
+                  focusNode: _confirmPasswordFocusNode,
+                ),
+
+                const SizedBox(height: 20),
+
+                // زر نسيت كلمة المرور
+
+
+                // استخدام SizedBox كفاصل ثابت
+                const SizedBox(height: 100),
+
+                // زر حفظ التعديلات
+                ElevatedButton(
+                  onPressed: _savePassword,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: kPrimaryColor,
+                    minimumSize: const Size(double.infinity, 55),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  child: const Text(
+                    'حفظ التعديلات',
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: kWhiteColor,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 40),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );
@@ -178,29 +272,35 @@ class _ResetPasswordState extends State<ResetPassword> {
     required TextEditingController controller,
     required FocusNode focusNode,
   }) {
-    final borderColor = focusNode.hasFocus ? const Color(0xFF2A72AD) : Colors.grey.shade300;
+    final borderColor = focusNode.hasFocus ? kPrimaryColor : Colors.grey.shade300;
+
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
       decoration: BoxDecoration(
-        color: const Color(0xFFF9FAFA),
-        borderRadius: BorderRadius.circular(10),
-        border: Border.all(color: borderColor),
+        color: kWhiteColor, // تغيير لون الخلفية ليتطابق مع تصميم حقول الإدخال الجديدة
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: borderColor, width: focusNode.hasFocus ? 2 : 1),
       ),
-      child: TextField(
-        controller: controller,
-        focusNode: focusNode,
-        obscureText: !_isPasswordVisible[index],
-        textAlign: TextAlign.right,
-        decoration: InputDecoration(
-          hintText: hintText,
-          hintStyle: const TextStyle(color: Colors.grey),
-          border: InputBorder.none,
-          prefixIcon: IconButton(
-            icon: Icon(
-              _isPasswordVisible[index] ? Icons.visibility : Icons.visibility_off,
-              color: Colors.grey,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 15),
+        child: TextField(
+          controller: controller,
+          focusNode: focusNode,
+          obscureText: !_isPasswordVisible[index],
+          textAlign: TextAlign.right,
+          keyboardType: TextInputType.visiblePassword,
+          decoration: InputDecoration(
+            hintText: hintText,
+            hintStyle: const TextStyle(color: kMediumGrayColor),
+            border: InputBorder.none,
+            contentPadding: const EdgeInsets.symmetric(vertical: 18),
+            // تغيير مكان أيقونة إظهار/إخفاء كلمة المرور إلى الـ suffixIcon ليتناسب مع الـ RTL
+            suffixIcon: IconButton(
+              icon: Icon(
+                _isPasswordVisible[index] ? Icons.visibility : Icons.visibility_off,
+                color: kMediumGrayColor,
+              ),
+              onPressed: () => _togglePasswordVisibility(index),
             ),
-            onPressed: () => _togglePasswordVisibility(index),
           ),
         ),
       ),

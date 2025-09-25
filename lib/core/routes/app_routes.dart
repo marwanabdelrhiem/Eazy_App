@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 // ==== Auth Screens ====
 import '../../features/onboarding/presentation/AuthScreen/auth_screen.dart';
 import '../../features/onboarding/presentation/AuthScreen/otp_screen.dart';
-import '../../features/onboarding/presentation/AuthScreen/forget_password_screen.dart';
 import '../../features/onboarding/presentation/AuthScreen/otp_to_update_password_screen.dart';
 
 // ==== Account & Home Screens ====
