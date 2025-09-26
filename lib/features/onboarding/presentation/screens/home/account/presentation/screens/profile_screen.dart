@@ -1,5 +1,6 @@
 import 'package:eazy/features/onboarding/presentation/screens/home/account/others/ContPage.dart';
 import 'package:eazy/features/onboarding/presentation/screens/home/account/others/QuestPage.dart';
+import 'package:eazy/core/popup/SharePage.dart';
 import 'package:eazy/features/onboarding/presentation/screens/home/account/others/SubPage.dart';
 import 'package:eazy/features/onboarding/presentation/screens/home/account/others/TermsPage.dart';
 import 'package:eazy/features/onboarding/presentation/screens/home/account/subscriptions/presentation/screens/subscribe_screen.dart';
@@ -258,6 +259,7 @@ class _MyAccountState extends State<MyAccount> {
                     height: 24,
                   ),
                   onTap: () {
+                    IOSSharePopup.show(context);
                   },
                 ),
               ],

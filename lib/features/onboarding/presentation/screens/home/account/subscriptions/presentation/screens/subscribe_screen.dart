@@ -1,3 +1,4 @@
+import 'package:eazy/features/onboarding/presentation/screens/home/account/subscriptions/presentation/screens/subscriptions_list_screen.dart';
 import 'package:flutter/material.dart';
 
 class SubscribeScreen extends StatelessWidget {
@@ -6,7 +7,7 @@ class SubscribeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF2A72AD),
+      backgroundColor: const Color(0xFF2C81BF),
       body: Stack(
         children: [
           // Close button (Square with rounded corners)
@@ -37,9 +38,15 @@ class SubscribeScreen extends StatelessWidget {
             child: Column(
               children: [
                 Image.asset(
-                  "assets/images/Group 484121.png",
+                  "assets/images/lock.png",
+                  width: 85,
+                  height: 85,
+                ),
+                const SizedBox(height: 10),
+                Image.asset(
+                  "assets/images/تسجيل دخول.png",
                   width: 196,
-                  height: 188.2449951171875,
+                  height: 72,
                   color: Colors.white,
                 ),
                 const SizedBox(height: 20),
@@ -52,12 +59,23 @@ class SubscribeScreen extends StatelessWidget {
             top: 315,
             left: 0,
             right: 0,
-            child: Image.asset(
-              "assets/images/Group 484118.png",
-              width: 355,
-              height: 470,
+            child: GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SubscriptionsScreen(),
+                  ),
+                );
+              },
+              child: Image.asset(
+                "assets/images/Group 484118.png",
+                width: 355,
+                height: 470,
+              ),
             ),
           ),
+
         ],
       ),
     );

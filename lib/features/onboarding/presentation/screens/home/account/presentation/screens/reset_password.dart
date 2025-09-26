@@ -1,17 +1,10 @@
+import 'package:eazy/features/onboarding/presentation/screens/home/account/presentation/screens/forget_password.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-// يجب إزالة هذا الاستيراد إذا لم يعد موجودًا في مسار 'eazy/features/...'
-// import 'package:eazy/features/onboarding/presentation/screens/home/account/presentation/screens/forget_password.dart';
-
-// يجب عليك إضافة الاستيرادات التالية لضمان عمل الكود:
 import 'package:eazy/core/routes/app_routes.dart';
 import 'package:eazy/core/constants/colors.dart';
-// قد تحتاج أيضًا إلى استيراد شاشة ForgetPassword إذا لم تكن ضمن المسارات المسماة
-// import 'package:eazy/features/auth/presentation/screens/forget_password.dart';
 
-
-// تعريف مؤقت لشاشة ForgetPassword لتشغيل الكود إذا لم تكن موجودة في المسارات
-// يمكنك حذف هذا الكلاس إذا كان لديك استيراد حقيقي له.
+import '../../../../../../../../core/popup/success_message.dart';
 
 
 
@@ -38,69 +31,7 @@ class _ResetPasswordState extends State<ResetPassword> {
     });
   }
 
-  // دالة عرض شاشة النجاح المنبثقة (تم نسخها وتعديلها)
-  void _showSuccessDialog() {
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-          contentPadding: const EdgeInsets.all(20),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              // الأيقونة الثابتة (علامة الصح داخل دائرة - مطابقة للتصميم)
-              CircleAvatar(
-                radius: 40,
-                backgroundColor: kPrimaryColor,
-                child: const Icon(
-                  Icons.done_rounded, // أيقونة سميكة وناعمة
-                  color: kWhiteColor,
-                  size: 55,
-                ),
-              ),
-              const SizedBox(height: 20),
 
-              const Text(
-                'تم حفظ التعديلات بنجاح', // تغيير النص ليتناسب مع وظيفة 'حفظ التعديلات'
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: kBlackColor,
-                ),
-              ),
-              const SizedBox(height: 30),
-
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                  // الانتقال إلى الشاشة الرئيسية (يفترض أن هذا هو المسار المطلوب بعد النجاح)
-                  Navigator.of(context).pushNamedAndRemoveUntil(
-                    AppRoutes.homeRoute,
-                        (route) => false,
-                  );
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: kPrimaryColor,
-                  minimumSize: const Size(double.infinity, 55),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                ),
-                child: const Text(
-                  'تم',
-                  style: TextStyle(fontSize: 18, color: kWhiteColor, fontWeight: FontWeight.bold),
-                ),
-              ),
-              const SizedBox(height: 10),
-            ],
-          ),
-        );
-      },
-    );
-  }
 
   Future<void> _savePassword() async {
     final prefs = await SharedPreferences.getInstance();
@@ -129,17 +60,20 @@ class _ResetPasswordState extends State<ResetPassword> {
         const SnackBar(content: Text('كلمة المرور الجديدة يجب أن تختلف عن القديمة.')),
       );
       return;
+
+
     }
 
 
     await prefs.setString('password', newPassword);
 
-    // عرض شاشة النجاح بدلاً من SnackBar
-    _showSuccessDialog();
 
     _oldPasswordController.clear();
     _newPasswordController.clear();
     _confirmPasswordController.clear();
+
+    SuccessPopup.show(context);
+
   }
 
   @override
@@ -233,6 +167,24 @@ class _ResetPasswordState extends State<ResetPassword> {
                 const SizedBox(height: 20),
 
                 // زر نسيت كلمة المرور
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const ForgetPassword(), // ← ضع صفحتك هنا
+                      ),
+                    );
+                  },
+                  child: const Text(
+                    'نسيت كلمة المرور؟',
+                    style: TextStyle(
+                      color: Colors.white70,
+                      fontSize: 16,
+                      decoration: TextDecoration.underline,
+                    ),
+                  ),
+                ),
 
 
                 // استخدام SizedBox كفاصل ثابت

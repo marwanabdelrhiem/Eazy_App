@@ -1,212 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:eazy/core/routes/app_routes.dart';
-import 'package:eazy/core/constants/colors.dart';
 
-class UpdatePassword extends StatefulWidget {
-  const UpdatePassword({super.key});
-
-  @override
-  State<UpdatePassword> createState() => _UpdatePasswordState();
-}
-
-class _UpdatePasswordState extends State<UpdatePassword> {
-  final List<bool> _isPasswordVisible = [true, true];
-  final _newPasswordController = TextEditingController();
-  final _confirmPasswordController = TextEditingController();
-
-  final _newPasswordFocusNode = FocusNode();
-  final _confirmPasswordFocusNode = FocusNode();
-
-  void _togglePasswordVisibility(int index) {
-    setState(() {
-      _isPasswordVisible[index] = !_isPasswordVisible[index];
-    });
-  }
-
-  Future<void> _updatePassword() async {
-    final newPassword = _newPasswordController.text;
-    final confirmPassword = _confirmPasswordController.text;
-
-    if (newPassword.isEmpty || confirmPassword.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('من فضلك أدخل كلمة المرور في كلا الحقلين')),
-      );
-      return;
-    }
-
-    if (newPassword != confirmPassword) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('كلمة المرور الجديدة لا تتطابق مع التأكيد!')),
-      );
-      return;
-    }
-
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString('password', newPassword);
-
-    _newPasswordController.clear();
-    _confirmPasswordController.clear();
-
-    SuccessPopup.show(context);
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _newPasswordFocusNode.addListener(() => setState(() {}));
-    _confirmPasswordFocusNode.addListener(() => setState(() {}));
-  }
-
-  @override
-  void dispose() {
-    _newPasswordController.dispose();
-    _confirmPasswordController.dispose();
-    _newPasswordFocusNode.dispose();
-    _confirmPasswordFocusNode.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: kWhiteColor,
-      appBar: AppBar(
-        backgroundColor: kWhiteColor,
-        elevation: 0,
-        title: null,
-        centerTitle: false,
-        automaticallyImplyLeading: false,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.arrow_forward_ios, color: kBlackColor, size: 20),
-            onPressed: () {
-              Navigator.pop(context);
-            },
-          ),
-          const SizedBox(width: kDefaultPadding / 2),
-        ],
-      ),
-      body: SingleChildScrollView(
-        child: Directionality(
-          textDirection: TextDirection.rtl,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                const SizedBox(height: 20),
-                const Text(
-                  'أعد تعيين كلمة المرور',
-                  textAlign: TextAlign.right,
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                    color: kBlackColor,
-                  ),
-                ),
-                const SizedBox(height: 8),
-
-                const Text(
-                  'من فضلك أدخل كلمة المرور الجديدة وقم بتأكيدها',
-                  textAlign: TextAlign.right,
-                  style: TextStyle(
-                    color: kMediumGrayColor,
-                    fontSize: 16,
-                  ),
-                ),
-                const Text(
-                  'كلمة المرور',
-                  textAlign: TextAlign.right,
-                  style: TextStyle(
-                    color: kMediumGrayColor,
-                    fontSize: 16,
-                  ),
-                ),
-                const SizedBox(height: 40),
-
-                _buildTextField(
-                  hintText: 'كلمة المرور الجديدة',
-                  index: 0,
-                  controller: _newPasswordController,
-                  focusNode: _newPasswordFocusNode,
-                ),
-                const SizedBox(height: 15),
-
-                _buildTextField(
-                  hintText: 'أعد إدخال كلمة المرور الجديدة',
-                  index: 1,
-                  controller: _confirmPasswordController,
-                  focusNode: _confirmPasswordFocusNode,
-                ),
-
-                const SizedBox(height: 100),
-
-                ElevatedButton(
-                  onPressed: _updatePassword,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: kPrimaryColor,
-                    minimumSize: const Size(double.infinity, 55),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                  ),
-                  child: const Text(
-                    'تحديث كلمة المرور',
-                    style: TextStyle(fontSize: 18, color: kWhiteColor, fontWeight: FontWeight.bold),
-                  ),
-                ),
-                const SizedBox(height: 40),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildTextField({
-    required String hintText,
-    required int index,
-    required TextEditingController controller,
-    required FocusNode focusNode,
-  }) {
-    final borderColor = focusNode.hasFocus ? kPrimaryColor : Colors.grey.shade300;
-
-    return Container(
-      decoration: BoxDecoration(
-        color: kWhiteColor,
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: borderColor, width: focusNode.hasFocus ? 2 : 1),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15),
-        child: TextField(
-          controller: controller,
-          focusNode: focusNode,
-          obscureText: !_isPasswordVisible[index],
-          textAlign: TextAlign.right,
-          keyboardType: TextInputType.visiblePassword,
-          decoration: InputDecoration(
-            hintText: hintText,
-            hintStyle: const TextStyle(color: kMediumGrayColor),
-            border: InputBorder.none,
-            contentPadding: const EdgeInsets.symmetric(vertical: 18),
-            suffixIcon: IconButton(
-              icon: Icon(
-                _isPasswordVisible[index] ? Icons.visibility : Icons.visibility_off,
-                color: kMediumGrayColor,
-              ),
-              onPressed: () => _togglePasswordVisibility(index),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-// ← إضافة كلاسات الـ popup هنا (أو استدعيها من ملف منفصل)
 class SuccessPopup {
   static void show(BuildContext context) {
     showDialog(
@@ -240,21 +33,25 @@ class _SuccessDialogState extends State<SuccessDialog>
   void initState() {
     super.initState();
 
+    // Controller للحجم العام
     _scaleController = AnimationController(
       duration: Duration(milliseconds: 300),
       vsync: this,
     );
 
+    // Controller لعلامة الصح
     _checkController = AnimationController(
       duration: Duration(milliseconds: 600),
       vsync: this,
     );
 
+    // Controller للدوائر المتحركة
     _circleController = AnimationController(
       duration: Duration(milliseconds: 1000),
       vsync: this,
     );
 
+    // تحديد الـ animations
     _scaleAnimation = CurvedAnimation(
       parent: _scaleController,
       curve: Curves.elasticOut,
@@ -289,6 +86,7 @@ class _SuccessDialogState extends State<SuccessDialog>
       curve: Interval(0.4, 1.0, curve: Curves.easeOut),
     ));
 
+    // بدء الـ animations
     _startAnimations();
   }
 
@@ -323,6 +121,7 @@ class _SuccessDialogState extends State<SuccessDialog>
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
+              // الجزء العلوي مع الأيقونة والدوائر
               Container(
                 height: 120,
                 width: 120,
@@ -404,7 +203,7 @@ class _SuccessDialogState extends State<SuccessDialog>
                       width: 80,
                       height: 80,
                       decoration: BoxDecoration(
-                        color: kPrimaryColor, // استخدام لون التطبيق
+                        color: Colors.blue[600],
                         shape: BoxShape.circle,
                       ),
                       child: AnimatedBuilder(
@@ -423,6 +222,7 @@ class _SuccessDialogState extends State<SuccessDialog>
 
               SizedBox(height: 25),
 
+              // النص
               Text(
                 'تم حفظ التعديلات بنجاح',
                 style: TextStyle(
@@ -435,19 +235,15 @@ class _SuccessDialogState extends State<SuccessDialog>
 
               SizedBox(height: 25),
 
+              // زر تم
               Container(
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
                     Navigator.of(context).pop();
-                    // الانتقال إلى الشاشة الرئيسية
-                    Navigator.of(context).pushNamedAndRemoveUntil(
-                      AppRoutes.homeRoute,
-                          (route) => false,
-                    );
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: kPrimaryColor, // استخدام لون التطبيق
+                    backgroundColor: Colors.blue[600],
                     foregroundColor: Colors.white,
                     padding: EdgeInsets.symmetric(vertical: 16),
                     shape: RoundedRectangleBorder(
@@ -472,6 +268,7 @@ class _SuccessDialogState extends State<SuccessDialog>
   }
 }
 
+// رسام علامة الصح المتحركة
 class CheckPainter extends CustomPainter {
   final double animationValue;
 
@@ -487,6 +284,7 @@ class CheckPainter extends CustomPainter {
 
     final center = Offset(size.width / 2, size.height / 2);
 
+    // نقاط علامة الصح
     final startPoint = Offset(center.dx - 12, center.dy);
     final middlePoint = Offset(center.dx - 4, center.dy + 8);
     final endPoint = Offset(center.dx + 12, center.dy - 8);
@@ -494,6 +292,7 @@ class CheckPainter extends CustomPainter {
     final path = Path();
 
     if (animationValue <= 0.5) {
+      // رسم الجزء الأول من علامة الصح (من اليسار للوسط)
       final progress = animationValue * 2;
       final currentPoint = Offset.lerp(startPoint, middlePoint, progress);
 
@@ -502,6 +301,7 @@ class CheckPainter extends CustomPainter {
         path.lineTo(currentPoint.dx, currentPoint.dy);
       }
     } else {
+      // رسم الجزء الكامل للأول + الجزء الثاني
       final progress = (animationValue - 0.5) * 2;
       final currentPoint = Offset.lerp(middlePoint, endPoint, progress);
 
@@ -518,5 +318,47 @@ class CheckPainter extends CustomPainter {
   @override
   bool shouldRepaint(CheckPainter oldDelegate) {
     return oldDelegate.animationValue != animationValue;
+  }
+}
+
+// مثال على الاستخدام
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Success Popup Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: TestScreen(),
+      debugShowCheckedModeBanner: false,
+    );
+  }
+}
+
+class TestScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.grey[100],
+      appBar: AppBar(
+        title: Text('Success Popup Test'),
+        backgroundColor: Colors.blue,
+        foregroundColor: Colors.white,
+      ),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            SuccessPopup.show(context);
+          },
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.blue,
+            foregroundColor: Colors.white,
+            padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+          ),
+          child: Text('إظهار Success Popup'),
+        ),
+      ),
+    );
   }
 }
