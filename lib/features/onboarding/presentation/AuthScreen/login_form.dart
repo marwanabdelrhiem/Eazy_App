@@ -17,6 +17,7 @@ class LoginForm extends StatelessWidget {
         const Text(
           'تسجيل دخول',
           style: TextStyle(
+
             color: kWhiteColor,
             fontSize: 24,
             fontWeight: FontWeight.bold,

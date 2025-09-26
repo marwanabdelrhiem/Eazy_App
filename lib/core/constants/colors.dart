@@ -16,5 +16,3 @@ const Color kGreenColor = Color(0xFF4CAF50);
 
 // Other Constants
 const kDefaultPadding = 16.0;
-const kFontFamily = 'Cairo';
-const kAssetsImagesPath = 'assets/images/';

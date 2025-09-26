@@ -7,7 +7,7 @@ import '../constants/colors.dart';
 final kAppTheme = ThemeData(
   primaryColor: kPrimaryColor,
   scaffoldBackgroundColor: kWhiteColor,
-  fontFamily: kFontFamily,
+
   textTheme: const TextTheme(
     bodyLarge: TextStyle(color: kBlackColor),
     bodyMedium: TextStyle(color: kBlackColor),

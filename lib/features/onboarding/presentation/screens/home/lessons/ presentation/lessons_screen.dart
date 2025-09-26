@@ -439,29 +439,8 @@ class _LessonScreenState extends State<LessonScreen> {
                                       width: 339,
                                       height: 264,
                                       child: Stack(
-                                        alignment: Alignment.center,
                                         children: [
-                                          Positioned(
-                                            top: 0,
-                                            child: Image.asset(
-                                              "assets/images/error-ptG7lRTi2j.png",
-                                              width: 200,
-                                              height: 100,
-                                            ),
-                                          ),
-                                          const Positioned(
-                                            top: 100,
-                                            left: 20,
-                                            child: Text(
-                                              "من فضلك استكمل الدرس السابق\nلتتمكن من فتح هذا الدرس",
-                                              textAlign: TextAlign.center,
-                                              style: TextStyle(
-                                                fontSize: 24,
-                                                fontWeight: FontWeight.bold,
-                                                color: Colors.black,
-                                              ),
-                                            ),
-                                          ),
+                                          /// زر الإغلاق (X)
                                           Positioned(
                                             top: 0,
                                             right: 0,
@@ -472,12 +451,40 @@ class _LessonScreenState extends State<LessonScreen> {
                                               },
                                             ),
                                           ),
+
+                                          /// الصورة
+                                          Align(
+                                            alignment: Alignment.topCenter,
+                                            child: Image.asset(
+                                              "assets/images/error-ptG7lRTi2j.png",
+                                              width: 200,
+                                              height: 100,
+                                            ),
+                                          ),
+
+                                          /// النص
+                                          Align(
+                                            alignment: Alignment.center,
+                                            child: Padding(
+                                              padding: const EdgeInsets.symmetric(horizontal: 10),
+                                              child: const Text(
+                                                "من فضلك استكمل الدرس السابق\nلتتمكن من فتح هذا الدرس",
+                                                textAlign: TextAlign.center, // 👈 النص في النص
+                                                style: TextStyle(
+                                                  fontSize: 20,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors.black,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
                                         ],
                                       ),
                                     ),
                                   );
                                 },
                               );
+
                             } else {
                               Navigator.push(
                                 context,

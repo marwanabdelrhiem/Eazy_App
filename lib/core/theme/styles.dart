@@ -1,27 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-// New, modern style for the main title
-const kHeadlineStyle = TextStyle(
-  fontFamily: 'Montserrat', // A clean, modern font
-  fontSize: 28.0,
-  fontWeight: FontWeight.w700, // Bold and attention-grabbing
+/// العنوان الكبير
+final kHeadlineStyle = GoogleFonts.cairo(
+  fontSize: 24.0,
+  fontWeight: FontWeight.w700, // Bold
   color: Colors.black87,
-  letterSpacing: -0.5,
+  height: 1.3,
 );
 
-// New style for the body text and descriptions
-const kBodyTextStyle = TextStyle(
-  fontFamily: 'Roboto', // A highly readable font
-  fontSize: 16.0,
+/// النصوص العادية / الوصف
+final kBodyTextStyle = GoogleFonts.cairo(
+  fontSize: 14.0,
   fontWeight: FontWeight.w400,
   color: Colors.black54,
-  height: 1.5, // Improved line height for readability
+  height: 1.6,
 );
 
-// Style for buttons and other UI elements
-const kButtonTextStyle = TextStyle(
-  fontFamily: 'Montserrat',
-  fontSize: 18.0,
+/// النصوص للأزرار
+final kButtonTextStyle = GoogleFonts.cairo(
+  fontSize: 16.0,
   fontWeight: FontWeight.w600,
   color: Colors.white,
 );

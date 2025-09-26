@@ -13,7 +13,6 @@ class _ContPageState extends State<ContPage> {
 
   // دالة لإرسال الرسالة وعرض الـ popup
   void _sendMessage() {
-    // التحقق من أن الحقول ليست فارغة
     if (_nameController.text.isEmpty ||
         _contactController.text.isEmpty ||
         _messageController.text.isEmpty) {
@@ -26,14 +25,10 @@ class _ContPageState extends State<ContPage> {
       return;
     }
 
-    // هنا ممكن تضيف كود إرسال الرسالة للسيرفر
-
-    // مسح الحقول بعد الإرسال
     _nameController.clear();
     _contactController.clear();
     _messageController.clear();
 
-    // عرض الـ popup
     SuccessSendMessagePopup.show(context);
   }
 
@@ -51,34 +46,24 @@ class _ContPageState extends State<ContPage> {
     final screenWidth = size.width;
     final screenHeight = size.height;
 
-    final titleFontSize = screenWidth * (22 / 393);
-    final backButtonSize = screenWidth * (40 / 393);
-
-    final fieldWidth = screenWidth * (340 / 393);
-    final fieldHeight = screenHeight * (56 / 877);
-    final fieldRightPadding = screenWidth * (21 / 393);
-    final fieldTopPadding = screenHeight * (19 / 877);
-    final fieldFontSize = screenWidth * (16 / 393);
-
-    final bigFieldHeight = screenHeight * (141 / 877);
-    final belowTextFontSize = screenWidth * (18 / 393);
-
     final circleSize = screenWidth * (45 / 393);
     final sideMargin = screenWidth * (73 / 393);
     final logoSpacing = screenWidth * (23 / 393);
-
-    final buttonHeight = screenHeight * (51 / 877);
-    final buttonWidth = screenWidth * (340 / 393);
 
     return Scaffold(
       backgroundColor: Colors.grey[100],
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        leading: Icon(
-          Icons.arrow_back_ios,
-          color: Colors.black,
-          size: 20,
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back_ios,
+            color: Colors.black,
+            size: 20,
+          ),
+          onPressed: () {
+            Navigator.pop(context); // ← تشغيل زر الرجوع
+          },
         ),
         title: Text(
           'تواصل معنا',
@@ -104,7 +89,7 @@ class _ContPageState extends State<ContPage> {
                 border: Border.all(color: Colors.grey[300]!),
               ),
               child: TextField(
-                controller: _nameController, // ← إضافة الـ controller
+                controller: _nameController,
                 textAlign: TextAlign.right,
                 decoration: InputDecoration(
                   hintText: 'الاسم',
@@ -113,7 +98,8 @@ class _ContPageState extends State<ContPage> {
                     fontSize: 16,
                   ),
                   border: InputBorder.none,
-                  contentPadding: EdgeInsets.symmetric(horizontal: 15, vertical: 18),
+                  contentPadding:
+                  EdgeInsets.symmetric(horizontal: 15, vertical: 18),
                 ),
               ),
             ),
@@ -128,7 +114,7 @@ class _ContPageState extends State<ContPage> {
                 border: Border.all(color: Colors.grey[300]!),
               ),
               child: TextField(
-                controller: _contactController, // ← إضافة الـ controller
+                controller: _contactController,
                 textAlign: TextAlign.right,
                 decoration: InputDecoration(
                   hintText: 'رقم الهاتف / البريد الالكتروني',
@@ -137,7 +123,8 @@ class _ContPageState extends State<ContPage> {
                     fontSize: 16,
                   ),
                   border: InputBorder.none,
-                  contentPadding: EdgeInsets.symmetric(horizontal: 15, vertical: 18),
+                  contentPadding:
+                  EdgeInsets.symmetric(horizontal: 15, vertical: 18),
                 ),
               ),
             ),
@@ -153,7 +140,7 @@ class _ContPageState extends State<ContPage> {
                 border: Border.all(color: Colors.grey[300]!),
               ),
               child: TextField(
-                controller: _messageController, // ← إضافة الـ controller
+                controller: _messageController,
                 textAlign: TextAlign.right,
                 maxLines: null,
                 expands: true,
@@ -164,14 +151,14 @@ class _ContPageState extends State<ContPage> {
                     fontSize: 16,
                   ),
                   border: InputBorder.none,
-                  contentPadding: EdgeInsets.symmetric(horizontal: 15, vertical: 18),
+                  contentPadding:
+                  EdgeInsets.symmetric(horizontal: 15, vertical: 18),
                 ),
               ),
             ),
 
             SizedBox(height: 40),
 
-            // Social Media Text
             Text(
               'او تواصل معنا',
               style: TextStyle(
@@ -182,7 +169,6 @@ class _ContPageState extends State<ContPage> {
 
             SizedBox(height: 20),
 
-            // Social Media Icons
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
@@ -227,12 +213,11 @@ class _ContPageState extends State<ContPage> {
 
             Spacer(),
 
-            // Send Button
             Container(
               width: double.infinity,
               height: 50,
               child: ElevatedButton(
-                onPressed: _sendMessage, // ← تغيير هنا لاستدعاء دالة الإرسال
+                onPressed: _sendMessage,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Color(0xFF2E86AB),
                   shape: RoundedRectangleBorder(
@@ -259,7 +244,7 @@ class _ContPageState extends State<ContPage> {
   }
 }
 
-// ← إضافة كلاسات الـ popup هنا (أو استدعيها من ملف منفصل)
+// ← Popup classes
 class SuccessSendMessagePopup {
   static void show(BuildContext context) {
     showDialog(
@@ -293,54 +278,41 @@ class _SuccessDialogState extends State<SuccessSendMessage>
   void initState() {
     super.initState();
 
-    _scaleController = AnimationController(
-      duration: Duration(milliseconds: 300),
-      vsync: this,
+    _scaleController =
+        AnimationController(duration: Duration(milliseconds: 300), vsync: this);
+
+    _checkController =
+        AnimationController(duration: Duration(milliseconds: 600), vsync: this);
+
+    _circleController =
+        AnimationController(duration: Duration(milliseconds: 1000), vsync: this);
+
+    _scaleAnimation =
+        CurvedAnimation(parent: _scaleController, curve: Curves.elasticOut);
+
+    _checkAnimation =
+        CurvedAnimation(parent: _checkController, curve: Curves.easeInOut);
+
+    _circle1Animation = Tween<double>(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(
+        parent: _circleController,
+        curve: Interval(0.0, 0.6, curve: Curves.easeOut),
+      ),
     );
 
-    _checkController = AnimationController(
-      duration: Duration(milliseconds: 600),
-      vsync: this,
+    _circle2Animation = Tween<double>(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(
+        parent: _circleController,
+        curve: Interval(0.2, 0.8, curve: Curves.easeOut),
+      ),
     );
 
-    _circleController = AnimationController(
-      duration: Duration(milliseconds: 1000),
-      vsync: this,
+    _circle3Animation = Tween<double>(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(
+        parent: _circleController,
+        curve: Interval(0.4, 1.0, curve: Curves.easeOut),
+      ),
     );
-
-    _scaleAnimation = CurvedAnimation(
-      parent: _scaleController,
-      curve: Curves.elasticOut,
-    );
-
-    _checkAnimation = CurvedAnimation(
-      parent: _checkController,
-      curve: Curves.easeInOut,
-    );
-
-    _circle1Animation = Tween<double>(
-      begin: 0.0,
-      end: 1.0,
-    ).animate(CurvedAnimation(
-      parent: _circleController,
-      curve: Interval(0.0, 0.6, curve: Curves.easeOut),
-    ));
-
-    _circle2Animation = Tween<double>(
-      begin: 0.0,
-      end: 1.0,
-    ).animate(CurvedAnimation(
-      parent: _circleController,
-      curve: Interval(0.2, 0.8, curve: Curves.easeOut),
-    ));
-
-    _circle3Animation = Tween<double>(
-      begin: 0.0,
-      end: 1.0,
-    ).animate(CurvedAnimation(
-      parent: _circleController,
-      curve: Interval(0.4, 1.0, curve: Curves.easeOut),
-    ));
 
     _startAnimations();
   }
@@ -382,7 +354,7 @@ class _SuccessDialogState extends State<SuccessSendMessage>
                 child: Stack(
                   alignment: Alignment.center,
                   children: [
-                    // الدوائر المتحركة
+                    // دوائر متحركة
                     AnimatedBuilder(
                       animation: _circle1Animation,
                       builder: (context, child) {
@@ -406,7 +378,6 @@ class _SuccessDialogState extends State<SuccessSendMessage>
                         );
                       },
                     ),
-
                     AnimatedBuilder(
                       animation: _circle2Animation,
                       builder: (context, child) {
@@ -430,7 +401,6 @@ class _SuccessDialogState extends State<SuccessSendMessage>
                         );
                       },
                     ),
-
                     AnimatedBuilder(
                       animation: _circle3Animation,
                       builder: (context, child) {
@@ -452,12 +422,12 @@ class _SuccessDialogState extends State<SuccessSendMessage>
                       },
                     ),
 
-                    // الدائرة الرئيسية مع علامة الصح
+                    // الدائرة الرئيسية + علامة الصح
                     Container(
                       width: 80,
                       height: 80,
                       decoration: BoxDecoration(
-                        color: Color(0xFF2E86AB), // نفس لون الزر
+                        color: Color(0xFF2E86AB),
                         shape: BoxShape.circle,
                       ),
                       child: AnimatedBuilder(
@@ -495,7 +465,7 @@ class _SuccessDialogState extends State<SuccessSendMessage>
                     Navigator.of(context).pop();
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color(0xFF2E86AB), // نفس لون الزر الأصلي
+                    backgroundColor: Color(0xFF2E86AB),
                     foregroundColor: Colors.white,
                     padding: EdgeInsets.symmetric(vertical: 16),
                     shape: RoundedRectangleBorder(
@@ -517,5 +487,39 @@ class _SuccessDialogState extends State<SuccessSendMessage>
         ),
       ),
     );
+  }
+}
+
+// الرسام لعلامة الصح
+class CheckPainter extends CustomPainter {
+  final double progress;
+  CheckPainter(this.progress);
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()
+      ..color = Colors.white
+      ..strokeWidth = 6
+      ..style = PaintingStyle.stroke
+      ..strokeCap = StrokeCap.round;
+
+    final path = Path();
+    path.moveTo(size.width * 0.25, size.height * 0.55);
+    path.lineTo(size.width * 0.45, size.height * 0.75);
+    path.lineTo(size.width * 0.75, size.height * 0.35);
+
+    final pathMetrics = path.computeMetrics().toList();
+    for (final metric in pathMetrics) {
+      final extractPath = metric.extractPath(
+        0.0,
+        metric.length * progress,
+      );
+      canvas.drawPath(extractPath, paint);
+    }
+  }
+
+  @override
+  bool shouldRepaint(CheckPainter oldDelegate) {
+    return oldDelegate.progress != progress;
   }
 }
