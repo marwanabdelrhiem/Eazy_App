@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'lessons_screen.dart';
 
-// عايزك تظبط ده يبقي يمين
 
 class MyLessonsScreen extends StatelessWidget {
   const MyLessonsScreen({Key? key}) : super(key: key);

@@ -7,6 +7,7 @@ import '../../../../../core/widgets/custom_bottom_nav_bar.dart';
 import 'account/presentation/screens/profile_screen.dart';
 import 'lessons/ presentation/lesson_quiz_screen.dart';
 import 'lessons/ presentation/my_lessons_screen.dart';
+//---------------------------Marwan Ashraf-------------------------//
 
 class HomeBody extends StatefulWidget {
   const HomeBody({super.key});
@@ -27,7 +28,8 @@ class _HomeBodyState extends State<HomeBody> {
       body: Stack(
         children: [
 
-          // ======== المحتوى القابل للسكروول ========
+          //---------------------------Home body-------------------------//
+
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 19),
             child: SingleChildScrollView(

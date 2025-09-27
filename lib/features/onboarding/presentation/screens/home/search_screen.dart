@@ -6,7 +6,9 @@ class SearchScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      //---------------------------App Bar-------------------------//
+
+    appBar: AppBar(
         centerTitle: true,
         automaticallyImplyLeading: false,
 
@@ -25,6 +27,8 @@ class SearchScreen extends StatelessWidget {
           const SizedBox(width: 8),
         ],
       ),
+
+      //---------------------------Home body-------------------------//
 
       body: Padding(
         padding: const EdgeInsets.all(16),

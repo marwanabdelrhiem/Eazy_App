@@ -34,6 +34,9 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
       obscureText: widget.isPassword && !_isPasswordVisible,
       decoration: InputDecoration(
         hintText: widget.hintText,
+        hintStyle: const TextStyle(
+          color: Color(0xFFA4ACAD),
+        ),
         filled: true,
         fillColor: kWhiteColor,
         border: OutlineInputBorder(

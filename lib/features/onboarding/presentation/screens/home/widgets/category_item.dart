@@ -12,6 +12,8 @@ class CategoryItem extends StatefulWidget {
 class _CategoryItemState extends State<CategoryItem> {
   @override
   Widget build(BuildContext context) {
+    //-------------------------Category Lesson ---------------------------//
+
     return Container(
       width: 110.18,
       height: 119.27,

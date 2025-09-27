@@ -20,7 +20,6 @@ class LoginForm extends StatelessWidget {
 
             color: kWhiteColor,
             fontSize: 24,
-            fontWeight: FontWeight.bold,
           ),
           textAlign: TextAlign.right,
         ),
@@ -38,7 +37,7 @@ class LoginForm extends StatelessWidget {
         const SizedBox(height: 10),
 
         Align(
-          alignment: Alignment.centerRight,
+          alignment: Alignment.centerLeft,
           child: TextButton(
             onPressed: () {
               // هنا يفتح شاشة "نسيت كلمة المرور"
@@ -46,19 +45,21 @@ class LoginForm extends StatelessWidget {
             },
             child: const Text(
               'نسيت كلمة المرور؟',
-              style: TextStyle(color: kWhiteColor),
+              style: TextStyle(color: Color(0xFFA4ACAD),fontWeight: FontWeight.bold,wordSpacing: 1),
             ),
           ),
         ),
         const SizedBox(height: 20),
 
-        CustomButton(
+
+         CustomButton(
           text: 'تسجيل دخول',
           onPressed: () {
-            // هنا انت ضايف انه يفتح شاشة OTP (ممكن تخليها للـ login)
             Navigator.of(context).pushNamed(AppRoutes.homeRoute);
           },
+          color: kNextButtonColor,
         ),
+
       ],
     );
   }

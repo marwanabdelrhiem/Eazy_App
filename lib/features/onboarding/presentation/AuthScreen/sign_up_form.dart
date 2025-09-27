@@ -12,7 +12,7 @@ class SignUpForm extends StatefulWidget {
 }
 
 class _SignUpFormState extends State<SignUpForm> {
-  bool _isChecked = false; // متغير للتحكم في حالة الشيك بوكس
+  bool _isChecked = false;
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +56,7 @@ class _SignUpFormState extends State<SignUpForm> {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             const Text(
-              'أوافق على الشروط والأحكام',
+              'أوافق على الشروط والأحكام للاستمرار',
               style: TextStyle(color: kWhiteColor),
             ),
             Checkbox(
@@ -90,7 +90,11 @@ class _SignUpFormState extends State<SignUpForm> {
               );
             }
           },
+          color: kNextButtonColor,
+
         ),
+
+
       ],
     );
   }

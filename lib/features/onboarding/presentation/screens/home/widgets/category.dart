@@ -63,7 +63,7 @@ class Category extends StatelessWidget {
               mainAxisSpacing: 12,
               childAspectRatio: 1,
             ),
-            itemCount: 6,             // مؤقت لغاية ما تملأ البيانات
+            itemCount: 6,
             itemBuilder: (context, index) {
               return CategoryItem(category: categories[index]);
             },

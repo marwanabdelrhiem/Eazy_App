@@ -6,6 +6,8 @@ class NotificationsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //-------------------------App Bar---------------------------//
+
     return Scaffold(
       backgroundColor: Colors.white,
 
@@ -36,7 +38,8 @@ class NotificationsScreen extends StatelessWidget {
     );
   }
 
-  /// لو مفيش إشعارات
+  //-------------------------Empty Notifications---------------------------//
+
   Widget _buildEmptyState() {
     return Center(
       child: Column(
@@ -60,7 +63,8 @@ class NotificationsScreen extends StatelessWidget {
     );
   }
 
-  /// قائمة الإشعارات
+  //-------------------------Notifications---------------------------//
+
   Widget _buildNotificationsList() {
     return ListView.builder(
       padding: const EdgeInsets.symmetric(horizontal:16, vertical:12),
@@ -74,8 +78,7 @@ class NotificationsScreen extends StatelessWidget {
           child: Stack(
             clipBehavior: Clip.none,
             children: [
-
-              // بطاقة الإشعار
+              //-------------------------Notifications Card---------------------------//
               Container(
                 width: double.infinity,
                 height: 112,
@@ -91,7 +94,6 @@ class NotificationsScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
 
-                        // أيقونة المستند
                         Container(
                           width: 64.85,
                           height: 64.85,
@@ -109,7 +111,8 @@ class NotificationsScreen extends StatelessWidget {
                         ),
                         const SizedBox(width: 15),
 
-                        // النصوص
+                        //-------------------------Notifications Body---------------------------//
+
                         Expanded(
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -141,7 +144,6 @@ class NotificationsScreen extends StatelessWidget {
                 ),
               ),
 
-              // ✅ النقطة البرتقالية لأول إشعار فقط
               if (index == 0)
                 Positioned(
                   right: -15,

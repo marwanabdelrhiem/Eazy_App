@@ -13,7 +13,7 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  int _selectedIndex = 1; // 👈 نبدأ بالـ Home
+  int _selectedIndex = 1;
 
   final List<Widget> _screens = [
     const MyAccount(),    // حسابي (index 0)

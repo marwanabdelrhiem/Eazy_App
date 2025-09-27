@@ -53,13 +53,15 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 ),
               ),
             ),
+
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding, vertical: 40),
+              padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding, vertical: 25),
               child: Column(
                 children: [
                   if (_currentPage == _pageCount - 1)
                     SizedBox(
-                      width: buttonWidth,
+                      width: 340,
+                      height: 51,
                       child: CustomButton(
                         text: 'ابدأ',
                         onPressed: () {
@@ -70,38 +72,73 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     )
                   else
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        TextButton(
-                          onPressed: () {
-                            _pageController.jumpToPage(_pageCount - 1);
-                          },
-                          child: Text(
-                            'تخطي',
-                            style: kBodyTextStyle.copyWith(color: kBlackColor.withOpacity(0.5)),
-                          ),
-                        ),
                         SizedBox(
                           width: 231,
                           height: 57,
-                          child: CustomButton(
-                            text: 'التالي',
-                            onPressed: () {
-                              _pageController.nextPage(
-                                duration: const Duration(milliseconds: 500),
-                                curve: Curves.easeIn,
-                              );
-                            },
-                            color: kNextButtonColor,
-                            icon: const Icon(
-                              Icons.arrow_forward_ios,
-                              size: 16,
-                            ),
+                          child: Stack(
+                            children: [
+                              Positioned.fill(
+                                child: CustomButton(
+                                  text: 'التالي',
+                                  onPressed: () {
+                                    _pageController.nextPage(
+                                      duration: const Duration(milliseconds: 500),
+                                      curve: Curves.easeIn,
+                                    );
+                                  },
+                                  color: kNextButtonColor,
+                                ),
+                              ),
+                              const Positioned(
+                                left: 0,
+                                top: 0,
+                                bottom: 0,
+                                child: Padding(
+                                  padding: EdgeInsets.only(left: 12),
+                                  child: Icon(
+                                    Icons.arrow_back_ios_new,
+                                    size: 16,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
 
+                        const SizedBox(width: 69),
+
+                        Container(
+                          width: 70,
+                          height: 40,
+                          child: Center(
+                            child: FittedBox(
+                              fit: BoxFit.scaleDown,
+                              child: TextButton(
+                                style: TextButton.styleFrom(
+                                  padding: EdgeInsets.zero,
+                                  minimumSize: Size.zero,
+                                ),
+                                onPressed: () {
+                                  _pageController.jumpToPage(_pageCount - 1);
+                                },
+                                child: Text(
+                                  'تخطي',
+                                  style: kBodyTextStyle.copyWith(
+                                    fontSize: 18,
+                                    color: kBlackColor.withOpacity(0.4),
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
                       ],
-                    ),
+                    )
                 ],
               ),
             ),

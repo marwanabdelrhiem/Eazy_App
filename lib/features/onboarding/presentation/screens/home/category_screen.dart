@@ -15,17 +15,17 @@ class CategoriesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // إنشاء قائمة جديدة لتخزين 12 عنصرًا
     final List<CategoryModel> finalCategories = [];
 
-    // استخدام حلقة for لملء القائمة الجديدة بـ 12 عنصرًا
     for (int i = 0; i < 12; i++) {
       final categoryIndex = i % categories.length;
       finalCategories.add(categories[categoryIndex]);
     }
 
     return Scaffold(
-      appBar: AppBar(
+      //---------------------------App Bar-------------------------//
+
+    appBar: AppBar(
         elevation: 0,
         automaticallyImplyLeading: false,
 
@@ -46,6 +46,8 @@ class CategoriesScreen extends StatelessWidget {
         ],
         centerTitle: true,
       ),
+
+      //---------------------------Category body-------------------------//
 
       body: Padding(
         padding: const EdgeInsets.all(10.0),

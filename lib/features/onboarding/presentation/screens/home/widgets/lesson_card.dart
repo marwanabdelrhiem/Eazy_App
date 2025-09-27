@@ -9,6 +9,8 @@ class LessonCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //-------------------------Lesson Card---------------------------//
+
     return Container(
       margin: EdgeInsets.only(bottom: 12),
       decoration: BoxDecoration(

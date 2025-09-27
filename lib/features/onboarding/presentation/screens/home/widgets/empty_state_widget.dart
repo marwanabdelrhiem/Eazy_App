@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 class EmptyStateWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    //-------------------------Empty Lesson ---------------------------//
+
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,

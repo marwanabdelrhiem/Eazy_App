@@ -4,7 +4,7 @@ import 'package:eazy/core/widgets/app_logo.dart';
 import 'package:eazy/features/onboarding/presentation/screens/onboarding_screen.dart';
 
 import '../../../../core/constants/colors.dart';
-
+//-------------------Marwan Abdelreheem------------------//
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 

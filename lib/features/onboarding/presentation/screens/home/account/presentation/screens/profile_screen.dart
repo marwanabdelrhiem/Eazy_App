@@ -1,11 +1,13 @@
 import 'package:eazy/features/onboarding/presentation/screens/home/account/others/ContPage.dart';
 import 'package:eazy/features/onboarding/presentation/screens/home/account/others/QuestPage.dart';
 import 'package:eazy/core/popup/SharePage.dart';
-import 'package:eazy/features/onboarding/presentation/screens/home/account/others/SubPage.dart';
 import 'package:eazy/features/onboarding/presentation/screens/home/account/others/TermsPage.dart';
 import 'package:eazy/features/onboarding/presentation/screens/home/account/subscriptions/presentation/screens/subscribe_screen.dart';
 import 'package:flutter/material.dart';
+import '../../../notifications/presentation/screens/notifications_screen.dart';
 import 'account_created_screen.dart';
+
+//-------------------------Marwan Alamir-------------------------------//
 
 class MyAccount extends StatefulWidget {
   const MyAccount({super.key});
@@ -16,6 +18,8 @@ class MyAccount extends StatefulWidget {
 
 class _MyAccountState extends State<MyAccount> {
   Widget _buildListTile(String title, Widget leadingWidget,{VoidCallback? onTap}) {
+
+    //----------------------------Direction------------------------//
     return Directionality(
       textDirection: TextDirection.rtl,
       child: ListTile(
@@ -43,6 +47,7 @@ class _MyAccountState extends State<MyAccount> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+      //----------------------------App Bar------------------------//
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
@@ -59,7 +64,31 @@ class _MyAccountState extends State<MyAccount> {
           padding: const EdgeInsets.only(top: 16.0, left: 10),
           child: IconButton(
             icon: Image.asset("assets/images/notification-bell 1.png", height: 34, width: 34),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => NotificationsScreen(notifications: [
+                    {
+                      'title': 'اسم الإشعار',
+                      'body': 'تفاصيل الاشعار هنا تفاصيل الاشعار هنا تفاصيل الاشعار هنا'
+                    },
+                    {
+                      'title': 'اسم الإشعار',
+                      'body': 'تفاصيل الاشعار هنا تفاصيل الاشعار هنا تفاصيل الاشعار هنا'
+                    },
+                    {
+                      'title': 'اسم الإشعار',
+                      'body': 'تفاصيل الاشعار هنا تفاصيل الاشعار هنا تفاصيل الاشعار هنا'
+                    },
+                    {
+                      'title': 'اسم الإشعار',
+                      'body': 'تفاصيل الاشعار هنا تفاصيل الاشعار هنا تفاصيل الاشعار هنا'
+                    },
+                  ]),
+                ),
+              );
+            },
           ),
         ),
         actions: [
@@ -73,12 +102,14 @@ class _MyAccountState extends State<MyAccount> {
           ),
         ],
       ),
+      //----------------------------Screen Body------------------------//
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Column(
             children: [
               const SizedBox(height: 20),
+              //---------------------------profile-------------------------//
               Container(
                 decoration: BoxDecoration(
                   color: const Color(0xFFF9FAFA),
@@ -142,7 +173,11 @@ class _MyAccountState extends State<MyAccount> {
                   ),
                 ),
               ),
+
               const SizedBox(height: 20),
+
+              //--------------------------Subscribtion--------------------------//
+
               GestureDetector(
                 onTap: () {
                   ScaffoldMessenger.of(context).showSnackBar(
@@ -165,20 +200,29 @@ class _MyAccountState extends State<MyAccount> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Image.asset(
-                            'assets/images/crown 1.png',
-                            width: 25,
-                            height: 25,
-                            color: const Color(0xFFFE9F45),
-                          ),
-                          const SizedBox(width: 8),
-                          const Text(
-                            "الترقية إلي النسخة المميزة",
-                            style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xFFFE9F45),
+                           Image.asset(
+                              'assets/images/crown 1.png',
+                              width: 25,
+                              height: 25,
+                              color: const Color(0xFFFE9F45),
                             ),
+
+                          const SizedBox(width: 8),
+                          InkWell(
+                            child: const Text(
+                              "الترقية إلي النسخة المميزة",
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                                color: Color(0xFFFE9F45),
+                              ),
+                            ),
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => const SubscribeScreen()),
+                              );
+                            },
                           ),
                         ],
                       ),
@@ -189,7 +233,10 @@ class _MyAccountState extends State<MyAccount> {
 
               const SizedBox(height: 20),
 
-            Column(
+
+              //---------------------------Others-------------------------//
+
+              Column(
               children: [
                 _buildListTile(
                   'الاشتراكات',
@@ -266,6 +313,7 @@ class _MyAccountState extends State<MyAccount> {
             ),
 
 
+              //---------------------------Logout-------------------------//
 
               TextButton(
                 onPressed: () {

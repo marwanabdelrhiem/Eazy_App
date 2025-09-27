@@ -54,7 +54,7 @@ class _AuthScreenState extends State<AuthScreen> {
                       _screenIndex == 0
                           ? 'ليس لديك حساب؟ سجل الآن'
                           : 'لديك حساب بالفعل؟ سجل الدخول',
-                      style: kBodyTextStyle.copyWith(color: kWhiteColor),
+                      style: kBodyTextStyle.copyWith(color: Color(0xFFA4ACAD)),
                     ),
                   ),
                 ],

@@ -20,6 +20,8 @@ class _HomeBannerState extends State<HomeBanner> {
 
   @override
   Widget build(BuildContext context) {
+    //-------------------------Banner---------------------------//
+
     return Column(
       children: [
         CarouselSlider(
