@@ -38,11 +38,10 @@ class SignUpScreen extends StatelessWidget {
                 MyNavigator.goTo(context, OtpScreen(
                   phone: phone,
                 ), type: NavigatorType.push);
-                AppPopUp.showSnackBar(state.message, context);
+                AppPopUp.showToast(state.message,
+                    AppColors.blue);
               } else if (state is RegisterError) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text(state.error)),
-                );
+               AppPopUp.showToast(state.error,AppColors.red);
               }
             },
 

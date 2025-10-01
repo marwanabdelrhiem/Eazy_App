@@ -13,57 +13,42 @@ class ApiResponse {
     required this.message,
   });
 
-  // Factory method to handle Dio responses
+  /// Factory method to handle Dio responses
   factory ApiResponse.fromResponse(Response response) {
-    // Check if this is a success response (has status field and it's true)
     bool isSuccess = false;
     String message = '';
 
     if (response.data is Map<String, dynamic>) {
-      // Check for success field first
+      // ✅ الحالة الطبيعية: السيرفر رجع JSON
       if (response.data.containsKey("success")) {
         isSuccess = response.data["success"] == true;
         message = response.data["message"] ?? '';
-      }
-      // Check for status field (alternative success case)
-      else if (response.data.containsKey("status")) {
+      } else if (response.data.containsKey("status")) {
         isSuccess = response.data["status"] == true || response.data["status"] == 1;
         message = response.data["message"] ?? '';
-      }
-      // If no success/status field but has message (could be error case)
-      else if (response.data.containsKey("message")) {
-        // If response has message but no status field, consider it an error
-        // unless status code indicates success
-        isSuccess = response.statusCode != null && response.statusCode! >= 200 && response.statusCode! < 300;
+      } else if (response.data.containsKey("message")) {
+        isSuccess = response.statusCode != null &&
+            response.statusCode! >= 200 &&
+            response.statusCode! < 300;
         message = response.data["message"];
-
-        // If there are validation errors, format them nicely
-        if (response.data.containsKey("errors") && response.data["errors"] is Map) {
-          List<String> errorMessages = [];
-          Map<String, dynamic> errors = response.data["errors"];
-
-          errors.forEach((field, fieldErrors) {
-            if (fieldErrors is List) {
-              for (var error in fieldErrors) {
-                errorMessages.add("$field: $error");
-              }
-            }
-          });
-
-          if (errorMessages.isNotEmpty) {
-            message = errorMessages.join("\n");
-          }
-        }
-      }
-      // If no status or message field, use status code to determine success
-      else {
-        isSuccess = response.statusCode != null && response.statusCode! >= 200 && response.statusCode! < 300;
+      } else {
+        isSuccess = response.statusCode != null &&
+            response.statusCode! >= 200 &&
+            response.statusCode! < 300;
         message = response.statusMessage ?? '';
       }
     } else {
-      // If response data is not a map, use status code
-      isSuccess = response.statusCode != null && response.statusCode! >= 200 && response.statusCode! < 300;
-      message = response.statusMessage ?? '';
+      // ❌ الحالة دي لما السيرفر يرجع HTML أو String
+      isSuccess = response.statusCode != null &&
+          response.statusCode! >= 200 &&
+          response.statusCode! < 300;
+
+      if (response.data is String &&
+          response.data.toString().startsWith("<!DOCTYPE html>")) {
+        message = "Server returned unexpected HTML page.";
+      } else {
+        message = response.statusMessage ?? 'Unexpected response format';
+      }
     }
 
     return ApiResponse(
@@ -74,13 +59,15 @@ class ApiResponse {
     );
   }
 
+  /// Factory method to handle Dio errors
   factory ApiResponse.fromError(dynamic error) {
     print(error.toString());
     if (error is DioException) {
       return ApiResponse(
         status: false,
         data: error.response?.data,
-        statusCode: error.response != null ? error.response!.statusCode ?? 500 : 500,
+        statusCode:
+        error.response != null ? error.response!.statusCode ?? 500 : 500,
         message: _handleDioError(error),
       );
     } else {
@@ -92,6 +79,7 @@ class ApiResponse {
     }
   }
 
+  /// Handling Dio errors
   static String _handleDioError(DioException error) {
     switch (error.type) {
       case DioExceptionType.connectionTimeout:
@@ -117,34 +105,16 @@ class ApiResponse {
 
     if (response.data is Map<String, dynamic>) {
       Map<String, dynamic> data = response.data;
-
-      // Check for message field
       if (data["message"] != null) {
-        print("----- Handle Server Error ${data["message"]}");
-        String message = data["message"];
-
-        // Check for validation errors
-        if (data.containsKey("errors") && data["errors"] is Map) {
-          List<String> errorMessages = [];
-          Map<String, dynamic> errors = data["errors"];
-
-          errors.forEach((field, fieldErrors) {
-            if (fieldErrors is List) {
-              for (var error in fieldErrors) {
-                errorMessages.add("$field: $error");
-              }
-            }
-          });
-
-          if (errorMessages.isNotEmpty) {
-            message = errorMessages.join("\n");
-          }
-        }
-
-        return message;
+        return data["message"]; // ✅ رجّع الرسالة الكبيرة بس
       }
-
       return "An error occurred.";
+    }
+
+    // ❌ لو السيرفر رجع HTML
+    if (response.data is String &&
+        response.data.toString().startsWith("<!DOCTYPE html>")) {
+      return "Server returned unexpected HTML page.";
     }
 
     return "Server error: ${response.statusMessage}";

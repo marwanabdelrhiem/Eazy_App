@@ -43,6 +43,7 @@ dependencies:
   shared_preferences: ^2.5.3
   dartz: ^0.10.1
   dio: ^5.9.0
+  fluttertoast: ^9.0.0
 
 
 

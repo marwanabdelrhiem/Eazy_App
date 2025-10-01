@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../../core/helper/my_navgator.dart';
 import '../../../core/utils/appColor.dart';
 import '../../../core/utils/appStyles.dart';
@@ -7,6 +8,12 @@ import '../../Joining_flow/views/login_screen.dart';
 
 class LogoutDialog {
   static Future<void> show(BuildContext context) async {
+    Future<void> _logout(BuildContext context) async {
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.remove('access_token');
+      await prefs.remove('refresh_token');
+      MyNavigator.goTo(context, LoginScreen(),type: NavigatorType.pushAndRemoveUntil);
+    }
     showModalBottomSheet(
       context: context,
       isDismissible: false, // ما يتقفلش بالضغط برا
@@ -50,7 +57,7 @@ class LogoutDialog {
                   Expanded(
                     child: GestureDetector(
                       onTap: () {
-                        Navigator.pop(context); // يقفل الـ bottom sheet
+                        Navigator.pop(context);
                       },
                       child: Container(
                         height: 57.h,
@@ -74,11 +81,7 @@ class LogoutDialog {
                   Expanded(
                     child: GestureDetector(
                       onTap: () {
-                        MyNavigator.goTo(
-                          context,
-                          const LoginScreen(),
-                          type: NavigatorType.pushReplacement,
-                        );
+                        _logout(context);
                       },
                       child: Container(
                         height: 57.h,

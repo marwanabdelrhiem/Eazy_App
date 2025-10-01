@@ -38,7 +38,7 @@ class LoginScreen extends StatelessWidget {
                     type: NavigatorType.pushAndRemoveUntil);
               }
               else if (state is LoginError) {
-                AppPopUp.showSnackBar(state.error, context);
+                AppPopUp.showToast(state.error, AppColors.red);
               }
 
               },
