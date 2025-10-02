@@ -1,7 +1,7 @@
 
 import 'lesson.dart';
 
-class Category {
+class CategoryData {
   final int id;
   final String title;
   final String image;
@@ -13,7 +13,7 @@ class Category {
   final int? lessonsCount;
   final List<Lesson>? lessons;
 
-  Category({
+  CategoryData({
     required this.id,
     required this.title,
     required this.image,
@@ -25,7 +25,7 @@ class Category {
     this.lessons,
   });
 
-  factory Category.fromJson(Map<String, dynamic> json) {
+  factory CategoryData.fromJson(Map<String, dynamic> json) {
     // Handle the optional list of lessons
     List<Lesson>? lessonsList;
     if (json['lessons'] != null) {
@@ -34,7 +34,7 @@ class Category {
           .toList();
     }
 
-    return Category(
+    return CategoryData(
       id: json['id'] as int,
       title: json['title'] as String,
       image: json['image'] as String,

@@ -1,10 +1,15 @@
+import 'package:eazy/core/data/model/category.dart';
 import 'package:eazy/features/onboarding/presentation/screens/home/data/model/category_model.dart';
 import 'package:eazy/features/onboarding/presentation/screens/home/widgets/category_item.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../../core/data/network/api_service.dart';
+import '../../../../../core/data/repo/lessons repo/lessons_remote_data_source.dart';
+import '../../../../../core/data/repo/lessons repo/lessons_repository_impl.dart';
+import 'package:flutter/material.dart';
 
 class CategoriesScreen extends StatelessWidget {
-  final List<CategoryModel> categories;
+  final List<CategoryData> categories;
   final void Function(String)? onCategoryTap;
 
   const CategoriesScreen({
@@ -15,20 +20,11 @@ class CategoriesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<CategoryModel> finalCategories = [];
-
-    for (int i = 0; i < 12; i++) {
-      final categoryIndex = i % categories.length;
-      finalCategories.add(categories[categoryIndex]);
-    }
-
     return Scaffold(
       //---------------------------App Bar-------------------------//
-
-    appBar: AppBar(
+      appBar: AppBar(
         elevation: 0,
         automaticallyImplyLeading: false,
-
         title: const Text(
           'الأقسام',
           style: TextStyle(
@@ -48,7 +44,6 @@ class CategoriesScreen extends StatelessWidget {
       ),
 
       //---------------------------Category body-------------------------//
-
       body: Padding(
         padding: const EdgeInsets.all(10.0),
         child: GridView.builder(
@@ -58,13 +53,13 @@ class CategoriesScreen extends StatelessWidget {
             mainAxisSpacing: 12,
             childAspectRatio: 1,
           ),
-          itemCount: 12,
+          itemCount: categories.length,
           itemBuilder: (context, index) {
-            final category = finalCategories[index];
+            final category = categories[index];
             return InkWell(
               onTap: () {
                 if (onCategoryTap != null) {
-                  onCategoryTap!(category.name);
+                  onCategoryTap!(category.title);
                 }
               },
               child: CategoryItem(category: category),

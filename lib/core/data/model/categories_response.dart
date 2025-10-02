@@ -3,7 +3,7 @@ import 'package:eazy/core/data/model/category.dart';
 class CategoriesResponse {
   final bool status;
   final String message;
-  final List<Category> data;
+  final List<CategoryData> data;
 
   CategoriesResponse({
     required this.status,
@@ -16,7 +16,7 @@ class CategoriesResponse {
       status: json['status'] ?? false,
       message: json['message'] ?? '',
       data: (json['data'] as List<dynamic>? ?? [])
-          .map((e) => Category.fromJson(e))
+          .map((e) => CategoryData.fromJson(e))
           .toList(),
     );
   }

@@ -1,44 +1,29 @@
 import 'package:eazy/features/onboarding/presentation/screens/home/data/model/category_model.dart';
 import 'package:flutter/material.dart';
 
-class CategoryItem extends StatefulWidget {
+import '../../../../../../core/data/model/category.dart';
+
+class CategoryItem extends StatelessWidget {
+  final CategoryData category;
+
   const CategoryItem({super.key, required this.category});
-  final CategoryModel category;
 
-  @override
-  State<CategoryItem> createState() => _CategoryItemState();
-}
-
-class _CategoryItemState extends State<CategoryItem> {
   @override
   Widget build(BuildContext context) {
-    //-------------------------Category Lesson ---------------------------//
-
     return Container(
-      width: 110.18,
-      height: 119.27,
       decoration: BoxDecoration(
-        color: Colors.grey[100],
         borderRadius: BorderRadius.circular(12),
+        color: Colors.grey.shade200,
       ),
-      padding: const EdgeInsets.all(10),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          CircleAvatar(
-            backgroundColor: const Color(0xFF2A72AD),
-            radius: 23.285,
-            child: Image.asset(
-              widget.category.imagePath,
-              fit: BoxFit.contain,
-            ),
+      child: Center(
+        child: Text(
+          category.title,
+          style: const TextStyle(
+            fontSize: 14,
+            fontWeight: FontWeight.w600,
           ),
-          const SizedBox(height: 8),
-          Text(
-            widget.category.name,
-            style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
-          ),
-        ],
+          textAlign: TextAlign.center,
+        ),
       ),
     );
   }

@@ -7,7 +7,7 @@ import 'category.dart';
 class HomeResponse {
   final List<SliderModel> slider;
   final User user;
-  final List<Category> categories;
+  final List<CategoryData> categories;
 
   HomeResponse({
     required this.slider,
@@ -25,7 +25,7 @@ class HomeResponse {
       user: User.fromJson(json['user'] as Map<String, dynamic>),
       // Convert the JSON list to a List<Category>
       categories: (json['categories'] as List)
-          .map((i) => Category.fromJson(i as Map<String, dynamic>))
+          .map((i) => CategoryData.fromJson(i as Map<String, dynamic>))
           .toList(),
     );
   }

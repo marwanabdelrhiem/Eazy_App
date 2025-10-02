@@ -1,3 +1,4 @@
+import 'package:eazy/core/data/model/categories_response.dart';
 import 'package:eazy/core/data/model/category.dart';
 import 'package:eazy/core/data/model/lesson.dart';
 
@@ -10,9 +11,9 @@ class LessonsRepositoryImpl implements LessonsRepository {
   LessonsRepositoryImpl(this.remote);
 
   @override
-  Future<Category> getCategories() async {
+  Future<CategoriesResponse> getCategories() async {
     final data = await remote.getCategories();
-    return Category.fromJson(data);
+    return CategoriesResponse.fromJson(data);
   }
 
   @override
