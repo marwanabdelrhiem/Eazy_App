@@ -10,6 +10,7 @@ class CustomTextField extends StatelessWidget {
   final TextInputType keyboardType;
   final String? iconPath;
   final Color? iconColor;
+  final String? initialValue;
   final double width;
   final double height;
   final Color? backgroundColor;
@@ -19,6 +20,7 @@ class CustomTextField extends StatelessWidget {
   const CustomTextField({
     super.key,
     this.maxLines,
+    this.initialValue,
     required this.hintText,
     required this.controller,
     this.obscureText = false,
@@ -41,6 +43,7 @@ class CustomTextField extends StatelessWidget {
         controller: controller,
         obscureText: obscureText,
         keyboardType: keyboardType,
+        initialValue: initialValue,
         textAlign: TextAlign.right,
         maxLines:maxLines ?? 1,
         style: AppStyles.textStyle12w400FF.copyWith(

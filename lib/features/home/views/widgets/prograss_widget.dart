@@ -44,7 +44,9 @@ class PrograssWidget extends StatelessWidget {
               children: [
                 GestureDetector(
                   onTap: () {
+/*
                     MyNavigator.goTo(context, QuizPage(),type: NavigatorType.push);
+*/
 
           },child: Container(
                     width: 111.w,

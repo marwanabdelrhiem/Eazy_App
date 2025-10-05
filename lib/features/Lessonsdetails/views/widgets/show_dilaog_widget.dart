@@ -53,11 +53,7 @@ class ShowDilaogWidget extends StatelessWidget {
                     text: 'نعم',
                     onPressed: (){
                       Navigator.of(context).pop();
-                      MyNavigator.goTo(
-                        context,
-                          const LessonsView(),
-                      type: NavigatorType.pushReplacement,
-                      );
+                      MyNavigator.goBack(context);
                     },
                     width: double.infinity
                     , height: 57.h,

@@ -1,6 +1,7 @@
 
 import 'package:eazy_app/core/widgets/bottomNavBar/bottom_nav_bar.dart';
 import 'package:eazy_app/features/account/view/account.dart';
+import 'package:eazy_app/features/home/manager/home_cubit/home_cubit.dart';
 import 'package:eazy_app/features/home/manager/tab_cubit.dart';
 import 'package:eazy_app/features/home/views/my_lessons_view.dart';
 import 'package:eazy_app/features/home/views/widgets/home_body.dart';
@@ -24,7 +25,7 @@ class HomeView extends StatelessWidget {
       builder: (context, state) {
         return Scaffold(
           backgroundColor: Colors.white,
-          body: _pages[state.currentIndex], 
+          body: _pages[state.currentIndex],
           bottomNavigationBar: Directionality(
             textDirection: TextDirection.rtl,
             child: BottomNavBar(

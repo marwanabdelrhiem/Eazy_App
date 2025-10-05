@@ -39,7 +39,6 @@ class AuthRepo {
       }
     }
     catch (e) {
-      print(e);
       return Left(ApiResponse
           .fromError(e)
           .message);
@@ -59,7 +58,6 @@ class AuthRepo {
           'password': password,
         },
       );
-      print("🔹 Login Response Data: ${response.data}");
       if (response.status) {
         final loginResponseModel =
         LoginResponseModel.fromJson(response.data as Map<String, dynamic>);
@@ -72,7 +70,6 @@ class AuthRepo {
         return Left(response.message);
       }
     } catch (e) {
-      print(e);
       return Left(ApiResponse.fromError(e).message);
     }
   }
@@ -97,7 +94,6 @@ class AuthRepo {
         }
     }
     catch (e) {
-      print(e);
       return Left(ApiResponse
           .fromError(e)
           .message);
@@ -125,7 +121,6 @@ class AuthRepo {
       }
     }
     catch (e) {
-      print(e);
       return Left(ApiResponse
           .fromError(e)
           .message);

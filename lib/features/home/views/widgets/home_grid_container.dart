@@ -11,19 +11,22 @@ class HomeGridContainer extends StatelessWidget {
   final String iconPath;
   final String text;
   final VoidCallback? onTap;
+  final int id ;
 
   const HomeGridContainer({
     super.key,
     required this.iconPath,
     required this.text,
-    this.onTap,
+    this.onTap, required this.id,
   });
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){
-        MyNavigator.goTo(context, LessonsView(), type: NavigatorType.push);
+        MyNavigator.goTo(context, LessonsView(
+          id: id,
+        ), type: NavigatorType.push);
       },
       child: Container(
         width: 110.18.w,
@@ -44,7 +47,12 @@ class HomeGridContainer extends StatelessWidget {
               ),
               child: IconButton(
                 onPressed: onTap,
-                icon: CustomSvg(path: iconPath),
+                icon: Image.network(
+                  iconPath,
+                  width: 24.w,
+                  height: 24.h,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
             HomeSectionText(text: text),

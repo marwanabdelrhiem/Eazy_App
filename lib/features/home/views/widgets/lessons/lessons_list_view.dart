@@ -1,3 +1,4 @@
+/*
 
 import 'package:eazy_app/features/Lessons/Views/widgets/lessons_item.dart';
 import 'package:eazy_app/features/Lessons/data/models/demo_data.dart';
@@ -52,7 +53,7 @@ class LessonsListView extends StatelessWidget {
         return Padding(
           padding: EdgeInsets.symmetric(vertical: 11.h),
           child: LessonsItem(
-            data: datalessonsList[item],
+            data: ,
           ),
         );
       },
@@ -60,3 +61,4 @@ class LessonsListView extends StatelessWidget {
     );
   }
 }
+*/

@@ -10,6 +10,7 @@ class QuestionNavigatorBar extends StatelessWidget {
   final int totalQuestions;
   final Function() onNext;
   final Function() onPrevious;
+  final Function(int)? onJumpTo;
 
   const QuestionNavigatorBar({
     super.key,
@@ -17,15 +18,11 @@ class QuestionNavigatorBar extends StatelessWidget {
     required this.totalQuestions,
     required this.onNext,
     required this.onPrevious,
+    this.onJumpTo,
   });
 
   @override
   Widget build(BuildContext context) {
-    int start = (currentPage - 2).clamp(0, totalQuestions - 1);
-    int end = (currentPage + 2).clamp(0, totalQuestions - 1);
-
-    List<int> visibleIndexes = List.generate(end - start + 1, (i) => start + i);
-
     return Column(
       children: [
         Row(
@@ -35,27 +32,33 @@ class QuestionNavigatorBar extends StatelessWidget {
             IconButton(
               onPressed: currentPage > 0 ? onPrevious : null,
               icon: CustomSvg(
-                  width: 24.w,
-                  height: 24.h,
-                  color: currentPage > 0 ? AppColors.black : AppColors.gray,
-                  path: AppIcons.arrow_frowerd), // ←
+                width: 24.w,
+                height: 24.h,
+                color: currentPage > 0 ? AppColors.black : AppColors.gray,
+                path: AppIcons.arrow_frowerd,
+              ),
             ),
-            ...visibleIndexes.map((index) {
+
+            ...List.generate(totalQuestions, (index) {
               final isActive = index == currentPage;
-              return Container(
-                margin: const EdgeInsets.symmetric(horizontal: 6),
-                width: 33.w,
-                height: 33.h,
-                decoration: BoxDecoration(
-                  color: isActive ? AppColors.orange : AppColors.white,
-                  shape: BoxShape.circle,
-                ),
-                child: Center(
-                  child: Text(
-                    '${index + 1}',
-                    style: TextStyle(
-                      color: isActive ? Colors.white : Colors.black,
-                      fontWeight: FontWeight.bold,
+              return GestureDetector(
+                onTap: () => onJumpTo?.call(index),
+                child: Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 6),
+                  width: 33.w,
+                  height: 33.h,
+                  decoration: BoxDecoration(
+                    color: isActive ? AppColors.orange : AppColors.white,
+                    shape: BoxShape.circle,
+                    border: Border.all(color: AppColors.gray),
+                  ),
+                  child: Center(
+                    child: Text(
+                      '$index', // يبدأ من صفر
+                      style: TextStyle(
+                        color: isActive ? Colors.white : Colors.black,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ),
@@ -68,13 +71,14 @@ class QuestionNavigatorBar extends StatelessWidget {
                 width: 24.w,
                 height: 24.h,
                 path: AppIcons.arrowBack,
-                color: currentPage < totalQuestions - 1 ? AppColors.black : AppColors.gray,),
+                color: currentPage < totalQuestions - 1
+                    ? AppColors.black
+                    : AppColors.gray,
+              ),
             ),
           ],
         ),
-
         const SizedBox(height: 8),
-
         Directionality(
           textDirection: TextDirection.rtl,
           child: Text(

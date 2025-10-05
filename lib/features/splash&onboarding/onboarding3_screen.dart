@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'manager/onbording_cubit.dart';
+import 'manager/onbording_state.dart';
 import 'onboardingpage.dart';
 
 class OnBoarding3 extends StatelessWidget {
@@ -6,13 +9,28 @@ class OnBoarding3 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return OnBoardingPage(
-      imagePath: "assets/icons/Group 227.svg",
-      title: "قم بتمكين تجربة التعلم الخاصة بك",
-      description: "هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص.\n"
-          "هذا النص هو مثال لنص يمكن.",
-      activeIndex: 0,
-      showSkip: false,
+    return BlocBuilder<OnBordingCubit2, OnBordingState2>(
+      builder: (context, state) {
+        if(state is OnBordingLoading){
+          return  Center(
+            child: CircularProgressIndicator(),
+          );
+        }else if(state is OnbordingError){
+          return Center(
+            child: Text(state.error),
+          );
+        }else if(state is OnbordingSuccess){
+          return OnBoardingPage(
+            imagePath: state.data[0].image!,
+            title: state.data[0].title!,
+            description: state.data[0].content!,
+            activeIndex: 0,
+            showSkip: true,
+          );
+        }else{
+          return Container();
+        }
+      },
     );
   }
 }

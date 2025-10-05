@@ -5,5 +5,6 @@ abstract class Appimages{
   static const String alarmImage='${_imagePath}image_alarm.png';
   static const String notficionLogo='${_imagePath}surface1.png';
   static const String Success = '${_imagePath}success.gif';
+  static const String image_person_null = '${_imagePath}image_person_null.png';
 
 }

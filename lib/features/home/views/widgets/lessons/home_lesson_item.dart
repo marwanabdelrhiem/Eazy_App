@@ -124,7 +124,10 @@ class HomeLessonItem extends StatelessWidget {
           MyNavigator.goTo(context, const UpgradeView(),
               type: NavigatorType.push);
         } else {
-          MyNavigator.goTo(context, const LessonsDetailsView(),
+          MyNavigator.goTo(context, const LessonsDetailsView(
+            lessonId: 1,
+            catgoryId: 1,
+          ),
               type: NavigatorType.push);
         }
       },

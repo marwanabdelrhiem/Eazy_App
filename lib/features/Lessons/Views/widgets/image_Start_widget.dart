@@ -4,9 +4,11 @@ import 'package:eazy_app/core/utils/appStyles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 class ImageStartWidget extends StatelessWidget {
-  const ImageStartWidget({super.key, this.Buttom});
+  const ImageStartWidget({super.key
+    ,this.Buttom
+    , required this.image});
   final Widget? Buttom;
-
+  final String image;
   @override
   Widget build(BuildContext context) {
     return  SizedBox(
@@ -26,7 +28,7 @@ class ImageStartWidget extends StatelessWidget {
           Positioned(
               left: 20.w,
               top: 65.86.h,
-              child: Text('Grammer',style: AppStyles.textStyle35w400F.copyWith(
+              child: Text('',style: AppStyles.textStyle35w400F.copyWith(
                 color: AppColors.white,
               ),)),
           Buttom??const SizedBox(),

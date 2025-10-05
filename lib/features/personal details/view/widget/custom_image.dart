@@ -5,15 +5,18 @@ import 'package:eazy_app/core/widgets/customSvg.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../core/utils/appImages.dart';
+
 class CustomImage extends StatelessWidget {
-  const CustomImage({super.key});
+  const CustomImage({super.key, this.image = const AssetImage(Appimages.image_person_null)});
+  final ImageProvider image;
 
   @override
   Widget build(BuildContext context) {
     return CircleAvatar(
         
         radius: 60.r,
-        backgroundImage: AssetImage("assets/images/TshapAllonso.jpg"),
+        backgroundImage: image,
         child: Padding(
           padding: const EdgeInsets.only(top: 80,left: 80),
           child: Container(
