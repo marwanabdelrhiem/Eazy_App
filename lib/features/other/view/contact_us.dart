@@ -1,4 +1,4 @@
-import 'package:eazy_app/core/helper/my_navgator.dart';
+import 'package:eazy_app/core/tools//my_navgator.dart';
 import 'package:eazy_app/core/utils/appImages.dart';
 import 'package:eazy_app/core/utils/appPaddings.dart';
 import 'package:eazy_app/core/utils/appStyles.dart';
@@ -10,8 +10,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../core/helper/app_pop_up.dart';
-import '../../../core/helper/app_validators.dart';
+import '../../../core/tools//dialog_manager.dart';
+import '../../../core/tools//validators.dart';
 import '../../../core/utils/appColor.dart';
 import '../manager/contact_cubit/contact_cubit.dart';
 import '../manager/contact_cubit/contact_state.dart';
@@ -78,7 +78,7 @@ class ContactUs extends StatelessWidget {
                   ContactCubit.get(context).messageController.clear();
                 }
                 else if (state is ContactError) {
-                  AppPopUp.showToast(state.error, AppColors.red);
+                  DialogManager.showToast(state.error, AppColors.red);
                 }
 
               },
@@ -94,13 +94,13 @@ class ContactUs extends StatelessWidget {
                 CustomTextField(
                     hintText: "الاسم",
                     controller: cubit.nameController,
-                    validator: AppValidator.requiredValidator,
+                    validator:  Validators.requiredValidator,
                     backgroundColor: AppColors.grey6
                 ),
                 SizedBox(height: 22.h,),
                 CustomTextField(
                     hintText: "رقم الهاتف / البريد الالكتروني",
-                    validator: AppValidator.requiredValidator,
+                    validator:  Validators.requiredValidator,
                     controller: cubit.phoneOrEmailController,
                     backgroundColor: AppColors.grey6),
                 SizedBox(height: 22.h,),
@@ -109,10 +109,14 @@ class ContactUs extends StatelessWidget {
                     controller: cubit.messageController,
                     maxLines: 4,height: 141.h,width: 340.w,
                     backgroundColor: AppColors.grey6,
-                    validator: AppValidator.requiredValidator
+                    validator:  Validators.requiredValidator
                 ),
                 SizedBox(height: 46.h,),
-                Text("او تواصل معانا" , style: AppStyles.textStyle14w400C,),
+                Text(
+                  "او تواصل معانا",
+                  style: AppStyles.textStyle14w400.copyWith(color: AppColors.black),
+                ),
+
                 SizedBox(height: 13.h,),
                 SocialIconsRow(),
                 SizedBox(height: 120.h,),

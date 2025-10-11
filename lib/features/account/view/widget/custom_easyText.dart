@@ -18,28 +18,28 @@ class EasyText extends StatelessWidget {
             // حرف E - أزرق فاتح
             TextSpan(
               text: 'E',
-              style: AppStyles.textStyle23_6w400.copyWith(
+              style: AppStyles.textStyle23w400.copyWith(
                 color: AppColors.blue
               )
             ),
             // حرف a - أزرق
             TextSpan(
               text: 'a',
-              style: AppStyles.textStyle23_6w400.copyWith(
+              style: AppStyles.textStyle23w400.copyWith(
                 color: AppColors.black
               )
             ),
             // حرف z - أزرق داكن
             TextSpan(
               text: 'z',
-              style:AppStyles.textStyle23_6w400.copyWith(
+              style:AppStyles.textStyle23w400.copyWith(
                 color: AppColors.blue
               )
             ),
             // حرف y - برتقالي
             TextSpan(
               text: 'y',
-              style: AppStyles.textStyle23_6w400.copyWith(
+              style: AppStyles.textStyle23w400.copyWith(
                 color: AppColors.orange
               )
             ),

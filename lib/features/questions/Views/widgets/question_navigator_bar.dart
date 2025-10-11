@@ -1,9 +1,9 @@
 import 'package:eazy_app/core/utils/appColor.dart';
 import 'package:eazy_app/core/utils/appIcons.dart';
-import 'package:eazy_app/core/utils/appStyles.dart';
 import 'package:eazy_app/core/widgets/customSvg.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class QuestionNavigatorBar extends StatelessWidget {
   final int currentPage;
@@ -39,6 +39,7 @@ class QuestionNavigatorBar extends StatelessWidget {
               ),
             ),
 
+            // أزرار التنقل بين الأسئلة
             ...List.generate(totalQuestions, (index) {
               final isActive = index == currentPage;
               return GestureDetector(
@@ -54,10 +55,13 @@ class QuestionNavigatorBar extends StatelessWidget {
                   ),
                   child: Center(
                     child: Text(
-                      '$index', // يبدأ من صفر
-                      style: TextStyle(
-                        color: isActive ? Colors.white : Colors.black,
-                        fontWeight: FontWeight.bold,
+                      '${index + 1}', // يبدأ من 1 بدل 0
+                      style: GoogleFonts.cairo(
+                        textStyle: TextStyle(
+                          color: isActive ? Colors.white : Colors.black,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 14.sp,
+                        ),
                       ),
                     ),
                   ),
@@ -79,12 +83,18 @@ class QuestionNavigatorBar extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 8),
+
+        // النص السفلي "أنهيت..."
         Directionality(
           textDirection: TextDirection.rtl,
           child: Text(
             'أنهيت ${currentPage + 1} من $totalQuestions',
-            style: AppStyles.textStyle12w400FF.copyWith(
-              color: Colors.grey,
+            style: GoogleFonts.cairo(
+              textStyle: TextStyle(
+                color: Colors.grey,
+                fontSize: 12.sp,
+                fontWeight: FontWeight.w400,
+              ),
             ),
           ),
         ),

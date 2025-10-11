@@ -28,7 +28,7 @@ class ImageStartWidget extends StatelessWidget {
           Positioned(
               left: 20.w,
               top: 65.86.h,
-              child: Text('',style: AppStyles.textStyle35w400F.copyWith(
+              child: Text('',style: AppStyles.textStyle35w400.copyWith(
                 color: AppColors.white,
               ),)),
           Buttom??const SizedBox(),

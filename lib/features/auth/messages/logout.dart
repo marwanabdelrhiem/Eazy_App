@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../../../core/helper/my_navgator.dart';
+import '../../../core/tools//my_navgator.dart';
 import '../../../core/utils/appColor.dart';
 import '../../../core/utils/appStyles.dart';
 import '../../Joining_flow/views/login_screen.dart';
@@ -76,7 +76,7 @@ class LogoutDialog {
                         child: Center(
                           child: Text(
                             "تراجع",
-                            style: AppStyles.textStyle14w700FF.copyWith(
+                            style: AppStyles.textStyle14w400FF.copyWith(
                               color: AppColors.white,
                             ),
                           ),
@@ -98,7 +98,7 @@ class LogoutDialog {
                         child: Center(
                           child: Text(
                             "نعم",
-                            style: AppStyles.textStyle14w700FF.copyWith(
+                            style: AppStyles.textStyle14w400FF.copyWith(
                               color: AppColors.white,
                             ),
                           ),

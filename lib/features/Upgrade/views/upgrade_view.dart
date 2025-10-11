@@ -1,8 +1,7 @@
-import 'package:eazy_app/core/helper/my_navgator.dart';
+import 'package:eazy_app/core/tools//my_navgator.dart';
 import 'package:eazy_app/core/utils/appColor.dart';
 import 'package:eazy_app/core/utils/appIcons.dart';
 import 'package:eazy_app/core/utils/appPaddings.dart';
-import 'package:eazy_app/core/utils/appStyles.dart';
 import 'package:eazy_app/core/widgets/customButtom.dart';
 import 'package:eazy_app/core/widgets/customSvg.dart';
 import 'package:eazy_app/features/Upgrade/views/widgets/feature_description.dart';
@@ -11,8 +10,11 @@ import 'package:eazy_app/features/Upgrade/views/widgets/stack_widget.dart';
 import 'package:eazy_app/features/subscripition/views/subscripition_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
+
 class UpgradeView extends StatelessWidget {
   const UpgradeView({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,7 +51,11 @@ class UpgradeView extends StatelessWidget {
                     child: Text(
                       'اشتراك اسبوعي',
                       textAlign: TextAlign.center,
-                      style: AppStyles.textStyle16w400,
+                      style: GoogleFonts.cairo(
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.w400,
+                        color: AppColors.black,
+                      ),
                     ),
                   ),
                   SizedBox(height: 25.h),
@@ -61,33 +67,39 @@ class UpgradeView extends StatelessWidget {
                       textAlign: TextAlign.end,
                       maxLines: 4,
                       overflow: TextOverflow.ellipsis,
-                      style: AppStyles.textStyle14w400FF.copyWith(
+                      style: GoogleFonts.cairo(
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w400,
                         color: AppColors.gray,
                         height: 2.2.h,
                       ),
                     ),
                   ),
                   SizedBox(height: 25.h),
-                  FeatureDescription(),
+                  const FeatureDescription(),
                   SizedBox(height: 20.h),
-                  FeatureDescription(),
+                  const FeatureDescription(),
                   SizedBox(height: 37.h),
-                  SalaryWidget(),
+                  const SalaryWidget(),
                   SizedBox(height: 29.h),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 21.w),
                     child: CustomBtn(
-                        text: 'اشتراك',
-                        onPressed: (){
-                          MyNavigator.goTo(context, SubscripitionView(),type: NavigatorType.push);
-                        },
-                        width: double.infinity,
-                      height:54.h,
-                      colorbut: Color(0xFFF5E6D3),
+                      text: 'اشتراك',
+                      onPressed: () {
+                        MyNavigator.goTo(
+                          context,
+                          const SubscripitionView(),
+                          type: NavigatorType.push,
+                        );
+                      },
+                      width: double.infinity,
+                      height: 54.h,
+                      colorbut: const Color(0xFFF5E6D3),
                       textcolor: AppColors.colorUpgrade,
                       icon: CustomSvg(path: AppIcons.crownIcon),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),

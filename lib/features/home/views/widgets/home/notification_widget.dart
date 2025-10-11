@@ -1,5 +1,5 @@
 
-import 'package:eazy_app/core/helper/my_navgator.dart';
+import 'package:eazy_app/core/tools//my_navgator.dart';
 import 'package:eazy_app/core/utils/appColor.dart';
 import 'package:eazy_app/features/home/views/notification_view.dart';
 import 'package:flutter/material.dart';

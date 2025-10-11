@@ -1,4 +1,4 @@
-import 'package:eazy_app/core/helper/my_navgator.dart';
+import 'package:eazy_app/core/tools//my_navgator.dart';
 import 'package:eazy_app/core/utils/appColor.dart';
 import 'package:eazy_app/core/utils/appIcons.dart';
 import 'package:eazy_app/core/utils/appStyles.dart';
@@ -46,7 +46,7 @@ class LessonsItem extends StatelessWidget {
               SizedBox(width: 4.w),
               Text(
                 'اشترك',
-                style: AppStyles.textStyle12w400FF.copyWith(
+                style: AppStyles.textStyle12w400.copyWith(
                   color: AppColors.white,
                 ),
               ),
@@ -93,7 +93,7 @@ class LessonsItem extends StatelessWidget {
                     const Spacer(),
                     Text(
                       "الدرس ${data.id ?? ''}",
-                      style: AppStyles.textStyle12w400FF.copyWith(
+                      style: AppStyles.textStyle12w400.copyWith(
                         color: AppColors.gray,
                       ),
                     ),
@@ -106,7 +106,7 @@ class LessonsItem extends StatelessWidget {
               children: [
                 Text(
                   data.title ?? '',
-                  style: AppStyles.textStyle14w700FF,
+                  style: AppStyles.textStyle14w700,
                 )
               ],
             )

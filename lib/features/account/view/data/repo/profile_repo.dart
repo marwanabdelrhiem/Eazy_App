@@ -2,13 +2,13 @@ import 'package:dartz/dartz.dart';
 import 'package:eazy_app/features/account/view/data/model/profile_model.dart';
 import 'package:eazy_app/features/splash&onboarding/data/models/onbordingResponse.dart';
 
-import '../../../../../core/network/api_helper.dart';
+import '../../../../../core/network/api_tools.dart';
 import '../../../../../core/network/api_response.dart';
 import '../../../../../core/network/end_points.dart';
 
 
 class ProfileRepo{
-  ApiHelper apiHelper = ApiHelper();
+  ApiTools apiHelper = ApiTools();
   Future<Either<String, ProfileResponse>> getProfile() async {
     try {
       var response = await apiHelper.getRequest(

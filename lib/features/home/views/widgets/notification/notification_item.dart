@@ -47,7 +47,7 @@ class NotificationItem extends StatelessWidget {
                       Text(
                         notification.title,
                         textDirection: TextDirection.rtl,
-                        style: AppStyles.textStyle12w400FF
+                        style: AppStyles.textStyle12w400
                             .copyWith(color: AppColors.notificationName),
                       ),
                       SizedBox(height: 6.h),
@@ -57,7 +57,7 @@ class NotificationItem extends StatelessWidget {
                         softWrap: true,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
-                        style: AppStyles.textStyle12w400FF
+                        style: AppStyles.textStyle12w400
                             .copyWith(color: AppColors.gray),
                       )
                     ],

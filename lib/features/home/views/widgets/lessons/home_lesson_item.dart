@@ -1,5 +1,5 @@
 
-import 'package:eazy_app/core/helper/my_navgator.dart';
+import 'package:eazy_app/core/tools//my_navgator.dart';
 import 'package:eazy_app/core/utils/appColor.dart';
 import 'package:eazy_app/core/utils/appIcons.dart';
 import 'package:eazy_app/core/utils/appImages.dart';
@@ -8,7 +8,7 @@ import 'package:eazy_app/core/widgets/customSvg.dart';
 import 'package:eazy_app/features/Lessons/data/models/demo_data.dart';
 import 'package:eazy_app/features/Lessons/manager/lesson_cubit/cubit.dart';
 import 'package:eazy_app/features/Lessons/manager/lesson_cubit/states.dart';
-import 'package:eazy_app/features/Lessonsdetails/views/Lessons_details_view.dart';
+import 'package:eazy_app/features/Lessonsdetails/views/single_lesson_view.dart';
 import 'package:eazy_app/features/Upgrade/views/upgrade_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -51,7 +51,7 @@ class HomeLessonItem extends StatelessWidget {
               SizedBox(width: 4.w),
               Text(
                 'اشترك',
-                style: AppStyles.textStyle12w400FF.copyWith(
+                style: AppStyles.textStyle12w400.copyWith(
                   color: AppColors.white,
                 ),
               ),
@@ -124,7 +124,7 @@ class HomeLessonItem extends StatelessWidget {
           MyNavigator.goTo(context, const UpgradeView(),
               type: NavigatorType.push);
         } else {
-          MyNavigator.goTo(context, const LessonsDetailsView(
+          MyNavigator.goTo(context, const SingleLessonView(
             lessonId: 1,
             catgoryId: 1,
           ),
@@ -163,7 +163,7 @@ class HomeLessonItem extends StatelessWidget {
                       textDirection: TextDirection.rtl,
                       child: Text(
                         data.title,
-                        style: AppStyles.textStyle14w700T.copyWith(
+                        style: AppStyles.textStyle14w700.copyWith(
                           color: AppColors.black,
                         ),
                       ),
@@ -179,7 +179,7 @@ class HomeLessonItem extends StatelessWidget {
                 children: [
                   Text(
                     data.description,
-                    style: AppStyles.textStyle12w400FF
+                    style: AppStyles.textStyle12w400
                         .copyWith(color: AppColors.gray),
                   ),
                   Row(
@@ -193,7 +193,7 @@ class HomeLessonItem extends StatelessWidget {
                       SizedBox(width: 4.w),
                       Text(
                         data.description2 ?? '',
-                        style: AppStyles.textStyle12w400FF
+                        style: AppStyles.textStyle12w400
                             .copyWith(color: AppColors.gray),
                       ),
                     ],

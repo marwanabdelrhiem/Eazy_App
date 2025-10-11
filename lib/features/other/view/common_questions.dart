@@ -89,9 +89,9 @@ class _CommonQuestionsState extends State<CommonQuestions> {
                                 child: Text(
                                   faq["question"]!,
                                   textDirection: TextDirection.rtl,
-                                  style: AppStyles.textStyle12w700
-                                      .copyWith(color: AppColors.blue),
+                                  style: AppStyles.textStyle12w400.copyWith(color: AppColors.blue),
                                 ),
+
                               ),
                               initiallyExpanded: openId == index,
                               onExpansionChanged: (_) {
@@ -110,7 +110,7 @@ class _CommonQuestionsState extends State<CommonQuestions> {
                                     child: Text(
                                       faq["answer"]!,
                                       textDirection: TextDirection.rtl,
-                                      style: AppStyles.textStyle12w400FF
+                                      style: AppStyles.textStyle12w400
                                           .copyWith(color: Colors.black26),
                                     ),
                                   ),

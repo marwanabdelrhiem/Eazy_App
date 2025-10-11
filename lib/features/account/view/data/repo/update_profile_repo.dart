@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../../../../../core/network/api_helper.dart';
+import '../../../../../core/network/api_tools.dart';
 import '../../../../../core/network/api_response.dart';
 import '../../../../../core/network/end_points.dart';
 import '../model/update_profile_respons.dart';
@@ -26,7 +26,7 @@ class UpdateProfileRepo {
           filename: image.name,
         );
       }
-      ApiHelper apiHelper = ApiHelper();
+      ApiTools apiHelper = ApiTools ();
       ApiResponse response = await apiHelper.postRequest(
         endPoint: EndPoints.profile,
         data: data,

@@ -50,6 +50,8 @@ dependencies:
   carousel_slider: ^5.1.1
   image_picker: ^1.2.0
   flutter_widget_from_html: ^0.16.1
+  google_fonts: ^6.2.1
+  flutter_styled_toast: ^2.1.3
 
 
 
@@ -75,34 +77,9 @@ flutter:
   assets:
     - assets/icons/
     - assets/images/
-    - assets/fonts/
 
-  fonts:
-    - family: FingerPaint
-      fonts:
-        - asset: assets/fonts/FingerPaint-Regular.ttf
 
-    - family: FFSHAMEL
-      fonts:
-        - asset: assets/fonts/FFShamelFamily-SansOneBold.ttf
-    - family: LamaSans
-      fonts:
-        - asset: assets/fonts/LamaSans-SemiBold.ttf
-    - family: MadaniArabic
-      fonts:
-        - asset: assets/fonts/alfont_com_Madani-Arabic-Regular-1.ttf
-    - family: Cairo
-      fonts:
-        - asset: assets/fonts/Cairo-Regular.ttf
-    - family: Tajawal
-      fonts:
-        - asset: assets/fonts/Tajawal-Bold.ttf
-    - family: FORTE
-      fonts:
-        - asset: assets/fonts/FORTE.ttf
-    - family: Roboto
-      fonts:
-        - asset: assets/fonts/Roboto-Regular.ttf
+
 
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package

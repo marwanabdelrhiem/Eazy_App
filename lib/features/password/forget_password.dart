@@ -1,5 +1,5 @@
 
-import 'package:eazy_app/core/helper/my_navgator.dart';
+import 'package:eazy_app/core/tools//my_navgator.dart';
 import 'package:eazy_app/core/utils/appColor.dart';
 import 'package:eazy_app/core/utils/appStyles.dart';
 import 'package:eazy_app/core/widgets/customAppBar.dart';
@@ -27,10 +27,11 @@ class ForgetPassword extends StatelessWidget {
                  width: 283.w, // أو قللها شوية لو عايز مسافة من اليسار
                  child: Text(
                    "ادخل رقم الهاتف / البريد الالكتروني لاستعادة كلمة المرور",
-                   style: AppStyles.textStyle14w400FF.copyWith(color: AppColors.gray),
+                   style: AppStyles.textStyle14w400.copyWith(color: AppColors.gray),
                    textAlign: TextAlign.right, // ✅ النص من اليمين
                    softWrap: true,             // ✅ يلف تلقائي
-                 ),
+                 )
+                 ,
                ),
              ],
            ),

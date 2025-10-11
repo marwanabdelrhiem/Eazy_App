@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:eazy_app/features/Lessonsdetails/data/model/singel_lesson_response.dart';
-import '../../../../core/network/api_helper.dart';
+import '../../../../core/network/api_tools.dart';
 import '../../../../core/network/end_points.dart';
 class SingelLessonRepo{
-  ApiHelper apiHelper = ApiHelper();
+  ApiTools apiHelper = ApiTools();
   Future<Either<String, SingleLessonResponse>>
   getSingelLessonData(int id) async {
     try {

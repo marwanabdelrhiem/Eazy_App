@@ -44,7 +44,7 @@ class SearchWidget extends StatelessWidget {
               ),
               hintText: 'ابحث عن درس ',
               hintStyle:
-                  AppStyles.textStyle14w400FF.copyWith(color: AppColors.gray),
+                  AppStyles.textStyle14w400.copyWith(color: AppColors.gray),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12),
                 borderSide: BorderSide.none,

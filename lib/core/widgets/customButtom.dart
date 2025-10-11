@@ -40,7 +40,7 @@ class CustomBtn extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(text,
-                  style: AppStyles.textStyle14w700FF.copyWith(
+                  style: AppStyles.textStyle14w400FF.copyWith(
                     color:textcolor??AppColors.white,
                   )),
               SizedBox(width: 10.w),

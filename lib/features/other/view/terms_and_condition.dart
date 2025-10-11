@@ -57,9 +57,10 @@ class TermsAndCondition extends StatelessWidget {
                         return SingleChildScrollView(
                           child: Text(
                             state.termResponse.data?.content ?? "",
-                            style: AppStyles.textStyle12w400LS.copyWith(height: 2),
+                            style: AppStyles.textStyle12w400.copyWith(height: 2),
                             textDirection: TextDirection.rtl,
                           ),
+
                         );
                       } else if (state is TermsError) {
                         return Center(child: Text(state.message));

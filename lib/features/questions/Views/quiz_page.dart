@@ -1,16 +1,16 @@
-import 'package:eazy_app/core/helper/my_navgator.dart';
+import 'package:eazy_app/core/tools//my_navgator.dart';
 import 'package:eazy_app/core/utils/appColor.dart';
 import 'package:eazy_app/core/utils/appIcons.dart';
 import 'package:eazy_app/core/utils/appPaddings.dart';
-import 'package:eazy_app/core/utils/appStyles.dart';
 import 'package:eazy_app/core/widgets/customAppBar.dart';
 import 'package:eazy_app/core/widgets/customButtom.dart';
 import 'package:eazy_app/core/widgets/customSvg.dart';
-import 'package:eazy_app/features/Lessonsdetails/views/Lessons_details_view.dart';
+import 'package:eazy_app/features/Lessonsdetails/views/single_lesson_view.dart';
 import 'package:eazy_app/features/questions/Views/widgets/question_navigator_bar.dart';
 import 'package:eazy_app/features/result/views/result_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../../Lessonsdetails/data/model/singel_lesson_response.dart';
 
 class QuizPage extends StatefulWidget {
@@ -75,7 +75,11 @@ class _QuizPageState extends State<QuizPage> {
             ? Center(
           child: Text(
             'لا يوجد أسئلة',
-            style: AppStyles.textStyle18w400.copyWith(color: AppColors.gray),
+            style: GoogleFonts.cairo(
+              fontSize: 18.sp,
+              fontWeight: FontWeight.w400,
+              color: AppColors.gray,
+            ),
           ),
         )
             : Column(
@@ -88,7 +92,7 @@ class _QuizPageState extends State<QuizPage> {
                 Navigator.of(context).pop();
                 MyNavigator.goTo(
                   context,
-                  LessonsDetailsView(
+                  SingleLessonView (
                     catgoryId: widget.catgoryId,
                     lessonId: widget.lessonId,
                   ),
@@ -99,7 +103,14 @@ class _QuizPageState extends State<QuizPage> {
                 : Padding(
               padding: EdgeInsets.only(top: 68.h),
               child: Center(
-                child: Text('اختبار سريع', style: AppStyles.textStyle18w400),
+                child: Text(
+                  'اختبار سريع',
+                  style: GoogleFonts.cairo(
+                    fontSize: 18.sp,
+                    fontWeight: FontWeight.w400,
+                    color: AppColors.black,
+                  ),
+                ),
               ),
             ),
 
@@ -141,8 +152,11 @@ class _QuizPageState extends State<QuizPage> {
                               SizedBox(width: 10.w),
                               Text(
                                 'اختيار متعدد',
-                                style: AppStyles.textStyle14w400C
-                                    .copyWith(color: AppColors.blue),
+                                style: GoogleFonts.cairo(
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.w400,
+                                  color: AppColors.blue,
+                                ),
                               ),
                             ],
                           ),
@@ -152,7 +166,11 @@ class _QuizPageState extends State<QuizPage> {
                         // نص السؤال
                         Text(
                           question.title ?? '',
-                          style: AppStyles.textStyle20w400FF,
+                          style: GoogleFonts.cairo(
+                            fontSize: 20.sp,
+                            fontWeight: FontWeight.w400,
+                            color: AppColors.black,
+                          ),
                           textAlign: TextAlign.right,
                           textDirection: TextDirection.rtl,
                         ),
@@ -166,14 +184,12 @@ class _QuizPageState extends State<QuizPage> {
                           return GestureDetector(
                             onTap: () {
                               setState(() {
-                                // لو السؤال لسه متجاوبش
                                 if (selectedAnswers[index] == null) {
                                   selectedAnswers[index] = answerIndex;
                                   if (answer.isCorrect == 1) {
                                     correctAnswers++;
                                   }
                                 } else {
-                                  // لو غير الاختيار السابق، نحدث العداد لو لزم الأمر
                                   final prevAnswer = question
                                       .answers![selectedAnswers[index]!];
                                   if (prevAnswer.isCorrect == 1 &&
@@ -209,9 +225,12 @@ class _QuizPageState extends State<QuizPage> {
                               child: Text(
                                 answer.title ?? '',
                                 textDirection: TextDirection.rtl,
-                                style: AppStyles.textStyle14w400FF.copyWith(
-                                  color:
-                                  isSelected ? Colors.white : Colors.black,
+                                style: GoogleFonts.cairo(
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.w400,
+                                  color: isSelected
+                                      ? Colors.white
+                                      : Colors.black,
                                 ),
                                 textAlign: TextAlign.right,
                               ),
@@ -257,4 +276,3 @@ class _QuizPageState extends State<QuizPage> {
     );
   }
 }
-

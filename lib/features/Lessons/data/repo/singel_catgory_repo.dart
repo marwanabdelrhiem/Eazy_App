@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
-import '../../../../core/network/api_helper.dart';
+import '../../../../core/network/api_tools.dart';
 import '../../../../core/network/end_points.dart';
 import '../models/single_catgory_response.dart';
 class SingelCatgoryRepo{
-  ApiHelper apiHelper = ApiHelper();
+  ApiTools apiHelper = ApiTools();
   Future<Either<String, SingleCatgoryResponse>>
   getSingelCatgoryData(int id) async {
   try {

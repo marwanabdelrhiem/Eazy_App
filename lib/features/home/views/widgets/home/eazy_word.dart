@@ -17,29 +17,29 @@ class EazyWord extends StatelessWidget {
           text: TextSpan(children: [
             TextSpan(
                 text: 'مرحبا بك في',
-                style: AppStyles.textStyle16w700FF
+                style: AppStyles.textStyle16w700
                     .copyWith(color: AppColors.black)),
             const TextSpan(text: ' '),
             TextSpan(
                 text: 'E',
-                style: AppStyles.textStyle23_6w400
+                style: AppStyles.textStyle23w400
                     .copyWith(color: AppColors.blue)),
             TextSpan(
                 text: 'a',
-                style: AppStyles.textStyle23_6w400
+                style: AppStyles.textStyle23w400
                     .copyWith(color: AppColors.black)),
             TextSpan(
                 text: 'z',
-                style: AppStyles.textStyle23_6w400
+                style: AppStyles.textStyle23w400
                     .copyWith(color: AppColors.blue)),
             TextSpan(
                 text: 'y',
-                style: AppStyles.textStyle23_6w400
+                style: AppStyles.textStyle23w400
                     .copyWith(color: AppColors.orange)),
             const TextSpan(text: ' '),
             TextSpan(
                 text: '!',
-                style: AppStyles.textStyle16w700FF
+                style: AppStyles.textStyle16w700
                     .copyWith(color: AppColors.blue)),
           ])),
     );

@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shimmer/shimmer.dart';
 
-import '../../../../core/helper/my_navgator.dart';
+import '../../../../core/tools//my_navgator.dart';
 import '../../../../core/utils/appColor.dart';
 import '../../../../core/utils/appIcons.dart';
 import '../../../../core/utils/appImages.dart';
@@ -86,7 +86,7 @@ class CustomProfile extends StatelessWidget {
                     Text(
                       state.profileResponse.data!.name!,
                       textDirection: TextDirection.rtl,
-                      style: AppStyles.textStyle14w700FF,
+                      style: AppStyles.textStyle14w400FF,
                     ),
                     SizedBox(height: 10.h),
                     Row(

@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:eazy_app/core/helper/my_navgator.dart';
+import 'package:eazy_app/core/tools//my_navgator.dart';
 import 'package:eazy_app/core/utils/appColor.dart';
 import 'package:eazy_app/core/utils/appPaddings.dart';
 import 'package:eazy_app/core/utils/appStyles.dart';
@@ -118,7 +118,7 @@ class _OtpToUpdatePasswordScreenState extends State<OtpToUpdatePasswordScreen> {
                 SizedBox(height: 19.h),
                 Text(
                   'من فضلك أدخل رمز التحقق الذي أرسل لك في رسالة\nعلى: ${widget.emailOrPhone}',
-                  style: AppStyles.textStyle14w400FF.copyWith(
+                  style: AppStyles.textStyle14w400.copyWith(
                     color: AppColors.gray,
                   ),
                 ),
@@ -141,7 +141,7 @@ class _OtpToUpdatePasswordScreenState extends State<OtpToUpdatePasswordScreen> {
                             });
                           }
                         },
-                        textStyle: AppStyles.textStyle20w400MA.copyWith(
+                        textStyle: AppStyles.textStyle20w400.copyWith(
                           color: AppColors.blue,
                         ),
                         pinTheme: PinTheme(
@@ -169,7 +169,7 @@ class _OtpToUpdatePasswordScreenState extends State<OtpToUpdatePasswordScreen> {
                               Text(
                                 errorMessage,
                                 textAlign: TextAlign.right,
-                                style: AppStyles.textStyle14w400FF.copyWith(color: Colors.red),
+                                style: AppStyles.textStyle14w400.copyWith(color: Colors.red),
                               ),
                               SizedBox(width: 4.w),
                               SvgPicture.asset(
@@ -191,7 +191,7 @@ class _OtpToUpdatePasswordScreenState extends State<OtpToUpdatePasswordScreen> {
                     text: 'تأكيد',
                     onPressed: verifyOtp,
                     color: hasError ? Colors.grey : AppColors.blue,
-                    textStyle: AppStyles.textStyle14w400FF
+                    textStyle: AppStyles.textStyle14w400
                         .copyWith(color: AppColors.white),
                   ),
                 ),
@@ -202,7 +202,7 @@ class _OtpToUpdatePasswordScreenState extends State<OtpToUpdatePasswordScreen> {
                     onTap: resendCode,
                     child: Text(
                       "إعادة إرسال الكود",
-                      style: AppStyles.textStyle14w400FF
+                      style: AppStyles.textStyle14w400
                           .copyWith(color: AppColors.blue),
                     ),
                   )
@@ -211,12 +211,12 @@ class _OtpToUpdatePasswordScreenState extends State<OtpToUpdatePasswordScreen> {
                       children: [
                         TextSpan(
                           text: "إعادة الإرسال بعد ",
-                          style: AppStyles.textStyle14w400FF
+                          style: AppStyles.textStyle14w400
                               .copyWith(color: AppColors.gray),
                         ),
                         TextSpan(
                           text: "$minutes:$seconds",
-                          style: AppStyles.textStyle14w400FF
+                          style: AppStyles.textStyle14w400
                               .copyWith(color: AppColors.blue),
                         ),
                       ],

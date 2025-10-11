@@ -1,4 +1,4 @@
-import 'package:eazy_app/core/helper/my_navgator.dart';
+import 'package:eazy_app/core/tools//my_navgator.dart';
 import 'package:eazy_app/core/utils/appColor.dart';
 import 'package:eazy_app/core/utils/appIcons.dart';
 import 'package:eazy_app/core/utils/appStyles.dart';
@@ -8,6 +8,7 @@ import 'package:eazy_app/features/Lessons/Views/Lessons_View.dart';
 import 'package:eazy_app/features/result/views/widgets/continer_result.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../Lessonsdetails/data/model/singel_lesson_response.dart';
 import '../../view_result/views/views_result.dart';
@@ -32,6 +33,12 @@ class ResultView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // 🩵 إعداد الخطوط (Cairo من GoogleFonts)
+    final cairo14 = GoogleFonts.cairo(textStyle: AppStyles.textStyle14w400);
+    final cairo16 = GoogleFonts.cairo(textStyle: AppStyles.textStyle16w400);
+    final cairo18 = GoogleFonts.cairo(textStyle: AppStyles.textStyle18w700);
+    final cairo50 = GoogleFonts.cairo(textStyle: AppStyles.textStyle50w400);
+
     return Scaffold(
       backgroundColor: AppColors.white,
       body: Padding(
@@ -39,7 +46,7 @@ class ResultView extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            // Close button
+            // زر الإغلاق
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
@@ -63,9 +70,9 @@ class ResultView extends StatelessWidget {
 
             CustomSvg(path: AppIcons.success),
 
-            Text('نتيجة الاختبار', style: AppStyles.textStyle18w700),
+            Text('نتيجة الاختبار', style: cairo18),
 
-            // Result container
+            // الصندوق اللي فيه النتيجة
             Container(
               width: double.infinity,
               height: 231.h,
@@ -80,14 +87,14 @@ class ResultView extends StatelessWidget {
                     RichText(
                       text: TextSpan(
                         text: '$correctAnswers/',
-                        style: AppStyles.textStyle12_54w400FF.copyWith(
+                        style: cairo50.copyWith(
                           fontSize: 50.sp,
                           color: AppColors.blue,
                         ),
                         children: [
                           TextSpan(
                             text: '$totalQuestions',
-                            style: AppStyles.textStyle12_54w400FF.copyWith(
+                            style: cairo50.copyWith(
                               fontSize: 50.sp,
                               color: AppColors.black,
                             ),
@@ -115,11 +122,11 @@ class ResultView extends StatelessWidget {
                               children: [
                                 Text(
                                   '$totalQuestions أسئلة',
-                                  style: AppStyles.textStyle14w400C,
+                                  style: cairo14,
                                 ),
                                 Text(
                                   '5 دقائق',
-                                  style: AppStyles.textStyle14w400C.copyWith(
+                                  style: cairo14.copyWith(
                                     color: AppColors.gray,
                                   ),
                                 ),
@@ -154,7 +161,7 @@ class ResultView extends StatelessWidget {
                                   SizedBox(width: 5.w),
                                   Text(
                                     'عرض الحلول',
-                                    style: AppStyles.textStyle14w400C.copyWith(
+                                    style: cairo14.copyWith(
                                       color: AppColors.orange,
                                     ),
                                   ),

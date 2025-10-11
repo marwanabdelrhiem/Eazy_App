@@ -25,20 +25,23 @@ class UpdatePassword extends StatelessWidget {
              children: [
                SizedBox(
                  width: 283.w, // أو قللها شوية لو عايز مسافة من اليسار
-                 child: Text(
-                   "من فضلك أدخل كلمة المرور الجديدة وقم بتأكيد كلمة المرور",
-                   style: AppStyles.textStyle14w400FF.copyWith(color: AppColors.gray),
-                   textAlign: TextAlign.right, // ✅ النص من اليمين
-                   softWrap: true,             // ✅ يلف تلقائي
-                 ),
+                   child: Text(
+                     "من فضلك أدخل كلمة المرور الجديدة وقم بتأكيد كلمة المرور",
+                     style: AppStyles.textStyle14w400.copyWith(color: AppColors.gray),
+                     textAlign: TextAlign.right, // ✅ النص من اليمين
+                     softWrap: true,             // ✅ يلف تلقائي
+                   )
+
                ),
              ],
            ),
          ),
         SizedBox(height: MediaQuery.of(context).size.height/40,),
-        CustomTextField(hintText: " كلمة المرور الجديدة", controller: TextEditingController(),prefixIcon: CustomSvg(path: AppIcons.eyeOn,width: 15.w,height: 15.h,color: AppColors.gray3,)),
+        CustomTextField(hintText: " كلمة المرور الجديدة", controller: TextEditingController(),prefixIcon: CustomSvg(
+          path:
+          AppIcons.eyeOn,width: 10.w,height: 10.h,color: AppColors.gray3,)),
          SizedBox(height: MediaQuery.of(context).size.height/40,),
-        CustomTextField(hintText: "اعادة ادخال كلمة المرور الجديدة", controller: TextEditingController(),prefixIcon: CustomSvg(path: AppIcons.eyeOn,width: 15.w,height: 15.h,color: AppColors.gray3,)),
+        CustomTextField(hintText: "اعادة ادخال كلمة المرور الجديدة", controller: TextEditingController(),prefixIcon: CustomSvg(path: AppIcons.eyeOn,width: 10.w,height: 10.h,color: AppColors.gray3,)),
        Spacer(flex: 7,),
         CustomBtn(
          height: 48.h,

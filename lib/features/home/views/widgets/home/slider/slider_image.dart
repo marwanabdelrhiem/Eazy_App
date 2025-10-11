@@ -55,13 +55,13 @@ class SliderImage extends StatelessWidget {
               text: TextSpan(children: [
                 TextSpan(
                   text: 'اشترك',
-                  style: AppStyles.textStyle13_19w400
-                      .copyWith(color: AppColors.white),
+                  style: AppStyles.textStyle13_19w400.copyWith(color: AppColors.white),
                 ),
+
                 const TextSpan(text: ' '),
                 TextSpan(
                   text: 'بخصم 20%\n',
-                  style: AppStyles.textStyle16_49w400
+                  style: AppStyles.textStyle13_19w400
                       .copyWith(color: AppColors.blue),
                 ),
                 TextSpan(
@@ -72,9 +72,9 @@ class SliderImage extends StatelessWidget {
                 const TextSpan(text: ' '),
                 TextSpan(
                   text: 'إيزي',
-                  style: AppStyles.textStyle28_58w400
-                      .copyWith(color: AppColors.blue),
+                  style: AppStyles.textStyle28_58w400(color: AppColors.blue),
                 ),
+
               ]),
             ),
           ),

@@ -1,5 +1,5 @@
 
-import 'package:eazy_app/core/helper/my_navgator.dart';
+import 'package:eazy_app/core/tools//my_navgator.dart';
 import 'package:eazy_app/core/utils/appColor.dart';
 import 'package:eazy_app/core/utils/appIcons.dart';
 import 'package:eazy_app/core/utils/appStyles.dart';
@@ -34,7 +34,7 @@ class Subascrib extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                     Text("الترقية إلي النسخة المميزة",
-                    style: AppStyles.textStyle14w700FF.copyWith(
+                    style: AppStyles.textStyle14w400FF.copyWith(
                       color: AppColors.orange
                     )
                     ),

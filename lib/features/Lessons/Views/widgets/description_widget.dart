@@ -27,7 +27,7 @@ class DescriptionWidget extends StatelessWidget {
               textDirection: TextDirection.rtl,
               child: HtmlWidget(
                 text, // هنا تمرر النص اللي جاي لك
-                textStyle: AppStyles.textStyle14w400FF.copyWith(
+                textStyle: AppStyles.textStyle14w400.copyWith(
                   color: AppColors.gray,
                   height: 1.7.h,
                 ),
@@ -46,7 +46,7 @@ class DescriptionWidget extends StatelessWidget {
               onTap: () => LessonsCubit.get(context).toggleExpand(),
               child: Text(
                 expand ? "إقرأ أقل" : "  المزيد... ",
-                style: AppStyles.textStyle14w400FF.copyWith(
+                style: AppStyles.textStyle14w400.copyWith(
                   color: AppColors.blue,
                 ),
               ),

@@ -13,7 +13,7 @@ class HomeBoldText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: AppStyles.textStyle16w700FF
+      style: AppStyles.textStyle16w700
           .copyWith(color: AppColors.black),
       textDirection: TextDirection.rtl,
     );

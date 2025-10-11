@@ -1,5 +1,5 @@
-import 'package:eazy_app/core/helper/app_validators.dart';
-import 'package:eazy_app/core/helper/my_navgator.dart';
+import 'package:eazy_app/core/tools//validators.dart';
+import 'package:eazy_app/core/tools//my_navgator.dart';
 import 'package:eazy_app/core/utils/appColor.dart';
 import 'package:eazy_app/core/utils/appPaddings.dart';
 import 'package:eazy_app/core/utils/appStyles.dart';
@@ -12,7 +12,7 @@ import 'package:eazy_app/features/splash&onboarding/widgets/text_splash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../core/helper/app_pop_up.dart';
+import '../../../core/tools//dialog_manager.dart';
 import '../../../core/utils/appIcons.dart';
 import '../../splash&onboarding/background.dart';
 import '../manager/login_cubit/login_cubit.dart';
@@ -38,7 +38,7 @@ class LoginScreen extends StatelessWidget {
                     type: NavigatorType.pushAndRemoveUntil);
               }
               else if (state is LoginError) {
-                AppPopUp.showToast(state.error, AppColors.red);
+                DialogManager.showToast(state.error, AppColors.red);
               }
 
               },
@@ -68,7 +68,7 @@ class LoginScreen extends StatelessWidget {
                           hintText: 'رقم الهاتف / البريد الإلكتروني',
                           controller: cubit.email_phoneController,
                           backgroundColor: AppColors.white,
-                          validator: AppValidator.requiredValidator,
+                          validator:  Validators.requiredValidator,
                         ),
                         SizedBox(height: 16.h),
                         BlocBuilder<LoginCubit, LoginState>(
@@ -85,7 +85,7 @@ class LoginScreen extends StatelessWidget {
                                 width: 20.w,
                                 height: 20.h,
                               )),
-                            validator: AppValidator.passwordValidator,
+                            validator:  Validators.passwordValidator,
                             );
                           },
                         ),
@@ -103,7 +103,7 @@ class LoginScreen extends StatelessWidget {
                               },
                               child: Text(
                                 'نسيت كلمة المرور؟',
-                                style: AppStyles.textStyle14w700FF.copyWith(color: AppColors.gray),
+                                style: AppStyles.textStyle14w700.copyWith(color: AppColors.gray),
                                 textAlign: TextAlign.right,
                               ),
                             ),
@@ -135,13 +135,13 @@ class LoginScreen extends StatelessWidget {
                                 children: [
                                   TextSpan(
                                     text: 'ليس لديك حساب؟ ',
-                                    style: AppStyles.textStyle14w400FF.copyWith(
+                                    style: AppStyles.textStyle14w400.copyWith(
                                       color: AppColors.gray2,
                                     ),
                                   ),
                                   TextSpan(
                                     text: 'سجل الآن',
-                                    style: AppStyles.textStyle14w400FF.copyWith(
+                                    style: AppStyles.textStyle14w400.copyWith(
                                       color: AppColors.white,
                                     ),
                                   ),

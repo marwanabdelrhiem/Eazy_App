@@ -15,7 +15,7 @@ class BuildParagraphs extends StatelessWidget {
           child: Text(
             paragraph,
             textAlign: TextAlign.right,
-            style: AppStyles.textStyle14w400FF,
+            style: AppStyles.textStyle14w400,
             textDirection: TextDirection.rtl,
           ),
         );

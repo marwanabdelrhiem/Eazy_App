@@ -1,4 +1,4 @@
-import 'package:eazy_app/core/helper/my_navgator.dart';
+import 'package:eazy_app/core/tools//my_navgator.dart';
 import 'package:eazy_app/core/utils/appColor.dart';
 import 'package:eazy_app/core/utils/appPaddings.dart';
 import 'package:eazy_app/core/utils/appStyles.dart';
@@ -9,7 +9,7 @@ import 'package:eazy_app/features/Lessons/Views/widgets/image_Start_widget.dart'
 import 'package:eazy_app/features/Lessons/Views/widgets/lessons_item.dart';
 import 'package:eazy_app/features/Lessons/manager/lesson_cubit/cubit.dart';
 import 'package:eazy_app/features/Lessons/manager/singel_catgory_cubit/singel_catgory_states.dart';
-import 'package:eazy_app/features/Lessonsdetails/views/Lessons_details_view.dart';
+import 'package:eazy_app/features/Lessonsdetails/views/single_lesson_view.dart';
 import 'package:eazy_app/features/Upgrade/views/upgrade_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -75,7 +75,7 @@ class _LessonsViewState extends State<LessonsView> {
                                   if (lessons.isEmpty) return;
                                   MyNavigator.goTo(
                                     context,
-                                    LessonsDetailsView(
+                                    SingleLessonView(
                                       catgoryId: lessons[selectedLessonIndex].categoryId!,
                                       lessonId: lessons[selectedLessonIndex].id!,
                                     ),
@@ -91,7 +91,7 @@ class _LessonsViewState extends State<LessonsView> {
                           SizedBox(height: 24.h),
                           Text('القواعد', style: AppStyles.textStyle18w700),
                           SizedBox(height: 16.h),
-                          Text('الوصف', style: AppStyles.textStyle16w700T),
+                          Text('الوصف', style: AppStyles.textStyle16w700),
                           SizedBox(height: 9.h),
                           if (lessons.isNotEmpty)
                             DescriptionWidget(
@@ -100,7 +100,7 @@ class _LessonsViewState extends State<LessonsView> {
                           else
                             Text(
                               "لا يوجد وصف متاح",
-                              style: AppStyles.textStyle14w700FF.copyWith(
+                              style: AppStyles.textStyle14w700.copyWith(
                                 color: AppColors.gray,
                               ),
                             ),

@@ -1,4 +1,4 @@
-import 'package:eazy_app/core/helper/my_navgator.dart';
+import 'package:eazy_app/core/tools//my_navgator.dart';
 import 'package:eazy_app/core/utils/appColor.dart';
 import 'package:eazy_app/core/utils/appPaddings.dart';
 import 'package:eazy_app/core/utils/appStyles.dart';
@@ -8,8 +8,10 @@ import 'package:eazy_app/features/Upgrade/views/widgets/feature_description.dart
 import 'package:eazy_app/features/Upgrade/views/widgets/salary_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 class SubscripitionView extends StatelessWidget {
   const SubscripitionView({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,7 +20,7 @@ class SubscripitionView extends StatelessWidget {
         padding: AppPaddings.mainPadding,
         child: Column(
           children: [
-            CustomAppBar(title: 'الاشتركات',),
+            const CustomAppBar(title: 'الاشتركات'),
             SizedBox(height: 50.h),
             Container(
               width: double.infinity,
@@ -59,43 +61,50 @@ class SubscripitionView extends StatelessWidget {
                       textAlign: TextAlign.end,
                       maxLines: 4,
                       overflow: TextOverflow.ellipsis,
-                      style: AppStyles.textStyle14w400FF.copyWith(
+                      style: TextStyle(
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w400,
                         color: AppColors.gray,
-                        height: 2.2.h,
+                        height: 1.6,
+                        fontFamily: 'Cairo',
                       ),
                     ),
                   ),
                   SizedBox(height: 25.h),
-                  FeatureDescription(),
+                  const FeatureDescription(),
                   SizedBox(height: 20.h),
-                  FeatureDescription(),
+                  const FeatureDescription(),
                   SizedBox(height: 20.h),
                   Padding(
-                    padding:EdgeInsets.only(right: 20.h),
-                    child: Text(' تاريخ التجديد  2023 يناير',
-                      style: AppStyles.textStyle14w400FF.copyWith(
+                    padding: EdgeInsets.only(right: 20.h),
+                    child: Text(
+                      'تاريخ التجديد 2023 يناير',
+                      style: TextStyle(
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w400,
                         color: AppColors.gray,
-                        height: 2.2.h,
+                        height: 1.6,
+                        fontFamily: 'Cairo',
                       ),
                       textDirection: TextDirection.rtl,
                     ),
                   ),
                   SizedBox(height: 37.h),
-                  SalaryWidget(),
+                  const SalaryWidget(),
                   SizedBox(height: 29.h),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 21.w),
                     child: CustomBtn(
                       text: 'تجديد الاشتراك',
-                      onPressed: (){
+                      onPressed: () {
                         MyNavigator.goBack(context);
                       },
                       width: double.infinity,
-                      height:54.h,
+                      height: 54.h,
                       colorbut: AppColors.gray5,
-                      textcolor: AppColors.gray
+                      textcolor: AppColors.gray,
                     ),
-                  )
+                  ),
                 ],
               ),
             ),

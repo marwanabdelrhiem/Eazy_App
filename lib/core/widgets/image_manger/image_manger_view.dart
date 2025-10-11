@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
-import 'cubit/image_manager_cubit.dart';
-import 'cubit/image_manger_state.dart';
+import 'cubit/image_uploader.dart';
+import 'cubit/media_state.dart';
 
 class ImageManagerView extends StatelessWidget {
   const ImageManagerView({super.key, required this.defaultBuilder,
@@ -16,8 +16,8 @@ class ImageManagerView extends StatelessWidget {
     return Builder(
           builder: (context) {
             return GestureDetector(
-              onTap: ImageManagerCubit.get(context).pickImage,
-              child: BlocConsumer<ImageManagerCubit, ImageManagerState>(
+              onTap: ImageUploader.get(context).pickImage,
+              child: BlocConsumer<ImageUploader, MediaState>(
                   listener: (context, state){
                     if(state is ImageManagerPicked)
                     {

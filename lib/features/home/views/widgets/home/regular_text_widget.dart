@@ -13,7 +13,7 @@ class HomeRegularText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: AppStyles.textStyle12w400FF
+      style: AppStyles.textStyle12w400
           .copyWith(color: AppColors.iconSave),
       textDirection: TextDirection.rtl,
     );

@@ -1,10 +1,10 @@
 import 'package:dartz/dartz.dart';
-import '../../../../core/network/api_helper.dart';
+import '../../../../core/network/api_tools.dart';
 import '../../../../core/network/api_response.dart';
 import '../../../../core/network/end_points.dart';
 import '../models/contact_response.dart';
 class ContactRepo{
-  ApiHelper apiHelper = ApiHelper();
+  ApiTools apiHelper = ApiTools();
   Future<Either<String, contactResponse>> contact
       ({
     required String title,

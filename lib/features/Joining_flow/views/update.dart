@@ -29,7 +29,7 @@ class UpdatePassword extends StatelessWidget {
                 width: 283.w, // أو قللها شوية لو عايز مسافة من اليسار
                 child: Text(
                   "من فضلك أدخل كلمة المرور الجديدة وقم بتأكيد كلمة المرور",
-                  style: AppStyles.textStyle14w400FF.copyWith(color: AppColors.gray),
+                  style: AppStyles.textStyle14w400.copyWith(color: AppColors.gray),
                   textAlign: TextAlign.right,
                   softWrap: true,
                 ),

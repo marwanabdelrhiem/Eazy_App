@@ -1,6 +1,6 @@
 import 'dart:io';
-import 'package:eazy_app/core/helper/app_validators.dart';
-import 'package:eazy_app/core/helper/my_navgator.dart';
+import 'package:eazy_app/core/tools//validators.dart';
+import 'package:eazy_app/core/tools//my_navgator.dart';
 import 'package:eazy_app/core/utils/appColor.dart';
 import 'package:eazy_app/core/utils/appIcons.dart';
 import 'package:eazy_app/core/utils/appImages.dart';
@@ -20,7 +20,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../core/helper/app_pop_up.dart';
+import '../../../core/tools//dialog_manager.dart';
 
 class PersonalDetails extends StatelessWidget {
   final ProfileResponse data;
@@ -66,7 +66,7 @@ class PersonalDetails extends StatelessWidget {
                 },
               );
             } else if (state is UpdateProfileFailure) {
-              AppPopUp.showToast(state.message, AppColors.red);
+              DialogManager.showToast(state.message, AppColors.red);
             }
           },
           builder: (context, state) {
@@ -80,7 +80,7 @@ class PersonalDetails extends StatelessWidget {
                   children: [
                     CustomAppBar(title: "البيانات الشخصية"),
 
-                    /// صورة البروفايل
+
                     ImageManagerView(
                       onImagePicked: (image) {
                         cubit.image = image;
@@ -99,25 +99,25 @@ class PersonalDetails extends StatelessWidget {
                     ),
                     SizedBox(height: MediaQuery.of(context).size.height / 35),
 
-                    /// الاسم
+
                     CustomTextField(
-                      validator: AppValidator.requiredValidator,
+                      validator:  Validators.requiredValidator,
                       controller: cubit.nameController,
                       hintText: "الاسم",
                     ),
                     SizedBox(height: MediaQuery.of(context).size.height / 35),
 
-                    /// رقم الهاتف
+
                     CustomTextField(
-                      validator: AppValidator.phoneValidator,
+                      validator:  Validators.phoneValidator,
                       controller: cubit.phoneController,
                       hintText: "رقم الهاتف",
                     ),
                     SizedBox(height: MediaQuery.of(context).size.height / 35),
 
-                    /// البريد الإلكتروني
+
                     CustomTextField(
-                      validator: AppValidator.emailValidator,
+                      validator:  Validators.emailValidator,
                       controller: cubit.emailController,
                       hintText: "البريد الإلكتروني",
                     ),
@@ -131,9 +131,11 @@ class PersonalDetails extends StatelessWidget {
                               MyNavigator.goTo(context, ResetPassword()),
                           child: Text(
                             "تغير كلمه المرور",
-                            style: AppStyles.textStyle12w400FF
-                                .copyWith(color: AppColors.firstQus),
+                            style: AppStyles.textStyle12w400.copyWith(
+                              color: AppColors.firstQus,
+                            ),
                           ),
+
                         ),
                         SizedBox(
                             width: MediaQuery.of(context).size.width / 30),
@@ -198,10 +200,11 @@ class PersonalDetails extends StatelessWidget {
                                         const SizedBox(height: 8),
                                         Text(
                                           "هل انت متأكد من انك تريد حذف الحساب؟ سيتم حذف البيانات بشكل كامل",
-                                          style: AppStyles.textStyle14w400FF
-                                              .copyWith(
-                                              color: AppColors.gray),
+                                          style: AppStyles.textStyle14w400.copyWith(
+                                            color: AppColors.gray,
+                                          ),
                                         ),
+
                                         const SizedBox(height: 16),
                                         Row(
                                           children: [
@@ -240,9 +243,9 @@ class PersonalDetails extends StatelessWidget {
                           },
                           child: Text(
                             "حذف الحساب",
-                            style: AppStyles.textStyle12w400FF
-                                .copyWith(color: AppColors.red),
+                            style: AppStyles.textStyle12w400.copyWith(color: AppColors.red),
                           ),
+
                         ),
                         SizedBox(
                             width: MediaQuery.of(context).size.width / 50),

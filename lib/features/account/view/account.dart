@@ -1,4 +1,4 @@
-import 'package:eazy_app/core/helper/my_navgator.dart';
+import 'package:eazy_app/core/tools//my_navgator.dart';
 import 'package:eazy_app/core/utils/appColor.dart';
 import 'package:eazy_app/core/utils/appIcons.dart';
 import 'package:eazy_app/core/utils/appPaddings.dart';
@@ -17,69 +17,93 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../auth/messages/logout.dart';
 import 'manager/profile_cubit.dart';
+
 class AccountScreen extends StatelessWidget {
   const AccountScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: AppColors.white,
-        body: Padding(
-          padding: AppPaddings.mainPadding,
-          child: Column(
-            children: [
-              CustomBar(),
-              SizedBox(height: MediaQuery.of(context).size.height / 20),
-              CustomProfile(),
-              SizedBox(height: MediaQuery.of(context).size.height / 50),
-              Subascrib(),
-              SizedBox(height: MediaQuery.of(context).size.height / 40),
-              CustomIcons(
-                onTap: () => MyNavigator.goTo(context, SubscripitionView(),type: NavigatorType.push),
-                image: AppIcons.subscriptionIcon,
-                text: "الاشتراكات",
-              ),
-              CustomIcons(
-                image: AppIcons.faqIcon,
-                text: "الأسئلة الشائعة",
-                onTap: () => MyNavigator.goTo(context, CommonQuestions(),type: NavigatorType.push),
-              ),
-              CustomIcons(
-                image: AppIcons.conditionIcon,
-                text: "الشروط والأحكام",
-                onTap: () => MyNavigator.goTo(context, TermsAndCondition(),type: NavigatorType.push),
-              ),
-              CustomIcons(
-                image: AppIcons.callIcon,
-                text: "تواصل معانا",
-                onTap: () => MyNavigator.goTo(context, ContactUs(),type: NavigatorType.push),
-              ),
-              CustomIcons(
-                image: AppIcons.shareIcon,
-                text: "مشاركة التطبيق",
-                onTap: () => MyNavigator.goTo(
-                  context,
-                  ShareAppButton(appLink: ""),
-                  type: NavigatorType.push,
+      backgroundColor: AppColors.white,
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: AppPaddings.mainPadding,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                CustomBar(),
+                SizedBox(height: MediaQuery.of(context).size.height / 20),
+                CustomProfile(),
+                SizedBox(height: MediaQuery.of(context).size.height / 50),
+                Subascrib(),
+                SizedBox(height: MediaQuery.of(context).size.height / 40),
+                CustomIcons(
+                  onTap: () => MyNavigator.goTo(
+                    context,
+                    SubscripitionView(),
+                    type: NavigatorType.push,
+                  ),
+                  image: AppIcons.subscriptionIcon,
+                  text: "الاشتراكات",
                 ),
-              ),
-
-              SizedBox(height: MediaQuery.of(context).size.height / 40),
-              GestureDetector(
-                onTap: () {
-                  LogoutDialog.show(context);
-                },
-                child: Text(
-                  "تسجيل الخروج",
-                  style: AppStyles.textStyle14w400FF.copyWith(
-                    color: AppColors.KeyePass,
+                CustomIcons(
+                  image: AppIcons.faqIcon,
+                  text: "الأسئلة الشائعة",
+                  onTap: () => MyNavigator.goTo(
+                    context,
+                    CommonQuestions(),
+                    type: NavigatorType.push,
                   ),
                 ),
-              ),
+                CustomIcons(
+                  image: AppIcons.conditionIcon,
+                  text: "الشروط والأحكام",
+                  onTap: () => MyNavigator.goTo(
+                    context,
+                    TermsAndCondition(),
+                    type: NavigatorType.push,
+                  ),
+                ),
+                CustomIcons(
+                  image: AppIcons.callIcon,
+                  text: "تواصل معانا",
+                  onTap: () => MyNavigator.goTo(
+                    context,
+                    ContactUs(),
+                    type: NavigatorType.push,
+                  ),
+                ),
+                CustomIcons(
+                  image: AppIcons.shareIcon,
+                  text: "مشاركة التطبيق",
+                  onTap: () => MyNavigator.goTo(
+                    context,
+                    ShareAppButton(appLink: ""),
+                    type: NavigatorType.push,
+                  ),
+                ),
+                SizedBox(height: MediaQuery.of(context).size.height / 40),
+                Center(
+                  child: GestureDetector(
+                    onTap: () {
+                      LogoutDialog.show(context);
+                    },
+                    child: Text(
+                      "تسجيل الخروج",
+                      style: AppStyles.textStyle14w400FF.copyWith(
+                        color: AppColors.KeyePass,
+                      ),
+                    ),
+                  ),
+                ),
 
-              SizedBox(height: MediaQuery.of(context).size.height / 20),
-            ],
+                SizedBox(height: MediaQuery.of(context).size.height / 20),
+              ],
+            ),
           ),
         ),
-      );
+      ),
+    );
   }
 }

@@ -1,12 +1,12 @@
 import 'package:dartz/dartz.dart';
 
-import '../../../../core/network/api_helper.dart';
+import '../../../../core/network/api_tools.dart';
 import '../../../../core/network/api_response.dart';
 import '../../../../core/network/end_points.dart';
 import '../model/update_password_response.dart';
 
 class UpdatePasswordRepo{
-  ApiHelper apiHelper = ApiHelper();
+  ApiTools apiHelper = ApiTools();
   Future<Either<String,UpdatePasswordResponse>> UpdatePassword({
     required String password,
     required String password_confirmation,

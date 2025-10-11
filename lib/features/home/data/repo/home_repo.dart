@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:eazy_app/features/home/data/model/home_model.dart';
-import '../../../../core/network/api_helper.dart';
+import '../../../../core/network/api_tools.dart';
 import '../../../../core/network/end_points.dart';
 class HomeRepo{
-  ApiHelper apiHelper = ApiHelper();
+  ApiTools apiHelper = ApiTools();
   Future<Either<String, HomeResponse>> getHomeData() async {
   try {
   var response = await apiHelper.getRequest(

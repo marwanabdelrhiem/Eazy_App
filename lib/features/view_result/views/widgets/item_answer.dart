@@ -43,7 +43,7 @@ class ItemAnswer extends StatelessWidget {
             SizedBox(height: 24.h),
             Text(
               model.title ?? '',
-              style: AppStyles.textStyle20w400FF,
+              style: AppStyles.textStyle12w400FF,
               textAlign: TextAlign.right,
               textDirection: TextDirection.rtl,
             ),

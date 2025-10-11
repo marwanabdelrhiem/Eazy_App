@@ -3,13 +3,13 @@ import 'package:eazy_app/features/Joining_flow/data/models/otp_respons.dart';
 import 'package:eazy_app/features/Joining_flow/data/models/verifay_response.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../../core/network/api_helper.dart';
+import '../../../../core/network/api_tools.dart';
 import '../../../../core/network/api_response.dart';
 import '../../../../core/network/end_points.dart';
 import '../models/login_response_model.dart';
 
 class AuthRepo {
-  ApiHelper apiHelper = ApiHelper();
+  ApiTools apiHelper = ApiTools();
   Future<Either<String,String>> register({
     required String phone,
     required String name,

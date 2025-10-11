@@ -1,4 +1,4 @@
-import 'package:eazy_app/core/helper/my_navgator.dart';
+import 'package:eazy_app/core/tools//my_navgator.dart';
 import 'package:eazy_app/core/utils/appColor.dart';
 import 'package:eazy_app/core/utils/appIcons.dart';
 import 'package:eazy_app/core/utils/appPaddings.dart';
@@ -14,8 +14,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 
-import '../../../core/helper/app_pop_up.dart';
-import '../../../core/helper/app_validators.dart';
+import '../../../core/tools//dialog_manager.dart';
+import '../../../core/tools//validators.dart';
 import '../../splash&onboarding/background.dart';
 import '../manager/register_cubit/register_states.dart';
 import '../manager/verify_cubit/verify_cubit.dart';
@@ -38,10 +38,10 @@ class SignUpScreen extends StatelessWidget {
                 MyNavigator.goTo(context, OtpScreen(
                   phone: phone,
                 ), type: NavigatorType.push);
-                AppPopUp.showToast(state.message,
+                DialogManager.showToast(state.message,
                     AppColors.blue);
               } else if (state is RegisterError) {
-               AppPopUp.showToast(state.error,AppColors.red);
+                DialogManager.showToast(state.error,AppColors.red);
               }
             },
 
@@ -74,21 +74,21 @@ class SignUpScreen extends StatelessWidget {
                           hintText: 'اسم المستخدم',
                           controller: cubit.nameController,
                           backgroundColor: AppColors.white,
-                          validator:AppValidator.requiredValidator,
+                          validator: Validators.requiredValidator,
                         ),
                         SizedBox(height: 16.h),
                         CustomTextField(
                           hintText: ' البريد الإلكتروني',
                           controller: cubit.emailController,
                           backgroundColor: AppColors.white,
-                          validator:AppValidator.emailValidator,
+                          validator: Validators.emailValidator,
                         ),
                         SizedBox(height: 16.h),
                         CustomTextField(
                           hintText: ' رقم الهاتف',
                           controller: cubit.phoneController,
                           backgroundColor: AppColors.white,
-                          validator:AppValidator.phoneValidator,
+                          validator: Validators.phoneValidator,
                         ),
                         SizedBox(height: 16.h),
                          CustomTextField(
@@ -96,7 +96,7 @@ class SignUpScreen extends StatelessWidget {
                               controller: cubit.passwordController,
                               obscureText: cubit.isPassword,
                               backgroundColor: AppColors.white,
-                           validator:AppValidator.passwordValidator,
+                           validator: Validators.passwordValidator,
                            prefixIcon: IconButton(onPressed: (){
                              cubit.changePasswordVisibility();
                            }, icon: CustomSvg(
@@ -112,7 +112,7 @@ class SignUpScreen extends StatelessWidget {
                               controller: cubit.confirmPasswordController,
                               obscureText: cubit.isConfirmPassword,
                               backgroundColor: AppColors.white,
-                              validator:  (value) => AppValidator.confirmPasswordValidator(
+                              validator:  (value) =>  Validators.confirmPasswordValidator(
                                 value,
                                 cubit.passwordController.text,
 
@@ -135,12 +135,12 @@ class SignUpScreen extends StatelessWidget {
                                     children: [
                                       TextSpan(
                                         text: 'أوافق على',
-                                        style: AppStyles.textStyle12w400LS
+                                        style: AppStyles.textStyle12w400
                                             .copyWith(color: AppColors.gray4),
                                       ),
                                       TextSpan(
                                         text: ' الشروط والأحكام للاستمرار',
-                                        style: AppStyles.textStyle12w400LS.copyWith(
+                                        style: AppStyles.textStyle12w400.copyWith(
                                           color: AppColors.blue,
                                           decoration: TextDecoration.underline,
                                           decorationColor: AppColors.blue,
@@ -169,7 +169,7 @@ class SignUpScreen extends StatelessWidget {
                               onPressed: () {
                                 cubit.onRegister();
                               },
-                              textStyle: AppStyles.textStyle14w700FF
+                              textStyle: AppStyles.textStyle14w700
                                   .copyWith(color: AppColors.white),
                         ),
                         SizedBox(height: 20.h),
@@ -188,12 +188,12 @@ class SignUpScreen extends StatelessWidget {
                                 children: [
                                   TextSpan(
                                     text: 'لديك حساب بالفعل؟  ',
-                                    style: AppStyles.textStyle14w400FF
+                                    style: AppStyles.textStyle14w400
                                         .copyWith(color: AppColors.gray2),
                                   ),
                                   TextSpan(
                                     text: 'تسجيل الدخول',
-                                    style: AppStyles.textStyle14w400FF
+                                    style: AppStyles.textStyle14w400
                                         .copyWith(color: AppColors.white),
                                   ),
                                 ],

@@ -1,4 +1,4 @@
-import 'package:eazy_app/core/helper/my_navgator.dart';
+import 'package:eazy_app/core/tools//my_navgator.dart';
 import 'package:eazy_app/core/utils/appColor.dart';
 import 'package:eazy_app/core/utils/appPaddings.dart';
 import 'package:eazy_app/core/utils/appStyles.dart';
@@ -19,10 +19,10 @@ class OnBoardingPage extends StatelessWidget {
 
   const OnBoardingPage({
     super.key,
-     required this.imagePath,
-      required this.title,
+    required this.imagePath,
+    required this.title,
     required this.description,
-     this.activeIndex,
+    this.activeIndex,
     this.showSkip = true,
   });
 
@@ -69,7 +69,7 @@ class OnBoardingPage extends StatelessWidget {
             Text(
               title,
               textAlign: TextAlign.center,
-              style: AppStyles.textStyle20w400FF.copyWith(
+              style: AppStyles.textStyle12w400FF.copyWith(
                 color: AppColors.black,
                 height: 1.35,
               ),
@@ -95,7 +95,7 @@ class OnBoardingPage extends StatelessWidget {
                   height: 57.h,
                   text: showSkip ? "التالي" : "ابدأ",
                   color: showSkip ? AppColors.blue : Colors.orange,
-                  textStyle: AppStyles.textStyle14w700FF.copyWith(
+                  textStyle: AppStyles.textStyle14w400FF.copyWith(
                     color: AppColors.white,
                     fontSize: 14.sp,
                   ),

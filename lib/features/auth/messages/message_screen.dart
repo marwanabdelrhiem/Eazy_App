@@ -40,7 +40,7 @@ class SuccessDialog {
                     onConfirm();
                   },
                   color: AppColors.blue,
-                  textStyle: AppStyles.textStyle14w700FF.copyWith(
+                  textStyle: AppStyles.textStyle14w400FF.copyWith(
                     color: AppColors.white,
                   ),
                 ),

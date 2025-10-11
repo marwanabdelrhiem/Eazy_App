@@ -13,7 +13,7 @@ class HomeSectionText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: AppStyles.textStyle14w400FF
+      style: AppStyles.textStyle14w400
           .copyWith(color: AppColors.textHomeSection),
       textDirection: TextDirection.rtl,
     );
